@@ -1,0 +1,2702 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Etérea Tattoo Studio — Un lugar para volver a ti</title>
+  
+  <!-- Favicon Oficial: Estrella Etérea (Recurso 6) -->
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="alternate icon" type="image/svg+xml" href="ESTRELLA%20ET%C3%89REA/Recurso%202.svg">
+  <link rel="apple-touch-icon" href="favicon.svg">
+  
+  <!-- Tailwind CSS CDN configurado con la paleta oficial -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  
+  <!-- Hoja de estilos con la Identidad Oficial Beige Crema (#f0e9cf) + Azul Marca (#2756a2) -->
+  <link rel="stylesheet" href="styles.css?v=13">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            crema: '#f0e9cf',
+            'crema-card': '#fbf8ef',
+            'crema-dark': '#e2d9b6',
+            'azul-marca': '#2756a2',
+            'azul-dark': '#1b3f7a',
+            'azul-deep': '#122c54',
+            'azul-light': '#e8f0fc',
+            'azul-dim': 'rgba(39, 86, 162, 0.08)'
+          },
+          fontFamily: {
+            sans: ['Poppins', 'sans-serif'],
+            body: ['Poppins', 'sans-serif'],
+            serif: ['KENAEO', 'Kenao', 'sans-serif'],
+            display: ['KENAEO', 'Kenao', 'sans-serif'],
+            mono: ['Space Mono', 'monospace']
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="selection:bg-[#2756a2] selection:text-[#f0e9cf] bg-[#f0e9cf] text-[#2756a2] font-body">
+
+  <!-- Luces sutiles de fondo para dinamismo etéreo -->
+  <div class="hero-glow"></div>
+  <div class="hero-glow-secondary"></div>
+
+  <!-- ========================================================
+       1. BARRA DE NAVEGACIÓN DINÁMICA FLOTANTE (HEADER DOCK)
+       ======================================================== -->
+  <header class="nav-floating-dock">
+    
+    <!-- Logotipo Oficial Vectorial de Etérea (desde la carpeta 'LOGO ETÉREA') -->
+    <a href="#/inicio" class="logo-eterea-container group flex items-center shrink-0" onclick="navigateToRoute('inicio', true); return false;" title="Etérea Tattoo Studio">
+      <img src="LOGO%20ET%C3%89REA/logo-eterea-azul.svg" alt="Etérea Tattoo Studio" class="h-9 sm:h-10 w-auto object-contain transition-transform group-hover:scale-105" onerror="this.onerror=null; this.src='logo-eterea.svg';" />
+    </a>
+
+    <!-- Píldoras de Navegación por Páginas Independientes con Estrella Etérea Oficial -->
+    <nav class="dynamic-nav-pills">
+      <button type="button" class="nav-pill-btn active" data-route="inicio" onclick="navigateToRoute('inicio', true)">
+        <img src="estrella-eterea.svg" class="nav-indicator-dot" alt="" />
+        <span>Inicio</span>
+      </button>
+      <button type="button" class="nav-pill-btn" data-route="artistas" onclick="navigateToRoute('artistas', true)">
+        <img src="estrella-eterea.svg" class="nav-indicator-dot" alt="" />
+        <span>Artistas</span>
+      </button>
+      <button type="button" class="nav-pill-btn" data-route="galeria" onclick="navigateToRoute('galeria', true)">
+        <img src="estrella-eterea.svg" class="nav-indicator-dot" alt="" />
+        <span>Galería</span>
+      </button>
+      <button type="button" class="nav-pill-btn" data-route="talleres" onclick="navigateToRoute('talleres', true)">
+        <img src="estrella-eterea.svg" class="nav-indicator-dot" alt="" />
+        <span>Talleres</span>
+      </button>
+      <button type="button" class="nav-pill-btn" data-route="reservas" onclick="navigateToRoute('reservas', true)">
+        <img src="estrella-eterea.svg" class="nav-indicator-dot" alt="" />
+        <span>Reservas</span>
+      </button>
+    </nav>
+
+    <!-- Acciones Rápidas (Admin & CTA) -->
+    <div class="flex items-center gap-3 shrink-0">
+      <button type="button" onclick="openAdminModal()" class="inline-flex items-center text-xs text-[#2756a2] hover:text-[#1b3f7a] border border-[#2756a2]/25 px-3.5 py-1.5 rounded-full transition-all hover:border-[#2756a2] bg-white/70 shadow-sm font-medium" title="Panel privado de gestión de citas y obras">
+        <span>Admin</span>
+      </button>
+      
+      <a href="#/reservas" onclick="navigateToRoute('reservas', true); return false;" class="btn-primary text-xs py-2 px-4 sm:px-5 shadow-sm">
+        <span>Agendar</span>
+      </a>
+    </div>
+
+  </header>
+
+
+  <!-- ========================================================
+       CONTENEDOR DE PÁGINAS INDEPENDIENTES (ROUTER VIEWS)
+       ======================================================== -->
+  <main id="app-router-container" class="min-h-screen">
+
+    <!-- ========================================================
+         PÁGINA 1: /inicio (PORTADA PRINCIPAL & EL HOOK DE MÉTRICAS)
+         ======================================================== -->
+    <div id="page-inicio" class="page-view">
+      
+      <!-- BANNER PRINCIPAL (FULL VIEWPORT) -->
+      <section class="hero-viewport-banner relative">
+        <!-- IMAGEN FIJA DE FONDO (DESDE CARPETA IMAGEN INICIO) -->
+        <div id="hero-carousel" class="absolute inset-0 w-full h-full overflow-hidden">
+          <div class="hero-carousel-slide active absolute inset-0 w-full h-full opacity-100" data-hero-artist="Inicio">
+            <img 
+              id="hero-fixed-image"
+              src="IMAGEN%20INICIO/IMG_8997.jpg" 
+              alt="Etérea Tattoo Studio — Inicio" 
+              class="w-full h-full object-cover object-center filter brightness-[0.92] contrast-[1.03]" 
+            />
+          </div>
+        </div>
+        
+        <!-- ETÉREA WORDMARK VECTORIAL (DE BORDE A BORDE AL BORDE INFERIOR) -->
+        <div class="hero-wordmark-bottom" style="position: absolute; bottom: 0; left: 0; right: 0; width: 100%; width: 100vw; z-index: 20; pointer-events: none; line-height: 0; margin: 0; padding: 0; display: block;" aria-hidden="true">
+          <img src="LOGO%20ET%C3%89REA/logo-eterea-azul.svg" alt="Etérea Tattoo Studio" class="hero-wordmark-svg" style="display: block; width: 100%; width: 100vw; height: calc(100vw * 143.04 / 549.06); margin: 0; padding: 0;" onerror="this.onerror=null; this.src='logo-eterea.svg';" />
+        </div>
+      </section>
+
+      <!-- PRESENTACIÓN EDITORIAL Y MANIFIESTO -->
+      <section class="py-12 md:py-16 px-6">
+        <div class="max-w-3xl mx-auto text-center">
+          
+          <h1 class="font-serif text-3xl sm:text-5xl md:text-6xl font-normal leading-[1.15] text-[#2756a2] mb-5">
+            Un lugar para volver a ti
+          </h1>
+
+          <p class="text-[#335384] text-base md:text-lg leading-relaxed max-w-xl mx-auto font-normal">
+            Un refugio de calma y precisión creado por <strong>Adriana Carrillo</strong> y <strong>Luna</strong> para dar vida a piezas de autor concebidas con el alma.
+          </p>
+
+        </div>
+      </section>
+
+      <!-- SECCIÓN EDITORIAL FULL-WIDTH: DOS MIRADAS (EXPERIENCIA INMERSIVA MONUMENTAL) -->
+      <section class="relative w-full min-h-[780px] md:min-h-[860px] lg:min-h-[920px] flex flex-col justify-between overflow-hidden my-0 bg-[#0e0a08]">
+        <!-- Imagen de Fondo a Pantalla Completa de Marco a Marco (Nueva Fotografía Dúo Adri & Luna) -->
+        <img 
+          id="banner-dos-miradas-img"
+          src="assets/foto-adri-luna.gif" 
+          alt="Etérea Tattoo Studio - Adriana Carrillo & Luna" 
+          class="absolute inset-0 w-full h-full object-cover object-[center_28%] filter brightness-[0.78] contrast-[1.05] pointer-events-none" 
+        />
+        
+        <!-- Degradado cinematográfico oscuro para máximo contraste editorial -->
+        <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/35 to-black/70 pointer-events-none"></div>
+
+        <!-- CUADRÍCULA DE LÍNEAS GUÍA Y ESTRELLAS TITILANTES EN LOS 4 VÉRTICES (ESTRELLA ETÉREA / Recurso 6.svg) -->
+        <div class="absolute inset-0 pointer-events-none hidden md:block z-10">
+          <div class="absolute left-8 lg:left-12 top-0 bottom-16 md:bottom-20 w-[1px] bg-[#f0e9cf]/30"></div>
+          <div class="absolute right-8 lg:right-12 top-0 bottom-16 md:bottom-20 w-[1px] bg-[#f0e9cf]/30"></div>
+          <div class="absolute left-0 right-0 top-12 md:top-16 h-[1px] bg-[#f0e9cf]/30"></div>
+          <div class="absolute left-0 right-0 bottom-16 md:bottom-20 h-[1px] bg-[#f0e9cf]/30"></div>
+          
+          <!-- Vértice Superior Izquierdo -->
+          <div class="absolute left-8 lg:left-12 top-12 md:top-16 -translate-x-1/2 -translate-y-1/2 w-5 h-5 md:w-6 md:h-6 pointer-events-auto">
+            <img src="ESTRELLA%20ET%C3%89REA/Recurso%202.svg" class="dos-miradas-star" style="animation-delay: 0s;" alt="Estrella Etérea" onerror="this.onerror=null; this.src='estrella-eterea.svg';" />
+          </div>
+          
+          <!-- Vértice Superior Derecho -->
+          <div class="absolute right-8 lg:right-12 top-12 md:top-16 translate-x-1/2 -translate-y-1/2 w-5 h-5 md:w-6 md:h-6 pointer-events-auto">
+            <img src="ESTRELLA%20ET%C3%89REA/Recurso%202.svg" class="dos-miradas-star" style="animation-delay: 0.6s;" alt="Estrella Etérea" onerror="this.onerror=null; this.src='estrella-eterea.svg';" />
+          </div>
+
+          <!-- Vértice Inferior Izquierdo -->
+          <div class="absolute left-8 lg:left-12 bottom-16 md:bottom-20 -translate-x-1/2 translate-y-1/2 w-5 h-5 md:w-6 md:h-6 pointer-events-auto">
+            <img src="ESTRELLA%20ET%C3%89REA/Recurso%202.svg" class="dos-miradas-star" style="animation-delay: 1.2s;" alt="Estrella Etérea" onerror="this.onerror=null; this.src='estrella-eterea.svg';" />
+          </div>
+
+          <!-- Vértice Inferior Derecho -->
+          <div class="absolute right-8 lg:right-12 bottom-16 md:bottom-20 translate-x-1/2 translate-y-1/2 w-5 h-5 md:w-6 md:h-6 pointer-events-auto">
+            <img src="ESTRELLA%20ET%C3%89REA/Recurso%202.svg" class="dos-miradas-star" style="animation-delay: 1.8s;" alt="Estrella Etérea" onerror="this.onerror=null; this.src='estrella-eterea.svg';" />
+          </div>
+        </div>
+
+        <!-- ENCABEZADO MONUMENTAL DOS MIRADAS (TIPOGRAFÍA DE TÍTULO KENAEO) -->
+        <div class="relative z-15 w-full px-6 sm:px-12 pt-28 md:pt-40 pb-16 text-center select-none">
+          <span class="font-mono text-xs sm:text-sm uppercase tracking-[0.38em] text-[#f0e9cf] block mb-4 font-semibold drop-shadow">
+            Sintonía y Conexión
+          </span>
+          <h2 class="font-serif text-6xl sm:text-8xl md:text-9xl lg:text-[10rem] text-[#f0e9cf] font-normal leading-none tracking-tight drop-shadow-2xl" style="font-family: 'KENAO', 'KENAEO', 'Kenao', serif !important;">
+            <span class="title-dos-miradas" style="font-family: 'KENAO', 'KENAEO', 'Kenao', serif !important;">Dos Miradas</span>
+          </h2>
+        </div>
+
+        <!-- BASE DEL BANNER: NOMBRES DE LAS ARTISTAS Y ACCESO DIRECTO -->
+        <div class="relative z-15 w-full px-6 sm:px-10 lg:px-12 pb-8 pt-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div class="flex items-center gap-3">
+            <span class="font-serif text-lg sm:text-2xl text-[#f0e9cf] font-normal tracking-wide drop-shadow" style="font-family: 'KENAO', 'KENAEO', 'Kenao', serif !important;">
+              Adriana Carrillo &amp; Luna
+            </span>
+          </div>
+
+          <a href="#/artistas" onclick="navigateToRoute('artistas', true); return false;" class="px-6 py-2.5 bg-[#f0e9cf] hover:bg-white text-[#2756a2] text-xs font-mono uppercase tracking-[0.2em] font-bold transition-all inline-flex items-center gap-2 rounded-none shadow-xl hover:scale-[1.02]">
+            <span>Conocer Artistas</span>
+            <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+          </a>
+        </div>
+      </section>
+
+      <!-- SECCIÓN PILARES / VALORES DE LA MARCA (EDITORIAL & MINIMALISTA) -->
+      <section class="py-16 md:py-24 px-6 bg-[#f0e9cf]" style="background-color: #f0e9cf !important;">
+        <div class="max-w-6xl mx-auto">
+          
+          <div class="text-center mb-14 md:mb-16">
+            <span class="font-mono text-[11px] text-[#2756a2] uppercase tracking-[0.25em] font-semibold block mb-2">Filosofía Etérea</span>
+            <h2 class="font-serif text-2xl sm:text-3xl text-[#1b3f7a] font-normal">Pilares de Nuestra Práctica</h2>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-10 lg:gap-16 text-center">
+            
+            <!-- PILAR 1: CUIDADO -->
+            <div class="group flex flex-col items-center">
+              <div class="w-16 h-16 mb-6 flex items-center justify-center transition-transform duration-500 group-hover:scale-110">
+                <svg viewBox="0 0 64 64" class="w-14 h-14 text-[#2756a2] stroke-current fill-none sacred-anim-spin" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="32" cy="32" r="6" />
+                  <circle cx="32" cy="32" r="2.5" fill="#2756a2" />
+                  <circle cx="32" cy="32" r="11" stroke-dasharray="1.5 2.5" />
+                  <path d="M32 4 L35 18 L48 9 L42 22 L56 22 L45 30 L59 39 L45 41 L53 53 L39 46 L36 60 L32 46 L25 53 L27 41 L13 39 L25 30 L12 22 L26 22 L20 9 L33 18 Z" />
+                  <circle cx="32" cy="32" r="18" stroke-dasharray="0.5 3" />
+                </svg>
+              </div>
+              <h3 class="font-serif text-lg tracking-[0.2em] uppercase text-[#1b3f7a] font-semibold mb-3">CUIDADO</h3>
+              <p class="text-xs sm:text-[13px] text-[#335384] leading-relaxed max-w-xs mx-auto font-normal">
+                Esterilización de grado quirúrgico y precisión milimétrica en un entorno de absoluta tranquilidad.
+              </p>
+            </div>
+
+            <!-- PILAR 2: PACIENCIA -->
+            <div class="group flex flex-col items-center">
+              <div class="w-16 h-16 mb-6 flex items-center justify-center transition-transform duration-500 group-hover:scale-110">
+                <svg viewBox="0 0 64 64" class="w-14 h-14 text-[#2756a2] stroke-current fill-none sacred-anim-float" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+                  <polygon points="32,7 54,46 10,46" />
+                  <polygon points="32,57 10,18 54,18" />
+                  <polygon points="32,20 43,32 32,44 21,32" stroke-dasharray="2 2" />
+                  <circle cx="32" cy="32" r="3.5" fill="#2756a2" />
+                  <line x1="32" y1="7" x2="32" y2="57" stroke-dasharray="1 2.5" />
+                  <line x1="10" y1="18" x2="54" y2="46" stroke-dasharray="1 2.5" />
+                  <line x1="54" y1="18" x2="10" y2="46" stroke-dasharray="1 2.5" />
+                </svg>
+              </div>
+              <h3 class="font-serif text-lg tracking-[0.2em] uppercase text-[#1b3f7a] font-semibold mb-3">PACIENCIA</h3>
+              <p class="text-xs sm:text-[13px] text-[#335384] leading-relaxed max-w-xs mx-auto font-normal">
+                Una colaboración sincera. Nos tomamos el tiempo necesario para escuchar tu idea y adaptarla a tu anatomía.
+              </p>
+            </div>
+
+            <!-- PILAR 3: INTENCIÓN -->
+            <div class="group flex flex-col items-center">
+              <div class="w-16 h-16 mb-6 flex items-center justify-center transition-transform duration-500 group-hover:scale-110">
+                <svg viewBox="0 0 64 64" class="w-14 h-14 text-[#2756a2] stroke-current fill-none sacred-anim-pulse" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="32" cy="32" r="9" />
+                  <circle cx="32" cy="32" r="5" stroke-dasharray="1.5 2" />
+                  <circle cx="32" cy="32" r="2" fill="#2756a2" />
+                  <g stroke-width="1.1">
+                    <line x1="32" y1="11" x2="32" y2="4" />
+                    <line x1="32" y1="53" x2="32" y2="60" />
+                    <line x1="11" y1="32" x2="4" y2="32" />
+                    <line x1="53" y1="32" x2="60" y2="32" />
+                    <line x1="17.2" y1="17.2" x2="12.2" y2="12.2" />
+                    <line x1="46.8" y1="46.8" x2="51.8" y2="51.8" />
+                    <line x1="17.2" y1="46.8" x2="12.2" y2="51.8" />
+                    <line x1="46.8" y1="17.2" x2="51.8" y2="12.2" />
+                    <line x1="24" y1="14" x2="20.5" y2="7.5" />
+                    <line x1="40" y1="14" x2="43.5" y2="7.5" />
+                    <line x1="24" y1="50" x2="20.5" y2="56.5" />
+                    <line x1="40" y1="50" x2="43.5" y2="56.5" />
+                    <line x1="14" y1="24" x2="7.5" y2="20.5" />
+                    <line x1="14" y1="40" x2="7.5" y2="43.5" />
+                    <line x1="50" y1="24" x2="56.5" y2="20.5" />
+                    <line x1="50" y1="40" x2="56.5" y2="43.5" />
+                    <circle cx="32" cy="2" r="1" fill="#2756a2" />
+                  </g>
+                </svg>
+              </div>
+              <h3 class="font-serif text-lg tracking-[0.2em] uppercase text-[#1b3f7a] font-semibold mb-3">INTENCIÓN</h3>
+              <p class="text-xs sm:text-[13px] text-[#335384] leading-relaxed max-w-xs mx-auto font-normal">
+                Creamos piezas de autor atemporales que honran tu historia personal y tu lienzo sagrado.
+              </p>
+            </div>
+
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ACCESOS EDITORIALES RÁPIDOS A LAS PÁGINAS (SIN ESPACIOS, COMPLETANDO LA PANTALLA) -->
+      <section class="w-full p-0 m-0 overflow-hidden bg-black" style="background-color: #000000 !important;">
+        <div class="w-full p-0 m-0 bg-black">
+          <div id="home-feature-cards-grid" class="grid grid-cols-1 md:grid-cols-3 gap-0 w-full min-h-[500px] md:min-h-[600px] relative bg-black" style="background-color: #000000 !important; gap: 0 !important; border: none !important;">
+            
+            <!-- TARJETA 1: CONOCE AL EQUIPO -->
+            <div class="home-feature-card relative overflow-hidden min-h-[440px] md:min-h-[580px] p-8 sm:p-10 md:p-12 flex flex-col justify-end group cursor-pointer bg-black transition-all duration-500 border-none outline-none" onclick="handleHomeCardClick(event, 'artistas', this)">
+              <!-- Imagen de fondo que llena todo el bloque borde a borde (Nueva Fotografía Dúo Adri & Luna) -->
+              <img 
+                src="assets/foto-adri-luna.gif" 
+                alt="Conoce al equipo de Etérea" 
+                class="absolute inset-0 w-full h-full object-cover object-[center_20%] opacity-85 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 pointer-events-none" 
+              />
+              <!-- Sombra cinematográfica para resaltar el texto -->
+              <div class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/45 to-transparent pointer-events-none"></div>
+
+              <!-- Bloque de texto directo sobre la foto -->
+              <div class="relative z-10 space-y-2 mb-6">
+                <span class="font-mono text-[11px] text-[#f0e9cf] uppercase tracking-widest block font-bold">EQUIPO RESIDENTE</span>
+                <h3 class="font-serif text-3xl sm:text-4xl text-white font-normal drop-shadow-md">Conoce al equipo</h3>
+                <p class="text-xs sm:text-sm text-white/90 leading-relaxed font-light max-w-sm drop-shadow">
+                  Descubre la trayectoria, visión artística y técnicas maestras de las cofundadoras del estudio.
+                </p>
+              </div>
+
+              <div class="relative z-10">
+                <button type="button" onclick="navigateToRoute('artistas', true)" class="inline-flex items-center gap-2 text-xs font-semibold text-[#1b3f7a] bg-[#f0e9cf] hover:bg-white px-6 py-3 rounded-full shadow-lg transition-all group-hover:shadow-2xl hover:scale-[1.02] cursor-pointer">
+                  <span>Ver perfil de artistas</span>
+                  <span class="font-bold">&rarr;</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- TARJETA 2: GALERÍA DE DISEÑOS -->
+            <div class="home-feature-card relative overflow-hidden min-h-[440px] md:min-h-[580px] p-8 sm:p-10 md:p-12 flex flex-col justify-end group cursor-pointer bg-black transition-all duration-500 border-none outline-none" onclick="handleHomeCardClick(event, 'galeria', this)">
+              <!-- Imagen de fondo que llena todo el bloque borde a borde -->
+              <img 
+                src="TRABAJOS%20ADRI/FOTO%20ADRI%20TRABAJANDO/igexport-DFppIR5RQVs.webp" 
+                alt="Galería de Diseños Etérea" 
+                class="absolute inset-0 w-full h-full object-cover object-center opacity-85 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 pointer-events-none" 
+              />
+              <!-- Sombra cinematográfica para resaltar el texto -->
+              <div class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/45 to-transparent pointer-events-none"></div>
+
+              <!-- Bloque de texto directo sobre la foto -->
+              <div class="relative z-10 space-y-2 mb-6">
+                <span class="font-mono text-[11px] text-[#f0e9cf] uppercase tracking-widest block font-bold">PORTAFOLIO VIVO</span>
+                <h3 class="font-serif text-3xl sm:text-4xl text-white font-normal drop-shadow-md">Galería de Diseños</h3>
+                <p class="text-xs sm:text-sm text-white/90 leading-relaxed font-light max-w-sm drop-shadow">
+                  Explora obras por estilo fine line, blackwork y handpoke en piel viva.
+                </p>
+              </div>
+
+              <div class="relative z-10">
+                <button type="button" onclick="navigateToRoute('galeria', true)" class="inline-flex items-center gap-2 text-xs font-semibold text-[#1b3f7a] bg-[#f0e9cf] hover:bg-white px-6 py-3 rounded-full shadow-lg transition-all group-hover:shadow-2xl hover:scale-[1.02] cursor-pointer">
+                  <span>Explorar galería</span>
+                  <span class="font-bold">&rarr;</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- TARJETA 3: TALLERES -->
+            <div class="home-feature-card relative overflow-hidden min-h-[440px] md:min-h-[580px] p-8 sm:p-10 md:p-12 flex flex-col justify-end group cursor-pointer bg-black transition-all duration-500 border-none outline-none" onclick="handleHomeCardClick(event, 'talleres', this)">
+              <!-- Imagen de fondo que llena todo el bloque borde a borde (Segunda foto de Fotos Talleres/FOTOS) -->
+              <img 
+                src="Fotos%20Talleres/FOTOS/igexport-Db_QsCqnDhR-4.jpg" 
+                alt="Talleres y Formación Etérea" 
+                class="absolute inset-0 w-full h-full object-cover object-center opacity-85 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 pointer-events-none" 
+              />
+              <!-- Sombra cinematográfica para resaltar el texto -->
+              <div class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/45 to-transparent pointer-events-none"></div>
+
+              <!-- Bloque de texto directo sobre la foto -->
+              <div class="relative z-10 space-y-2 mb-6">
+                <span class="font-mono text-[11px] text-[#f0e9cf] uppercase tracking-widest block font-bold">FORMACIÓN AUTORAL</span>
+                <h3 class="font-serif text-3xl sm:text-4xl text-white font-normal drop-shadow-md">Talleres</h3>
+                <p class="text-xs sm:text-sm text-white/90 leading-relaxed font-light max-w-sm drop-shadow">
+                  Masterclasses de técnica, bioseguridad y composición por las cofundadoras.
+                </p>
+              </div>
+
+              <div class="relative z-10">
+                <button type="button" onclick="navigateToRoute('talleres', true)" class="inline-flex items-center gap-2 text-xs font-semibold text-[#1b3f7a] bg-[#f0e9cf] hover:bg-white px-6 py-3 rounded-full shadow-lg transition-all group-hover:shadow-2xl hover:scale-[1.02] cursor-pointer">
+                  <span>Consultar cupos activos</span>
+                  <span class="font-bold">&rarr;</span>
+                </button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- ========================================================
+         PÁGINA 2: /artistas (EXPERIENCIA INTERACTIVA FULL-WIDTH DE MARCO A MARCO)
+         ======================================================== -->
+    <div id="page-artistas" class="page-view hidden w-full p-0 m-0 bg-[#0e0a08]">
+      <section class="w-full min-h-screen p-0 m-0 overflow-hidden relative bg-[#0e0a08] flex flex-col justify-between">
+        
+        <!-- FOTOGRAFÍA FULL-WIDTH DE MARCO A MARCO HASTA EL BORDE SUPERIOR (TOP: 0) -->
+        <img 
+          id="artist-spotlight-bg"
+          src="FOTO%20ADRI%20LUNA/igexport-DTyuavMjQ7F.gif" 
+          alt="Dirección Artística Etérea Tattoo" 
+          class="absolute inset-0 w-full h-full object-cover object-[center_top] transition-transform duration-700 ease-out brightness-[0.92] contrast-[1.05]" 
+        />
+
+        <!-- Capa de oscurecimiento superior e inferior para contraste técnico y legibilidad de textos -->
+        <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-black/70 pointer-events-none"></div>
+
+        <!-- LÍNEAS GUÍA SVG Y ESTRELLAS SOBRE CADA ARTISTA (PROPORCIÓN EXACTA A LA FOTOGRAFÍA 1376x768, IDÉNTICA A RESERVAS) -->
+        <svg id="artist-guide-svg" class="absolute inset-0 w-full h-full pointer-events-none z-15 hidden md:block transition-opacity duration-500" viewBox="0 0 1376 768" preserveAspectRatio="xMidYMid slice">
+          <defs>
+            <filter id="artist-star-glow-filter" x="-50%" y="-50%" width="200%" height="200%">
+              <feGaussianBlur in="SourceGraphic" stdDeviation="4" result="blur1"/>
+              <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur2"/>
+              <feMerge>
+                <feMergeNode in="blur2"/>
+                <feMergeNode in="blur1"/>
+                <feMergeNode in="SourceGraphic"/>
+              </feMerge>
+            </filter>
+          </defs>
+
+          <!-- GUÍA ADRIANA CARRILLO (Lado Izquierdo - Línea Dinámica) -->
+          <g id="guide-group-adriana" class="transition-opacity duration-500 opacity-100" style="display: block;">
+            <path d="M 520 365 L 340 365 L 340 540 L 460 540" fill="none" stroke="#f0e9cf" stroke-width="1.5" class="artist-guideline-continuous" />
+            <circle cx="520" cy="365" r="4" fill="#f0e9cf" />
+            <circle cx="340" cy="540" r="4" fill="#f0e9cf" />
+          </g>
+
+          <!-- GUÍA LUNA (Lado Derecho - Línea Dinámica) -->
+          <g id="guide-group-luna" class="transition-opacity duration-500 opacity-0" style="display: none;">
+            <path d="M 860 445 L 1036 445 L 1036 620 L 916 620" fill="none" stroke="#f0e9cf" stroke-width="1.5" class="artist-guideline-continuous" />
+            <circle cx="860" cy="445" r="4" fill="#f0e9cf" />
+            <circle cx="1036" cy="620" r="4" fill="#f0e9cf" />
+          </g>
+
+          <!-- ESTRELLAS GUÍA INTERACTIVAS (PERMANENTES SOBRE AMBAS CHICAS) -->
+          <!-- Estrella Adriana -->
+          <g id="star-anchor-adriana" transform="translate(537, 348) scale(0.65)" class="cursor-pointer pointer-events-auto" onclick="switchArtistView('Adriana Carrillo')">
+            <g id="star-icon-adriana" class="star-active-pulse" filter="url(#artist-star-glow-filter)">
+              <path fill="#f0e9cf" d="M17.08,1.86l-.48-.84c.04-.32-.09-.7.12-1.02.66.55.29,1.24.36,1.86Z"/>
+              <path fill="#f0e9cf" d="M19.49,18.84l-1.11-5.53-1.3-11.45c-.06-.74-.22-1.02-.47-.84l-.64,5.49c-.46,3.92-.82,7.78-1.69,11.6-1.4,6.16-8.29,5.82-14.28,7.13l6.15,1.04c3.4.58,7.37,2.03,7.96,5.36l1.39,7.74,1.12,10.36c.27-.03.43-.33.47-.9l1.77-14.49c.21-1.71.64-3.41,1.63-4.78,2.31-3.18,8.85-3.45,13.27-4.27-4.94-1.09-13.23-1.22-14.27-6.46ZM18.26,31.07l-1.51,7.49-1.41-7.43c-.64-3.34-4.17-5.12-7.46-5.81l2.49-.96c2.48-.77,4.22-2.63,4.98-5.14l1.38-7.4,1.18,6.37c.3,1.62.99,3.1,2.12,4.32,1.64,1.4,3.54,2.13,5.83,2.77-3.3.86-6.88,2.26-7.6,5.79Z"/>
+              <path fill="#f0e9cf" d="M16.62,49.74l.47-.89c-.08.68.15,1.39-.4,2.01-.2-.41-.04-.77-.07-1.11Z"/>
+            </g>
+          </g>
+
+          <!-- Estrella Luna -->
+          <g id="star-anchor-luna" transform="translate(821, 428) scale(0.65)" class="cursor-pointer pointer-events-auto" onclick="switchArtistView('Luna')">
+            <g id="star-icon-luna" class="star-active-pulse" filter="url(#artist-star-glow-filter)">
+              <path fill="#f0e9cf" d="M17.08,1.86l-.48-.84c.04-.32-.09-.7.12-1.02.66.55.29,1.24.36,1.86Z"/>
+              <path fill="#f0e9cf" d="M19.49,18.84l-1.11-5.53-1.3-11.45c-.06-.74-.22-1.02-.47-.84l-.64,5.49c-.46,3.92-.82,7.78-1.69,11.6-1.4,6.16-8.29,5.82-14.28,7.13l6.15,1.04c3.4.58,7.37,2.03,7.96,5.36l1.39,7.74,1.12,10.36c.27-.03.43-.33.47-.9l1.77-14.49c.21-1.71.64-3.41,1.63-4.78,2.31-3.18,8.85-3.45,13.27-4.27-4.94-1.09-13.23-1.22-14.27-6.46ZM18.26,31.07l-1.51,7.49-1.41-7.43c-.64-3.34-4.17-5.12-7.46-5.81l2.49-.96c2.48-.77,4.22-2.63,4.98-5.14l1.38-7.4,1.18,6.37c.3,1.62.99,3.1,2.12,4.32,1.64,1.4,3.54,2.13,5.83,2.77-3.3.86-6.88,2.26-7.6,5.79Z"/>
+              <path fill="#f0e9cf" d="M16.62,49.74l.47-.89c-.08.68.15,1.39-.4,2.01-.2-.41-.04-.77-.07-1.11Z"/>
+            </g>
+          </g>
+        </svg>
+
+        <!-- ZONAS INTERACTIVAS (HITBOXES): HOVER Y CLIC EN EL CUERPO DE LAS ARTISTAS (DINÁMICA IDÉNTICA A RESERVAS) -->
+        <div id="artist-hitboxes-container" class="absolute inset-0 z-18 flex">
+          <!-- Adriana Carrillo (Mitad Izquierda) -->
+          <div 
+            id="artist-hitbox-adriana"
+            onclick="switchArtistView('Adriana Carrillo')" 
+            onmouseenter="switchArtistView('Adriana Carrillo')"
+            title="Conocer a Adriana Carrillo" 
+            class="w-1/2 h-full cursor-pointer group pointer-events-auto"
+            aria-label="Seleccionar a Adriana Carrillo"
+          >
+            <div class="w-full h-full bg-[#575c20]/0 group-hover:bg-[#575c20]/10 transition-colors duration-300"></div>
+          </div>
+
+          <!-- Luna (Mitad Derecha) -->
+          <div 
+            id="artist-hitbox-luna"
+            onclick="switchArtistView('Luna')" 
+            onmouseenter="switchArtistView('Luna')"
+            title="Conocer a Luna" 
+            class="w-1/2 h-full cursor-pointer group pointer-events-auto"
+            aria-label="Seleccionar a Luna"
+          >
+            <div class="w-full h-full bg-[#575c20]/0 group-hover:bg-[#575c20]/10 transition-colors duration-300"></div>
+          </div>
+        </div>
+
+        <!-- CABECERA SUPERIOR Y SELECTOR RECTANGULAR DE ARTISTA (ESPACIO CÓMODO BAJO EL HEADER) -->
+        <div class="relative z-20 w-full px-6 sm:px-12 pt-28 md:pt-32 flex flex-col md:flex-row items-start md:items-center justify-between gap-5 pointer-events-none">
+          <div class="pointer-events-none">
+            <span class="font-mono text-[10px] text-[#f0e9cf] tracking-[0.28em] uppercase font-bold block mb-1">
+              DIRECCIÓN ARTÍSTICA · CO-FUNDADORAS
+            </span>
+            <h2 class="font-serif text-3xl sm:text-4xl md:text-5xl text-[#f0e9cf] font-normal drop-shadow-md">
+              Artistas Residentes
+            </h2>
+          </div>
+
+          <!-- SELECTOR DE ARTISTA SUPERIOR (BOTONES ESTRICTAMENTE RECTANGULARES) -->
+          <div class="pointer-events-auto inline-flex items-center border border-[#f0e9cf]/30 bg-black/60 backdrop-blur-md rounded-none shadow-2xl p-0">
+            <button 
+              type="button" 
+              id="btn-select-adriana"
+              onclick="switchArtistView('Adriana Carrillo')" 
+              class="px-5 sm:px-8 py-2.5 sm:py-3 text-xs sm:text-sm font-mono uppercase tracking-widest transition-all duration-300 rounded-none border-r border-[#f0e9cf]/25 bg-[#575c20] text-[#f0e9cf] font-bold"
+            >
+              Adriana Carrillo
+            </button>
+            <button 
+              type="button" 
+              id="btn-select-luna"
+              onclick="switchArtistView('Luna')" 
+              class="px-5 sm:px-8 py-2.5 sm:py-3 text-xs sm:text-sm font-mono uppercase tracking-widest transition-all duration-300 rounded-none text-[#f0e9cf]/70 hover:text-[#f0e9cf] hover:bg-white/10"
+            >
+              Luna
+            </button>
+          </div>
+        </div>
+
+        <!-- ZONA INTERACTIVA: FICHAS RECTANGULARES EN VERDE OFICIAL (#575c20) -->
+        <div id="artist-step1-panels-layer" class="relative z-20 w-full flex items-start px-6 sm:px-12 pointer-events-none">
+          
+          <!-- FICHA RECTANGULAR TÉCNICA: ADRIANA CARRILLO (Lado Izquierdo) -->
+          <div 
+            id="artist-panel-adriana" 
+            class="artist-editorial-panel artist-panel-green pointer-events-auto transition-all duration-500 max-w-lg w-full p-6 sm:p-8 rounded-none shadow-2xl mr-auto"
+            style="background-color: #575c20 !important; border: none !important; outline: none !important;"
+          >
+            <div class="flex items-start gap-5 mb-5">
+              <img 
+                id="avatar-img-adriana"
+                src="TRABAJOS%20ADRI/FOTO%20PERFIL%20ADRI/igexport-DDqEQgNvKiY.webp" 
+                alt="Adriana Carrillo" 
+                class="img-avatar-adriana w-20 h-24 sm:w-24 sm:h-28 rounded-none object-cover shadow-xl shrink-0" 
+              />
+              <div>
+                <span class="text-[10px] font-mono tracking-widest uppercase text-[#f0e9cf]/80 block font-semibold mb-1">
+                  CO-FUNDADORA
+                </span>
+                <h3 class="font-serif text-3xl sm:text-4xl text-[#f0e9cf] font-normal leading-tight drop-shadow">
+                  Adriana Carrillo
+                </h3>
+                <p class="text-xs sm:text-sm text-[#f0e9cf] font-mono tracking-wide mt-1.5 font-medium">
+                  Fine Line & Blackwork Ilustrativo
+                </p>
+              </div>
+            </div>
+
+            <!-- Acciones de contacto estrictamente rectangulares -->
+            <div class="flex flex-wrap items-center gap-3 pt-4 border-t border-[#f0e9cf]/25">
+              <button 
+                type="button" 
+                onclick="preselectArtist('Adriana Carrillo')" 
+                class="px-6 py-3 bg-[#f0e9cf] hover:bg-white text-[#575c20] text-xs font-semibold rounded-none shadow-md transition-all hover:scale-[1.02] inline-flex items-center gap-2 font-mono uppercase tracking-wider"
+              >
+                <span>Agendar con Adriana</span>
+                <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+              </button>
+              <a 
+                href="https://www.instagram.com/soyadri___?cplk=bW54MzByZG5rdDI3" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                class="px-5 py-3 border border-[#f0e9cf] hover:bg-[#f0e9cf]/15 text-[#f0e9cf] text-xs rounded-none font-mono transition-all inline-flex items-center gap-2"
+              >
+                @soyadri___
+              </a>
+            </div>
+            <div class="mt-4 pt-2">
+              <button 
+                type="button" 
+                onclick="openArtistBioModal('Adriana Carrillo')" 
+                class="text-[11px] font-mono uppercase tracking-wider text-[#f0e9cf]/85 hover:text-[#f0e9cf] underline underline-offset-4 transition-colors"
+              >
+                Conocer biografía y galería de la artista ↗
+              </button>
+            </div>
+          </div>
+
+          <!-- FICHA RECTANGULAR TÉCNICA: LUNA (Lado Derecho) -->
+          <div 
+            id="artist-panel-luna" 
+            class="artist-editorial-panel artist-panel-green pointer-events-auto transition-all duration-500 max-w-lg w-full p-6 sm:p-8 rounded-none shadow-2xl ml-auto hidden opacity-0"
+            style="background-color: #575c20 !important; border: none !important; outline: none !important;"
+          >
+            <div class="flex items-start gap-5 mb-5">
+              <img 
+                id="avatar-img-luna"
+                src="TRABAJOS%20LUNA/FOTO%20LUNA%20TRABAJANDO/igexport-C-NjoP-uXYO.jpg" 
+                alt="Luna" 
+                class="img-avatar-luna w-20 h-24 sm:w-24 sm:h-28 rounded-none object-cover shadow-xl shrink-0" 
+              />
+              <div>
+                <span class="text-[10px] font-mono tracking-widest uppercase text-[#f0e9cf]/80 block font-semibold mb-1">
+                  CO-FUNDADORA
+                </span>
+                <h3 class="font-serif text-3xl sm:text-4xl text-[#f0e9cf] font-normal leading-tight drop-shadow">
+                  Luna
+                </h3>
+                <p class="text-xs sm:text-sm text-[#f0e9cf] font-mono tracking-wide mt-1.5 font-medium">
+                  Puntillismo punto por punto, Handpoke & Fine Line
+                </p>
+              </div>
+            </div>
+
+            <!-- Acciones de contacto estrictamente rectangulares -->
+            <div class="flex flex-wrap items-center gap-3 pt-4 border-t border-[#f0e9cf]/25">
+              <button 
+                type="button" 
+                onclick="preselectArtist('Luna')" 
+                class="px-6 py-3 bg-[#f0e9cf] hover:bg-white text-[#575c20] text-xs font-semibold rounded-none shadow-md transition-all hover:scale-[1.02] inline-flex items-center gap-2 font-mono uppercase tracking-wider"
+              >
+                <span>Agendar con Luna</span>
+                <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+              </button>
+              <a 
+                href="https://www.instagram.com/lunnapokes?srtk=ZWhlZzA5MmZ5NDg=" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                class="px-5 py-3 border border-[#f0e9cf] hover:bg-[#f0e9cf]/15 text-[#f0e9cf] text-xs rounded-none font-mono transition-all inline-flex items-center gap-2"
+              >
+                @lunnapokes
+              </a>
+            </div>
+            <div class="mt-4 pt-2">
+              <button 
+                type="button" 
+                onclick="openArtistBioModal('Luna')" 
+                class="text-[11px] font-mono uppercase tracking-wider text-[#f0e9cf]/85 hover:text-[#f0e9cf] underline underline-offset-4 transition-colors"
+              >
+                Conocer biografía y galería de la artista ↗
+              </button>
+            </div>
+          </div>
+
+        </div>
+
+      </section>
+    </div>
+
+    <!-- ========================================================
+         PÁGINA 3: /galeria (PORTAFOLIO DE OBRAS A PANTALLA COMPLETA - INVERTIDO AZUL #2756a2 Y BEIGE #f0e9cf)
+         ======================================================== -->
+    <div id="page-galeria" class="page-view hidden bg-[#2756a2] text-[#f0e9cf]">
+      <section class="pt-8 pb-0 px-0 w-full">
+        
+        <!-- CABECERA Y FILTRO CENTRADOS CON COLORES DE MARCA INVERTIDOS -->
+        <div class="max-w-4xl mx-auto px-6 text-center mb-8">
+          <h2 class="font-serif text-3xl md:text-5xl text-[#f0e9cf] font-normal mb-2">Galería de Diseños y Obras</h2>
+          <p class="text-xs sm:text-sm text-[#f0e9cf]/85 max-w-lg mx-auto mb-6">
+            Explora nuestras piezas con fotografía de alta resolución, descripción de técnica y firma de autor.
+          </p>
+
+          <!-- Filtros Centrados: Por Artista -->
+          <div class="flex flex-col items-center justify-center gap-3">
+            <div class="inline-flex items-center gap-2 bg-[#1b3f7a]/65 backdrop-blur-md p-1.5 rounded-full border border-[#f0e9cf]/30 shadow-lg">
+              <button type="button" onclick="filterByArtist('Todas')" data-artist="Todas" class="artist-filter-btn pill-badge active border-none py-2 px-5 text-xs font-semibold">
+                Todas
+              </button>
+              <button type="button" onclick="filterByArtist('Adriana Carrillo')" data-artist="Adriana Carrillo" class="artist-filter-btn pill-badge border-none py-2 px-5 text-xs font-semibold">
+                Adriana Carrillo
+              </button>
+              <button type="button" onclick="filterByArtist('Luna')" data-artist="Luna" class="artist-filter-btn pill-badge border-none py-2 px-5 text-xs font-semibold">
+                Luna
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- ZONA DE DETECCIÓN HOVER EN EL BORDE IZQUIERDO -->
+        <div class="gallery-left-hover-zone hidden md:block" onmouseenter="openGalleryFilterSidebar()"></div>
+
+        <!-- BOTÓN FLOTANTE DISCRETO EN EL MARGEN IZQUIERDO -->
+        <button 
+          type="button" 
+          id="gallery-sidebar-toggle-btn"
+          onclick="toggleGalleryFilterSidebar()" 
+          onmouseenter="openGalleryFilterSidebar()"
+          class="gallery-floating-tab"
+          title="Filtrar por Técnicas de Autor"
+          aria-label="Abrir panel de técnicas"
+        >
+          <i data-lucide="sliders-horizontal" class="w-4 h-4 text-[#f0e9cf]"></i>
+          <span class="font-mono text-[10px] uppercase tracking-[0.2em] font-bold text-[#f0e9cf]">TÉCNICAS</span>
+        </button>
+
+        <!-- TELÓN DE FONDO SEMITRANSPARENTE PARA CERRAR AL HACER CLIC FUERA -->
+        <div id="gallery-sidebar-backdrop" onclick="closeGalleryFilterSidebar()" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-48 hidden opacity-0 transition-opacity duration-300"></div>
+
+        <!-- MENÚ LATERAL RETRÁCTIL MINIMALISTA / INDUSTRIAL (FILTRO DE TÉCNICAS) -->
+        <aside 
+          id="gallery-filter-sidebar" 
+          class="gallery-filter-sidebar"
+          onmouseleave="closeGalleryFilterSidebar()"
+          aria-label="Menú de filtrado por técnicas"
+        >
+          <div class="p-6 flex flex-col h-full justify-between overflow-y-auto">
+            <div>
+              <!-- Cabecera del Panel Minimalista / Industrial -->
+              <div class="flex items-center justify-between pb-4 mb-5 border-b border-[#f0e9cf]/20">
+                <div>
+                  <span class="font-mono text-[9px] uppercase tracking-[0.3em] text-[#f0e9cf]/60 block font-bold">
+                    ARCHIVO DE AUTOR
+                  </span>
+                  <h3 class="font-serif text-xl text-[#f0e9cf] font-normal tracking-wide">
+                    Técnicas & Estilos
+                  </h3>
+                </div>
+                <button 
+                  type="button" 
+                  onclick="closeGalleryFilterSidebar()" 
+                  class="p-1.5 text-[#f0e9cf]/60 hover:text-[#f0e9cf] hover:bg-white/10 rounded-full transition-all"
+                  title="Cerrar panel"
+                >
+                  <i data-lucide="x" class="w-4 h-4"></i>
+                </button>
+              </div>
+
+              <!-- Lista de Técnicas Solicitadas -->
+              <nav class="space-y-1.5">
+                <button 
+                  type="button" 
+                  onclick="selectGalleryTechnique('Todos')" 
+                  data-category="Todos" 
+                  class="gallery-technique-item active"
+                >
+                  <span class="technique-bullet"></span>
+                  <span class="technique-name">Todas las técnicas</span>
+                  <span class="technique-count" id="count-tech-all">40</span>
+                </button>
+
+                <button 
+                  type="button" 
+                  onclick="selectGalleryTechnique('Black Ilustrativo')" 
+                  data-category="Black Ilustrativo" 
+                  class="gallery-technique-item"
+                >
+                  <span class="technique-bullet"></span>
+                  <span class="technique-name">Black Ilustrativo</span>
+                  <span class="technique-count" id="count-tech-black">17</span>
+                </button>
+
+                <button 
+                  type="button" 
+                  onclick="selectGalleryTechnique('Fine Line')" 
+                  data-category="Fine Line" 
+                  class="gallery-technique-item"
+                >
+                  <span class="technique-bullet"></span>
+                  <span class="technique-name">Fine Line</span>
+                  <span class="technique-count" id="count-tech-fineline">9</span>
+                </button>
+
+                <button 
+                  type="button" 
+                  onclick="selectGalleryTechnique('Handpoke')" 
+                  data-category="Handpoke" 
+                  class="gallery-technique-item"
+                >
+                  <span class="technique-bullet"></span>
+                  <span class="technique-name">Handpoke</span>
+                  <span class="technique-count" id="count-tech-handpoke">4</span>
+                </button>
+
+                <button 
+                  type="button" 
+                  onclick="selectGalleryTechnique('Puntillismo de Arrastre')" 
+                  data-category="Puntillismo de Arrastre" 
+                  class="gallery-technique-item"
+                >
+                  <span class="technique-bullet"></span>
+                  <span class="technique-name">Puntillismo de Arrastre</span>
+                  <span class="technique-count" id="count-tech-arrastre">3</span>
+                </button>
+
+                <button 
+                  type="button" 
+                  onclick="selectGalleryTechnique('Puntillismo Punto por Punto')" 
+                  data-category="Puntillismo Punto por Punto" 
+                  class="gallery-technique-item"
+                >
+                  <span class="technique-bullet"></span>
+                  <span class="technique-name">Puntillismo Punto por Punto</span>
+                  <span class="technique-count" id="count-tech-puntillismo">4</span>
+                </button>
+
+                <button 
+                  type="button" 
+                  onclick="selectGalleryTechnique('Ilustración')" 
+                  data-category="Ilustración" 
+                  class="gallery-technique-item"
+                >
+                  <span class="technique-bullet"></span>
+                  <span class="technique-name">Ilustración</span>
+                  <span class="technique-count" id="count-tech-ilustracion">3</span>
+                </button>
+              </nav>
+            </div>
+
+            <!-- Pie del Panel -->
+            <div class="pt-4 border-t border-[#f0e9cf]/15 mt-6">
+              <div class="flex items-center justify-between text-[11px] font-mono text-[#f0e9cf]/70">
+                <span>Técnica activa:</span>
+                <span id="active-technique-indicator" class="text-[#f0e9cf] font-bold">Todas las técnicas</span>
+              </div>
+            </div>
+          </div>
+        </aside>
+
+        <!-- CUADRÍCULA DE IMÁGENES A PANTALLA COMPLETA HASTA EL FINAL (SIN BORDES OSCUROS NI ESPACIOS) -->
+        <div class="w-full p-0 m-0 overflow-hidden">
+          <div id="galeria-grid" class="grid grid-cols-2 md:grid-cols-4 gap-0 w-full p-0 m-0 bg-transparent">
+            <!-- Inyectado vía renderGaleria() -->
+          </div>
+        </div>
+
+      </section>
+    </div>
+
+    <!-- ========================================================
+         PÁGINA 4: /talleres (CATÁLOGO OFICIAL TALLERES & WORKSHOPS)
+         ======================================================== -->
+    <div id="page-talleres" class="page-view hidden w-full p-0 m-0 relative min-h-screen bg-[#f0e9cf] overflow-hidden">
+      
+      <!-- Fondo dinámico con imagen de handpoke de Luna, exposición sutilmente atenuada y contraste optimizado -->
+      <div class="absolute inset-0 pointer-events-none z-0 overflow-hidden select-none">
+        <img 
+          src="assets/talleres-bg-handpoke.jpg" 
+          alt="Textura handpoke Etérea" 
+          class="w-full h-full object-cover object-center opacity-15 filter brightness-90 contrast-95 mix-blend-multiply" 
+        />
+        <div class="absolute inset-0 bg-[#f0e9cf]/85"></div>
+        <div class="absolute inset-0 bg-gradient-to-b from-[#f0e9cf]/95 via-transparent to-[#f0e9cf]/95"></div>
+      </div>
+      
+      <section class="relative z-10 pt-28 md:pt-32 pb-16 px-6 sm:px-10 lg:px-12 max-w-7xl mx-auto min-h-screen flex flex-col justify-between">
+        <div>
+          
+          <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4 pb-6 border-b border-[#2756a2]/20">
+            <div>
+              <span class="font-mono text-xs text-[#2756a2] uppercase tracking-[0.22em] block mb-2 font-bold">
+                FORMACIÓN PROFESIONAL
+              </span>
+              <h2 class="font-serif text-3xl md:text-5xl text-[#2756a2] font-normal">
+                Talleres &amp; Workshops
+              </h2>
+            </div>
+            <p class="text-[#335384] text-xs sm:text-sm max-w-sm font-normal leading-relaxed">
+              Técnica, bioseguridad y acompañamiento con cupos limitados.
+            </p>
+          </div>
+
+          <!-- SELECTOR EDITORIAL DE CONVOCATORIAS -->
+          <div class="flex flex-wrap items-center gap-2 mb-8">
+            <button 
+              type="button" 
+              id="tab-talleres-todos" 
+              onclick="filterTalleres('todos')" 
+              class="px-5 py-2.5 text-xs font-mono uppercase tracking-wider transition-all bg-[#2756a2] text-white font-bold shadow-md rounded-none cursor-pointer"
+            >
+              Todos los Talleres (<span id="count-talleres-todos">6</span>)
+            </button>
+            <button 
+              type="button" 
+              id="tab-talleres-activos" 
+              onclick="filterTalleres('activos')" 
+              class="px-5 py-2.5 text-xs font-mono uppercase tracking-wider transition-all bg-white/70 hover:bg-white text-[#2756a2] border border-[#2756a2]/25 rounded-none cursor-pointer"
+            >
+              Talleres de Temporada (<span id="count-talleres-activos">3</span>)
+            </button>
+            <button 
+              type="button" 
+              id="tab-talleres-pasados" 
+              onclick="filterTalleres('pasados')" 
+              class="px-5 py-2.5 text-xs font-mono uppercase tracking-wider transition-all bg-white/70 hover:bg-white text-[#2756a2] border border-[#2756a2]/25 rounded-none cursor-pointer"
+            >
+              Ediciones Anteriores Realizadas (<span id="count-talleres-pasados">3</span>)
+            </button>
+          </div>
+
+          <!-- Catálogo de Talleres -->
+          <div id="talleres-catalog" class="grid grid-cols-1 lg:grid-cols-2 gap-6 w-full">
+            <!-- Inyectado vía renderTalleres() -->
+          </div>
+
+        </div>
+      </section>
+    </div>
+
+    <!-- ========================================================
+         PÁGINA 5: /reservas (FLUJO DE AGENDAMIENTO DE CITAS)
+         ======================================================== -->
+    <div id="page-reservas" class="page-view hidden w-full p-0 m-0 bg-[#f0e9cf]">
+      <section class="w-full min-h-screen p-0 m-0 overflow-hidden relative bg-[#0e0a08] flex flex-col justify-between">
+        
+        <!-- FOTOGRAFÍA HORIZONTAL INMERSIVA FULL-WIDTH DE MARCO A MARCO (IGUAL A LA SECCIÓN DE ARTISTAS) -->
+        <img 
+          id="booking-hero-bg"
+          src="FOTO%20ADRI%20LUNA/igexport-DTyuavMjQ7F.gif" 
+          alt="Artistas Residentes Etérea Tattoo Studio" 
+          class="absolute inset-0 w-full h-full object-cover object-[center_top] transition-transform duration-700 ease-out brightness-[0.90] contrast-[1.05]" 
+        />
+
+        <!-- Capa sutil de oscurecimiento y gradiente editorial -->
+        <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/35 to-black/60 pointer-events-none"></div>
+
+
+
+        <!-- LÍNEAS GUÍA SVG Y ESTRELLAS SOBRE CADA ARTISTA (PROPORCIÓN EXACTA A LA FOTOGRAFÍA 1376x768) -->
+        <svg id="booking-guide-svg" class="absolute inset-0 w-full h-full pointer-events-none z-15 hidden md:block transition-opacity duration-500" viewBox="0 0 1376 768" preserveAspectRatio="xMidYMid slice">
+          <defs>
+            <filter id="booking-star-glow-filter" x="-50%" y="-50%" width="200%" height="200%">
+              <feGaussianBlur in="SourceGraphic" stdDeviation="4" result="blur1"/>
+              <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur2"/>
+              <feMerge>
+                <feMergeNode in="blur2"/>
+                <feMergeNode in="blur1"/>
+                <feMergeNode in="SourceGraphic"/>
+              </feMerge>
+            </filter>
+          </defs>
+
+          <!-- GUÍA ADRIANA CARRILLO (Lado Izquierdo - Línea Dinámica) -->
+          <g id="booking-guide-group-adriana" class="transition-opacity duration-500 opacity-100" style="display: block;">
+            <path d="M 520 365 L 340 365 L 340 540 L 460 540" fill="none" stroke="#f0e9cf" stroke-width="1.5" class="artist-guideline-continuous" />
+            <circle cx="520" cy="365" r="4" fill="#f0e9cf" />
+            <circle cx="340" cy="540" r="4" fill="#f0e9cf" />
+          </g>
+
+          <!-- GUÍA LUNA (Lado Derecho - Línea Dinámica) -->
+          <g id="booking-guide-group-luna" class="transition-opacity duration-500 opacity-0" style="display: none;">
+            <path d="M 860 445 L 1036 445 L 1036 620 L 916 620" fill="none" stroke="#f0e9cf" stroke-width="1.5" class="artist-guideline-continuous" />
+            <circle cx="860" cy="445" r="4" fill="#f0e9cf" />
+            <circle cx="1036" cy="620" r="4" fill="#f0e9cf" />
+          </g>
+
+          <!-- ESTRELLAS GUÍA INTERACTIVAS (PERMANENTES SOBRE AMBAS CHICAS EN RESERVAS) -->
+          <!-- Estrella Adriana -->
+          <g id="booking-star-anchor-adriana" transform="translate(537, 348) scale(0.65)" class="cursor-pointer pointer-events-auto" onclick="selectArtistAndProceedToStep2('Adriana Carrillo')">
+            <g id="booking-star-icon-adriana" class="star-active-pulse" filter="url(#booking-star-glow-filter)">
+              <path fill="#f0e9cf" d="M17.08,1.86l-.48-.84c.04-.32-.09-.7.12-1.02.66.55.29,1.24.36,1.86Z"/>
+              <path fill="#f0e9cf" d="M19.49,18.84l-1.11-5.53-1.3-11.45c-.06-.74-.22-1.02-.47-.84l-.64,5.49c-.46,3.92-.82,7.78-1.69,11.6-1.4,6.16-8.29,5.82-14.28,7.13l6.15,1.04c3.4.58,7.37,2.03,7.96,5.36l1.39,7.74,1.12,10.36c.27-.03.43-.33.47-.9l1.77-14.49c.21-1.71.64-3.41,1.63-4.78,2.31-3.18,8.85-3.45,13.27-4.27-4.94-1.09-13.23-1.22-14.27-6.46ZM18.26,31.07l-1.51,7.49-1.41-7.43c-.64-3.34-4.17-5.12-7.46-5.81l2.49-.96c2.48-.77,4.22-2.63,4.98-5.14l1.38-7.4,1.18,6.37c.3,1.62.99,3.1,2.12,4.32,1.64,1.4,3.54,2.13,5.83,2.77-3.3.86-6.88,2.26-7.6,5.79Z"/>
+              <path fill="#f0e9cf" d="M16.62,49.74l.47-.89c-.08.68.15,1.39-.4,2.01-.2-.41-.04-.77-.07-1.11Z"/>
+            </g>
+          </g>
+
+          <!-- Estrella Luna -->
+          <g id="booking-star-anchor-luna" transform="translate(821, 428) scale(0.65)" class="cursor-pointer pointer-events-auto" onclick="selectArtistAndProceedToStep2('Luna')">
+            <g id="booking-star-icon-luna" class="star-active-pulse" filter="url(#booking-star-glow-filter)">
+              <path fill="#f0e9cf" d="M17.08,1.86l-.48-.84c.04-.32-.09-.7.12-1.02.66.55.29,1.24.36,1.86Z"/>
+              <path fill="#f0e9cf" d="M19.49,18.84l-1.11-5.53-1.3-11.45c-.06-.74-.22-1.02-.47-.84l-.64,5.49c-.46,3.92-.82,7.78-1.69,11.6-1.4,6.16-8.29,5.82-14.28,7.13l6.15,1.04c3.4.58,7.37,2.03,7.96,5.36l1.39,7.74,1.12,10.36c.27-.03.43-.33.47-.9l1.77-14.49c.21-1.71.64-3.41,1.63-4.78,2.31-3.18,8.85-3.45,13.27-4.27-4.94-1.09-13.23-1.22-14.27-6.46ZM18.26,31.07l-1.51,7.49-1.41-7.43c-.64-3.34-4.17-5.12-7.46-5.81l2.49-.96c2.48-.77,4.22-2.63,4.98-5.14l1.38-7.4,1.18,6.37c.3,1.62.99,3.1,2.12,4.32,1.64,1.4,3.54,2.13,5.83,2.77-3.3.86-6.88,2.26-7.6,5.79Z"/>
+              <path fill="#f0e9cf" d="M16.62,49.74l.47-.89c-.08.68.15,1.39-.4,2.01-.2-.41-.04-.77-.07-1.11Z"/>
+            </g>
+          </g>
+        </svg>
+
+        <!-- ZONAS INTERACTIVAS (HITBOXES) EN PASO 1: HOVER Y CLIC EN EL CUERPO DE LAS ARTISTAS -->
+        <div id="booking-hitboxes-container" class="absolute inset-0 z-18 flex">
+          <!-- Adriana Carrillo (Mitad Izquierda) -->
+          <div 
+            id="booking-hitbox-adriana"
+            onclick="selectArtistAndProceedToStep2('Adriana Carrillo')" 
+            onmouseenter="switchBookingArtistView('Adriana Carrillo')"
+            title="Seleccionar a Adriana Carrillo y continuar al Paso 2" 
+            class="w-1/2 h-full cursor-pointer group pointer-events-auto"
+            aria-label="Seleccionar a Adriana Carrillo"
+          >
+            <div class="w-full h-full bg-[#2756a2]/0 group-hover:bg-[#2756a2]/10 transition-colors duration-300"></div>
+          </div>
+
+          <!-- Luna (Mitad Derecha) -->
+          <div 
+            id="booking-hitbox-luna"
+            onclick="selectArtistAndProceedToStep2('Luna')" 
+            onmouseenter="switchBookingArtistView('Luna')"
+            title="Seleccionar a Luna y continuar al Paso 2" 
+            class="w-1/2 h-full cursor-pointer group pointer-events-auto"
+            aria-label="Seleccionar a Luna"
+          >
+            <div class="w-full h-full bg-[#2756a2]/0 group-hover:bg-[#2756a2]/15 transition-colors duration-300"></div>
+          </div>
+        </div>
+
+        <!-- CABECERA SUPERIOR: INDICADOR DE PASOS Y TÍTULO EDITORIAL -->
+        <div class="relative z-20 w-full px-6 sm:px-12 pt-28 md:pt-32 pb-4 flex flex-col md:flex-row md:items-end justify-between gap-6 pointer-events-none">
+          <div class="pointer-events-none">
+            <div class="flex items-center gap-2 mb-2">
+              <span id="booking-step-badge" class="font-mono text-xs uppercase tracking-[0.25em] text-[#f0e9cf] bg-[#2756a2] px-3.5 py-1 font-bold shadow-md">
+                PASO 01 / 04 · ELIGE TU ARTISTA
+              </span>
+            </div>
+            <h1 class="font-serif text-3xl sm:text-4xl md:text-5xl text-[#f0e9cf] font-normal leading-tight drop-shadow-md">
+              Comienza tu experiencia
+            </h1>
+            <p class="text-xs sm:text-sm text-[#f0e9cf]/85 font-body mt-1 max-w-lg font-light">
+              Toca o haz clic en la artista con quien deseas dar vida a tu pieza de autor.
+            </p>
+          </div>
+
+          <!-- Selector rectangular de artistas (en Paso 1) / Indicador de progreso de 4 pasos -->
+          <div class="pointer-events-auto flex flex-col items-start md:items-end gap-3">
+            
+            <!-- Barra de 4 Pasos Superior Compacta y Elegante -->
+            <div class="inline-flex items-center border border-[#f0e9cf]/30 bg-black/75 backdrop-blur-md p-1 shadow-2xl">
+              <div class="step-indicator-item active px-3 sm:px-4 py-1.5 flex items-center gap-2 cursor-pointer text-xs font-mono" data-step-target="1" onclick="goToBookingStep(1)">
+                <span class="w-5 h-5 rounded-full flex items-center justify-center font-bold text-[11px] bg-[#f0e9cf] text-[#2756a2] shadow-sm">1</span>
+                <span class="text-[#f0e9cf] uppercase tracking-wider hidden sm:inline">Artista</span>
+              </div>
+              <div class="step-indicator-item px-3 sm:px-4 py-1.5 flex items-center gap-2 cursor-pointer text-xs font-mono" data-step-target="2" onclick="goToBookingStep(2)">
+                <span class="w-5 h-5 rounded-full flex items-center justify-center font-bold text-[11px] border border-[#f0e9cf]/50 text-[#f0e9cf]">2</span>
+                <span class="text-[#f0e9cf]/70 uppercase tracking-wider hidden sm:inline">Tu Idea</span>
+              </div>
+              <div class="step-indicator-item px-3 sm:px-4 py-1.5 flex items-center gap-2 cursor-pointer text-xs font-mono" data-step-target="3" onclick="goToBookingStep(3)">
+                <span class="w-5 h-5 rounded-full flex items-center justify-center font-bold text-[11px] border border-[#f0e9cf]/50 text-[#f0e9cf]">3</span>
+                <span class="text-[#f0e9cf]/70 uppercase tracking-wider hidden sm:inline">Agenda</span>
+              </div>
+              <div class="step-indicator-item px-3 sm:px-4 py-1.5 flex items-center gap-2 cursor-pointer text-xs font-mono" data-step-target="4" onclick="goToBookingStep(4)">
+                <span class="w-5 h-5 rounded-full flex items-center justify-center font-bold text-[11px] border border-[#f0e9cf]/50 text-[#f0e9cf]">4</span>
+                <span class="text-[#f0e9cf]/70 uppercase tracking-wider hidden sm:inline">Confirmar</span>
+              </div>
+            </div>
+
+            <!-- Selector Rectangular Rápido de Artistas -->
+            <div id="booking-step1-selector-pills" class="inline-flex items-center border border-[#f0e9cf]/30 bg-black/70 backdrop-blur-md rounded-none shadow-2xl p-0">
+              <button 
+                type="button" 
+                id="booking-btn-select-adriana"
+                onclick="selectArtistAndProceedToStep2('Adriana Carrillo')" 
+                class="px-5 sm:px-7 py-2 text-xs font-mono uppercase tracking-widest transition-all duration-300 rounded-none border-r border-[#f0e9cf]/25 bg-[#2756a2] text-[#f0e9cf] font-bold"
+              >
+                Adriana Carrillo
+              </button>
+              <button 
+                type="button" 
+                id="booking-btn-select-luna"
+                onclick="selectArtistAndProceedToStep2('Luna')" 
+                class="px-5 sm:px-7 py-2 text-xs font-mono uppercase tracking-widest transition-all duration-300 rounded-none text-[#f0e9cf]/70 hover:text-[#f0e9cf] hover:bg-white/10"
+              >
+                Luna
+              </button>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- CONTENEDOR CENTRAL: PASO 1 (PANELES FLOTANTES ELEVADOS) O PASOS 2, 3, 4 (VENTANA FORMULARIO ELEVADA) -->
+        <div class="relative z-20 w-full px-6 sm:px-12 pointer-events-none">
+          
+          <!-- ==========================================
+               PASO 1: PANELES FLOTANTES EN AZUL DE MARCA (#2756a2) CON TEXTOS BEIGE (#f0e9cf)
+               ========================================== -->
+          <div id="booking-step1-panels-layer" class="w-full flex items-start">
+            
+            <!-- PANEL ADRIANA CARRILLO (Lado Izquierdo) -->
+            <div 
+              id="booking-panel-adriana" 
+              class="artist-editorial-panel pointer-events-auto transition-all duration-500 max-w-lg w-full p-6 sm:p-8 rounded-none shadow-2xl mr-auto"
+              style="background-color: #2756a2 !important; border: none !important; outline: none !important;"
+            >
+              <div class="flex items-start gap-5 mb-5">
+                <img 
+                  src="TRABAJOS%20ADRI/FOTO%20PERFIL%20ADRI/igexport-DDqEQgNvKiY.webp" 
+                  alt="Adriana Carrillo" 
+                  class="img-avatar-adriana w-20 h-24 sm:w-24 sm:h-28 rounded-none object-cover shadow-xl shrink-0" 
+                />
+                <div>
+                  <span class="font-mono text-[10px] uppercase tracking-[0.25em] text-[#f0e9cf]/80 block font-semibold">
+                    CO-FUNDADORA · ARTISTA RESIDENTE
+                  </span>
+                  <h3 class="font-serif text-3xl sm:text-4xl text-[#f0e9cf] font-normal leading-tight drop-shadow">
+                    Adriana Carrillo
+                  </h3>
+                  <p class="text-xs sm:text-sm text-[#f0e9cf] font-mono tracking-wide mt-1.5 font-medium">
+                    Fine Line & Blackwork Ilustrativo
+                  </p>
+                </div>
+              </div>
+
+              <!-- Acciones: Confirmar artista y continuar a Paso 2 -->
+              <div class="flex flex-wrap items-center gap-3 pt-4 border-t border-[#f0e9cf]/25">
+                <button 
+                  type="button" 
+                  onclick="confirmArtistAndProceed('Adriana Carrillo')" 
+                  class="px-6 py-3 bg-[#f0e9cf] hover:bg-white text-[#2756a2] text-xs font-semibold rounded-none shadow-md transition-all hover:scale-[1.02] inline-flex items-center gap-2 font-mono uppercase tracking-wider"
+                >
+                  <span>Elegir a Adriana & Continuar</span>
+                  <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+                </button>
+                <a 
+                  href="https://www.instagram.com/soyadri___?cplk=bW54MzByZG5rdDI3" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  class="px-5 py-3 border border-[#f0e9cf] hover:bg-[#f0e9cf]/15 text-[#f0e9cf] text-xs rounded-none font-mono transition-all inline-flex items-center gap-2"
+                >
+                  <span>@soyadri___</span>
+                </a>
+              </div>
+            </div>
+
+            <!-- PANEL LUNA (Lado Derecho) -->
+            <div 
+              id="booking-panel-luna" 
+              class="artist-editorial-panel pointer-events-auto transition-all duration-500 max-w-lg w-full p-6 sm:p-8 rounded-none shadow-2xl ml-auto hidden opacity-0"
+              style="background-color: #2756a2 !important; border: none !important; outline: none !important;"
+            >
+              <div class="flex items-start gap-5 mb-5">
+                <img 
+                  src="TRABAJOS%20LUNA/FOTO%20LUNA%20TRABAJANDO/igexport-C-NjoP-uXYO.jpg" 
+                  alt="Luna" 
+                  class="img-avatar-luna w-20 h-24 sm:w-24 sm:h-28 rounded-none object-cover shadow-xl shrink-0" 
+                />
+                <div>
+                  <span class="font-mono text-[10px] uppercase tracking-[0.25em] text-[#f0e9cf]/80 block font-semibold">
+                    CO-FUNDADORA · ARTISTA RESIDENTE
+                  </span>
+                  <h3 class="font-serif text-3xl sm:text-4xl text-[#f0e9cf] font-normal leading-tight drop-shadow">
+                    Luna
+                  </h3>
+                  <p class="text-xs sm:text-sm text-[#f0e9cf] font-mono tracking-wide mt-1.5 font-medium">
+                    Puntillismo punto por punto, Handpoke & Fine Line
+                  </p>
+                </div>
+              </div>
+
+              <!-- Acciones: Confirmar artista y continuar a Paso 2 -->
+              <div class="flex flex-wrap items-center gap-3 pt-4 border-t border-[#f0e9cf]/25">
+                <button 
+                  type="button" 
+                  onclick="confirmArtistAndProceed('Luna')" 
+                  class="px-6 py-3 bg-[#f0e9cf] hover:bg-white text-[#2756a2] text-xs font-semibold rounded-none shadow-md transition-all hover:scale-[1.02] inline-flex items-center gap-2 font-mono uppercase tracking-wider"
+                >
+                  <span>Elegir a Luna & Continuar</span>
+                  <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+                </button>
+                <a 
+                  href="https://www.instagram.com/lunnapokes?srtk=ZWhlZzA5MmZ5NDg=" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  class="px-5 py-3 border border-[#f0e9cf] hover:bg-[#f0e9cf]/15 text-[#f0e9cf] text-xs rounded-none font-mono transition-all inline-flex items-center gap-2"
+                >
+                  <span>@lunnapokes</span>
+                </a>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- ==========================================
+               PASOS 2, 3 Y 4: VENTANA RECTANGULAR SUPERPUESTA (MODAL BLANCO EDITORIAL)
+               ========================================== -->
+          <div 
+            id="booking-form-overlay" 
+            class="hidden opacity-0 pointer-events-auto max-w-3xl w-full mx-auto my-auto p-6 sm:p-10 md:p-12 bg-white text-slate-800 shadow-2xl rounded-none border border-slate-200 transition-all duration-500"
+          >
+            <!-- Barra superior dentro de la ventana con artista activa y botón cambiar -->
+            <div class="flex flex-wrap items-center justify-between pb-6 mb-6 border-b border-slate-200 gap-4">
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-none overflow-hidden border border-slate-300 shrink-0">
+                  <img id="form-overlay-artist-avatar" src="TRABAJOS%20ADRI/FOTO%20PERFIL%20ADRI/igexport-DDqEQgNvKiY.webp" alt="Adriana Carrillo" class="w-full h-full object-cover" />
+                </div>
+                <div>
+                  <span class="text-[10px] font-mono uppercase tracking-wider text-slate-500 block font-semibold">Artista Seleccionada</span>
+                  <h4 id="form-overlay-artist-name" class="font-serif text-xl sm:text-2xl text-[#1b3f7a] font-semibold leading-tight">Adriana Carrillo</h4>
+                </div>
+              </div>
+
+              <button type="button" onclick="goToBookingStep(1)" class="text-xs font-mono text-[#2756a2] hover:text-[#1b3f7a] underline underline-offset-4 tracking-wider uppercase inline-flex items-center gap-1.5 transition-colors">
+                <span>← Cambiar Artista</span>
+              </button>
+            </div>
+
+            <!-- Formulario Reactivo Multi-Paso -->
+            <form id="appointment-form" novalidate>
+              <input type="hidden" name="booking-artist" id="booking-artist-hidden" value="Adriana Carrillo" required />
+
+              <!-- PASO 2: LA IDEA, TÉCNICA & ZONA -->
+              <div id="step-2-panel" class="step-panel space-y-6">
+                <div>
+                  <label class="block text-xs font-bold text-slate-800 uppercase tracking-wider mb-3 font-mono">
+                    ¿Qué técnica o estilo buscas? <span class="text-[#2756a2]">*</span>
+                  </label>
+                  <input type="hidden" id="booking-style" value="" required />
+                  <div id="booking-style-container" class="flex flex-wrap gap-2.5">
+                    <button type="button" class="style-pill-btn" data-style="Fine Line">Fine Line</button>
+                    <button type="button" class="style-pill-btn" data-style="Handpoke">Handpoke</button>
+                    <button type="button" class="style-pill-btn" data-style="Blackwork">Blackwork</button>
+                    <button type="button" class="style-pill-btn" data-style="Puntillismo">Puntillismo</button>
+                    <button type="button" class="style-pill-btn" data-style="Proyecto Personalizado">Proyecto Personalizado</button>
+                  </div>
+                </div>
+
+                <div>
+                  <label for="booking-zone" class="block text-xs font-bold text-slate-800 uppercase tracking-wider mb-2 font-mono">
+                    ¿En qué zona del cuerpo te gustaría tu tatuaje? <span class="text-[#2756a2]">*</span>
+                  </label>
+                  <select id="booking-zone" class="form-input rounded-none bg-white text-sm text-slate-800 border border-slate-300 cursor-pointer" required>
+                    <option value="" disabled selected class="text-slate-500 bg-white">Selecciona una zona del cuerpo...</option>
+                    <optgroup label="Tren Superior" class="bg-white text-slate-800">
+                      <option value="Antebrazo interno">Antebrazo interno</option>
+                      <option value="Antebrazo externo">Antebrazo externo</option>
+                      <option value="Muñeca / Mano">Muñeca / Mano</option>
+                      <option value="Bíceps / Brazo">Bíceps / Brazo</option>
+                      <option value="Hombro / Clavícula">Hombro / Clavícula</option>
+                      <option value="Costillas / Torso">Costillas / Torso</option>
+                      <option value="Espalda / Omóplato">Espalda / Omóplato</option>
+                      <option value="Cuello / Nuca">Cuello / Nuca</option>
+                    </optgroup>
+                    <optgroup label="Tren Inferior" class="bg-white text-slate-800">
+                      <option value="Muslo">Muslo</option>
+                      <option value="Pantorrilla">Pantorrilla</option>
+                      <option value="Tobillo / Pie">Tobillo / Pie</option>
+                      <option value="Cadera">Cadera</option>
+                    </optgroup>
+                    <optgroup label="Otra Zona" class="bg-white text-slate-800">
+                      <option value="Otra zona (especificar en la descripción)">Otra zona (especificar en la descripción)</option>
+                    </optgroup>
+                  </select>
+                </div>
+
+                <div>
+                  <label for="booking-desc" class="block text-xs font-bold text-slate-800 uppercase tracking-wider mb-2 font-mono">
+                    Cuéntanos tu idea y tamaño aproximado (en cm) <span class="text-[#2756a2]">*</span>
+                  </label>
+                  <textarea id="booking-desc" rows="4" class="form-textarea rounded-none bg-white text-slate-800 placeholder-slate-400 border border-slate-300" placeholder="Describe los elementos que imaginas, el significado, referencias visuales y la medida en cm (ej. 7x5 cm)..." required></textarea>
+                </div>
+
+                <div class="pt-6 flex items-center justify-between gap-4 border-t border-slate-200">
+                  <button type="button" onclick="goToBookingStep(1)" class="btn-secondary px-5 py-2.5 text-xs rounded-none border border-slate-300 text-slate-600 hover:bg-slate-50 font-mono tracking-wider uppercase">
+                    ← Volver a Artistas
+                  </button>
+                  <button type="button" id="btn-to-step-3" class="btn-primary px-7 py-3 text-xs sm:text-sm flex items-center gap-2 shadow-sm rounded-none bg-[#2756a2] text-white hover:bg-[#1b3f7a] font-bold">
+                    <span>Continuar a Disponibilidad</span>
+                    <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                  </button>
+                </div>
+              </div>
+
+              <!-- PASO 3: FECHA & HORA (MODAL BLANCO + CALENDARIO Y BLOQUES HORARIOS) -->
+              <div id="step-3-panel" class="step-panel space-y-6">
+                <div>
+                  <label for="booking-date" class="block text-xs font-bold text-slate-800 uppercase tracking-wider mb-2 font-mono">
+                    ¿Qué fecha te gustaría proponer? <span class="text-[#2756a2]">*</span>
+                  </label>
+                  <input type="date" id="booking-date" class="form-input rounded-none bg-white text-slate-800 border border-slate-300" required />
+                  <p class="text-xs font-mono text-slate-500 mt-2 font-medium flex items-center gap-1.5">
+                    <span class="inline-block w-1.5 h-1.5 rounded-full bg-[#2756a2]"></span>
+                    <span>* Atención exclusivamente con previa cita</span>
+                  </p>
+                </div>
+
+                <div>
+                  <label class="block text-xs font-bold text-slate-800 uppercase tracking-wider mb-2 font-mono">
+                    Selecciona tu franja horaria preferida (Bloques de 2 horas) <span class="text-[#2756a2]">*</span>
+                  </label>
+                  <input type="hidden" id="booking-time-hidden" value="" required />
+                  <div id="booking-time-container" class="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
+                    <button type="button" class="time-slot-btn pill-badge text-center justify-center py-2.5 text-xs bg-slate-50 border border-slate-300 text-slate-700 rounded-none hover:border-[#2756a2]" data-time="10:00 - 12:00">10:00 - 12:00</button>
+                    <button type="button" class="time-slot-btn pill-badge text-center justify-center py-2.5 text-xs bg-slate-50 border border-slate-300 text-slate-700 rounded-none hover:border-[#2756a2]" data-time="12:00 - 14:00">12:00 - 14:00</button>
+                    <button type="button" class="time-slot-btn pill-badge text-center justify-center py-2.5 text-xs bg-slate-50 border border-slate-300 text-slate-700 rounded-none hover:border-[#2756a2]" data-time="15:00 - 17:00">15:00 - 17:00</button>
+                    <button type="button" class="time-slot-btn pill-badge text-center justify-center py-2.5 text-xs bg-slate-50 border border-slate-300 text-slate-700 rounded-none hover:border-[#2756a2]" data-time="17:00 - 19:00">17:00 - 19:00</button>
+                  </div>
+                </div>
+
+                <div class="pt-6 flex items-center justify-between gap-4 border-t border-slate-200">
+                  <button type="button" id="btn-back-to-step-2" class="btn-secondary px-5 py-2.5 text-xs rounded-none border border-slate-300 text-slate-600 hover:bg-slate-50 font-mono tracking-wider uppercase">
+                    ← Atrás
+                  </button>
+                  <button type="button" id="btn-to-step-4" class="btn-primary px-7 py-3 text-xs sm:text-sm flex items-center gap-2 shadow-sm rounded-none bg-[#2756a2] text-white hover:bg-[#1b3f7a] font-bold">
+                    <span>Continuar a Tus Datos</span>
+                    <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                  </button>
+                </div>
+              </div>
+
+              <!-- PASO 4: TUS DATOS & CONFIRMACIÓN -->
+              <div id="step-4-panel" class="step-panel space-y-5">
+                <div>
+                  <label class="block text-xs font-bold text-slate-800 uppercase tracking-wider mb-3 font-mono">
+                    Ingresa tus datos de contacto directo
+                  </label>
+                  <div class="space-y-3">
+                    <div>
+                      <label for="booking-name" class="block text-[11px] text-slate-600 mb-1 font-medium font-mono uppercase">Nombre Completo <span class="text-[#2756a2]">*</span></label>
+                      <input type="text" id="booking-name" class="form-input rounded-none bg-white text-slate-800 placeholder-slate-400 border border-slate-300" placeholder="Tu nombre y apellido" required />
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                      <div>
+                        <label for="booking-phone" class="block text-[11px] text-slate-600 mb-1 font-medium font-mono uppercase">WhatsApp / Teléfono Celular <span class="text-[#2756a2]">*</span></label>
+                        <input type="tel" id="booking-phone" class="form-input rounded-none bg-white text-slate-800 placeholder-slate-400 border border-slate-300" placeholder="09... o +593 9..." required />
+                        <span class="text-[10px] text-slate-400 font-mono mt-1 block">Número celular de Ecuador (10 dígitos)</span>
+                      </div>
+                      <div>
+                        <label for="booking-email" class="block text-[11px] text-slate-600 mb-1 font-medium font-mono uppercase">Correo Electrónico (Opcional)</label>
+                        <input type="email" id="booking-email" class="form-input rounded-none bg-white text-slate-800 placeholder-slate-400 border border-slate-300" placeholder="correo@ejemplo.com" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Resumen Completo de la Solicitud -->
+                <div class="p-4 rounded-none bg-slate-50 border border-slate-200 space-y-2 text-xs text-slate-700">
+                  <div class="font-bold text-[#1b3f7a] uppercase tracking-wider text-[10px] mb-2 font-mono">RESUMEN DE TU SOLICITUD</div>
+                  <div class="flex justify-between items-center py-1 border-b border-slate-200">
+                    <span class="text-slate-500">Artista:</span>
+                    <span id="recap-artist" class="font-semibold text-[#1b3f7a]">-</span>
+                  </div>
+                  <div class="flex justify-between items-center py-1 border-b border-slate-200">
+                    <span class="text-slate-500">Estilo / Técnica:</span>
+                    <span id="recap-style" class="font-semibold text-[#2756a2]">-</span>
+                  </div>
+                  <div class="flex justify-between items-center py-1 border-b border-slate-200">
+                    <span class="text-slate-500">Zona del Cuerpo:</span>
+                    <span id="recap-zone" class="font-semibold text-[#1b3f7a]">-</span>
+                  </div>
+                  <div class="flex justify-between items-center py-1">
+                    <span class="text-slate-500">Fecha y Bloque Horario:</span>
+                    <span id="recap-datetime" class="font-semibold text-[#1b3f7a]">-</span>
+                  </div>
+                </div>
+
+                <div class="pt-4 flex items-center justify-between gap-4 border-t border-slate-200">
+                  <button type="button" id="btn-back-to-step-3" class="btn-secondary px-5 py-2.5 text-xs rounded-none border border-slate-300 text-slate-600 hover:bg-slate-50 font-mono tracking-wider uppercase">
+                    ← Atrás
+                  </button>
+                  <button type="submit" id="btn-submit-booking" class="btn-primary px-7 py-3 text-xs sm:text-sm flex items-center gap-2 shadow-md rounded-none bg-[#2756a2] text-white hover:bg-[#1b3f7a] font-bold">
+                    <span>Confirmar Solicitud de Reserva</span>
+                    <i data-lucide="check-circle" class="w-4 h-4"></i>
+                  </button>
+                </div>
+              </div>
+
+            </form>
+          </div>
+
+        </div>
+
+      </section>
+    </div>
+
+    <!-- ========================================================
+         PÃGINA 6: /admin (PANEL PRIVADO DE CONTROL - ADMIN)
+         ======================================================== -->
+        <!-- ========================================================
+         PÁGINA 6: /admin (PANEL PRIVADO DE CONTROL - ADMIN / DUEÑAS)
+         DISEÑO ULTRA LIMPIO: FONDO BLANCO PURO Y ACENTOS EN AZUL (#2756a2)
+         ======================================================== -->
+    <div id="page-admin" class="page-view hidden w-full min-h-screen bg-white text-slate-800">
+
+      <!-- Layout Principal del Admin: Menú Lateral Fijo a la Izquierda Estilo Referencia Oficial + Contenido -->
+      <section class="max-w-7xl mx-auto px-4 sm:px-6 py-6 md:py-8">
+        <div class="flex flex-col lg:flex-row gap-8 items-start relative">
+          
+          <!-- BARRA LATERAL VERTICAL ESTILO REFERENCIA (DOCK CAPSULAR ESCULPIDO CON CURVAS CÓNCAVAS) -->
+          <aside class="admin-reference-sidebar hidden lg:flex flex-col items-center justify-between sticky top-6 z-30 shrink-0" style="background-color: #1e3264 !important; background: #1e3264 !important; border: none !important;" aria-label="Menú de Gestión Etérea">
+            
+            <!-- HEADER DE LA BARRA: LOGO BLANCO ETÉREA (CLICK PARA VOLVER A LA WEB PÚBLICA) -->
+            <button type="button" onclick="exitAdminDashboard()" class="admin-dock-header flex flex-col items-center pt-6 pb-2 w-full cursor-pointer group bg-transparent border-none" title="Volver a la Web Pública">
+              <img src="ESTRELLA%20ET%C3%89REA/Recurso%202.svg" alt="Etérea Star" class="w-7 h-7 brightness-0 invert opacity-95 mb-1.5 transition-transform group-hover:rotate-45 duration-500" />
+              <span class="font-sans text-[11px] font-semibold text-white tracking-wider lowercase">etérea</span>
+            </button>
+
+            <!-- NAVEGACIÓN DE BOTONES CON CONCAVE SCOOP (REFERENCIA OFICIAL) -->
+            <div class="admin-dock-nav flex flex-col items-center w-full py-4 space-y-3 relative">
+              
+              <!-- TAB 1: SOLICITUDES DE CITAS -->
+              <button type="button" onclick="switchAdminTab('citas')" data-tab="citas" class="admin-tab-btn admin-dock-btn active group relative" aria-label="Solicitudes de Citas">
+                <i data-lucide="calendar" class="w-5 h-5"></i>
+                <span id="tab-count-citas" class="hidden">0</span>
+                <!-- Tooltip flotante a la derecha -->
+                <div class="admin-dock-tooltip">
+                  <span>Solicitudes de Citas</span>
+                </div>
+              </button>
+
+              <!-- TAB 2: GESTIÓN DE TALLERES -->
+              <button type="button" onclick="switchAdminTab('talleres')" data-tab="talleres" class="admin-tab-btn admin-dock-btn group relative" aria-label="Gestión de Talleres">
+                <i data-lucide="monitor" class="w-5 h-5"></i>
+                <span id="tab-count-talleres" class="hidden">0</span>
+                <!-- Tooltip flotante a la derecha -->
+                <div class="admin-dock-tooltip">
+                  <span>Gestión de Talleres</span>
+                </div>
+              </button>
+
+              <!-- TAB 3: PORTAFOLIO Y GALERÍA -->
+              <button type="button" onclick="switchAdminTab('galeria')" data-tab="galeria" class="admin-tab-btn admin-dock-btn group relative" aria-label="Portafolio y Galería">
+                <i data-lucide="folder" class="w-5 h-5"></i>
+                <span id="tab-count-galeria" class="hidden">0</span>
+                <!-- Tooltip flotante a la derecha -->
+                <div class="admin-dock-tooltip">
+                  <span>Portafolio y Galería</span>
+                </div>
+              </button>
+
+              <!-- TAB 4: CONFIGURACIÓN DE ARTISTAS -->
+              <button type="button" onclick="switchAdminTab('estudio')" data-tab="estudio" class="admin-tab-btn admin-dock-btn group relative" aria-label="Configuración de Artistas">
+                <i data-lucide="sliders" class="w-5 h-5"></i>
+                <span id="tab-count-estudio" class="hidden">★</span>
+                <!-- Tooltip flotante a la derecha -->
+                <div class="admin-dock-tooltip">
+                  <span>Configuración de Artistas</span>
+                </div>
+              </button>
+
+            </div>
+
+            <!-- FOOTER TRASLÚCIDO CON BOTÓN DE SALIDA / LOGOUT (REFERENCIA OFICIAL) -->
+            <div class="admin-dock-footer w-full flex items-center justify-center py-4">
+              <button type="button" onclick="logoutAdmin()" class="admin-dock-logout-btn group relative text-white/80 hover:text-white transition-all cursor-pointer p-2.5 rounded-full hover:bg-white/20" title="Cerrar Sesión">
+                <i data-lucide="log-out" class="w-5 h-5"></i>
+                <div class="admin-dock-tooltip">
+                  <span>Cerrar Sesión</span>
+                </div>
+              </button>
+            </div>
+
+          </aside>
+
+          <!-- BARRA COMPACTA HORIZONTAL PARA MÓVILES (PANTALLAS PEQUEÑAS) -->
+          <div class="lg:hidden w-full bg-[#1e3264] px-4 py-3 rounded-2xl flex items-center justify-between mb-4 shadow-md">
+            <div class="flex items-center gap-2">
+              <img src="ESTRELLA%20ET%C3%89REA/Recurso%202.svg" alt="Etérea" class="w-5 h-5 brightness-0 invert" />
+              <span class="text-xs font-semibold text-white tracking-wide">Panel Etérea</span>
+            </div>
+            <div class="flex items-center gap-1 sm:gap-2">
+              <button type="button" onclick="switchAdminTab('citas')" data-tab="citas" class="admin-tab-btn p-2 rounded-xl text-white/80 hover:text-white [&.active]:bg-white [&.active]:text-[#1e3264] transition-all">
+                <i data-lucide="calendar" class="w-4 h-4"></i>
+              </button>
+              <button type="button" onclick="switchAdminTab('talleres')" data-tab="talleres" class="admin-tab-btn p-2 rounded-xl text-white/80 hover:text-white [&.active]:bg-white [&.active]:text-[#1e3264] transition-all">
+                <i data-lucide="monitor" class="w-4 h-4"></i>
+              </button>
+              <button type="button" onclick="switchAdminTab('galeria')" data-tab="galeria" class="admin-tab-btn p-2 rounded-xl text-white/80 hover:text-white [&.active]:bg-white [&.active]:text-[#1e3264] transition-all">
+                <i data-lucide="folder" class="w-4 h-4"></i>
+              </button>
+              <button type="button" onclick="switchAdminTab('estudio')" data-tab="estudio" class="admin-tab-btn p-2 rounded-xl text-white/80 hover:text-white [&.active]:bg-white [&.active]:text-[#1e3264] transition-all">
+                <i data-lucide="sliders" class="w-4 h-4"></i>
+              </button>
+              <button type="button" onclick="logoutAdmin()" class="p-2 rounded-xl text-red-300 hover:text-red-100 hover:bg-white/10 ml-2">
+                <i data-lucide="log-out" class="w-4 h-4"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Área Central Dinámica de Módulos -->
+          <div class="flex-1 min-w-0 w-full space-y-6">
+
+            <!-- CABECERA SUPERIOR EDITORIAL CON LOGO OFICIAL ETÉREA -->
+            <div class="admin-top-brand-bar flex items-center justify-between pb-5 border-b border-slate-200/80">
+              <div class="flex items-center gap-3.5">
+                <a href="#/inicio" onclick="exitAdminDashboard(); return false;" class="group flex items-center shrink-0 cursor-pointer" title="Volver a la portada de Etérea">
+                  <img 
+                    src="LOGO%20ET%C3%89REA/logo-eterea-azul.svg" 
+                    alt="Etérea Tattoo Studio" 
+                    class="h-8 sm:h-9 w-auto object-contain transition-transform duration-500 group-hover:scale-105" 
+                  />
+                </a>
+                <div class="hidden sm:flex items-center gap-2 pl-3 border-l border-slate-200">
+                  <span class="text-[10px] font-mono uppercase tracking-[0.22em] text-[#1e3264]/70 font-bold">
+                    Panel de Gestión
+                  </span>
+                </div>
+              </div>
+
+              <!-- Indicador de Sincronización en Vivo y Salida -->
+              <div class="flex items-center gap-3">
+                <span class="inline-flex items-center gap-1.5 text-emerald-600 font-mono text-[11px] font-semibold bg-emerald-50 px-3.5 py-1.5 rounded-full border border-emerald-200/50 shadow-xs">
+                  <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                  <span>En vivo · Supabase DB</span>
+                </span>
+                <button type="button" onclick="exitAdminDashboard()" class="hidden sm:inline-flex items-center gap-2 px-3.5 py-1.5 bg-slate-50 hover:bg-slate-100 text-[#1e3264] border border-slate-200 rounded-full text-[11px] font-mono font-medium transition-all shadow-xs cursor-pointer hover:border-[#1e3264]/40" title="Volver al sitio web">
+                  <i data-lucide="eye" class="w-3.5 h-3.5 text-[#1e3264]"></i>
+                  <span>Ver Web</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- ==========================================
+                 TAB 1: SOLICITUDES DE CITAS (CON WHATSAPP DIRECTO)
+                 ========================================== -->
+            <div id="tab-pane-citas" class="admin-tab-pane">
+              <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm mb-6">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                  <div>
+                    <h3 class="font-serif text-xl text-slate-900 font-bold" style="font-family: 'KENAO', 'KENAEO', 'Kenao', serif !important;">
+                      Solicitudes de Citas de Autor
+                    </h3>
+                    <p class="text-xs text-slate-500 mt-0.5">
+                      Filtra, confirma citas y envía mensajes automáticos de confirmación o recordatorio por WhatsApp.
+                    </p>
+                  </div>
+
+                  <div class="flex items-center gap-2">
+                    <span class="text-xs text-slate-500 font-mono">Artista:</span>
+                    <select onchange="filtrarAdminCitasArtist(this.value)" class="form-select text-xs py-1.5 px-3 bg-white border border-slate-200 rounded-xl text-slate-700">
+                      <option value="Todas">Todas las artistas</option>
+                      <option value="Adriana Carrillo">Adriana Carrillo</option>
+                      <option value="Luna">Luna</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="flex flex-wrap items-center gap-2 mt-4 pt-4 border-t border-slate-100">
+                  <span class="text-xs text-slate-400 font-mono mr-1">Filtrar Estado:</span>
+                  <button type="button" onclick="filtrarAdminCitasStatus('Todas')" class="px-3 py-1 rounded-full text-xs font-mono font-semibold transition-all bg-[#2756a2] text-white cursor-pointer" data-citas-pill="Todas">Todas</button>
+                  <button type="button" onclick="filtrarAdminCitasStatus('Pendiente')" class="px-3 py-1 rounded-full text-xs font-mono font-semibold transition-all bg-slate-100 text-slate-600 hover:bg-slate-200 cursor-pointer" data-citas-pill="Pendiente">Pendientes</button>
+                  <button type="button" onclick="filtrarAdminCitasStatus('Confirmada')" class="px-3 py-1 rounded-full text-xs font-mono font-semibold transition-all bg-slate-100 text-slate-600 hover:bg-slate-200 cursor-pointer" data-citas-pill="Confirmada">Confirmadas</button>
+                  <button type="button" onclick="filtrarAdminCitasStatus('Cancelada')" class="px-3 py-1 rounded-full text-xs font-mono font-semibold transition-all bg-slate-100 text-slate-600 hover:bg-slate-200 cursor-pointer" data-citas-pill="Cancelada">Canceladas</button>
+                </div>
+              </div>
+
+              <!-- Tabla de Citas -->
+              <div class="bg-white border border-slate-200 rounded-2xl shadow-sm overflow-hidden mb-8">
+                <div class="overflow-x-auto">
+                  <table class="w-full text-left text-sm">
+                    <thead>
+                      <tr>
+                        <th class="p-3.5">ID</th>
+                        <th class="p-3.5">Cliente / WhatsApp</th>
+                        <th class="p-3.5">Artista</th>
+                        <th class="p-3.5">Estilo &amp; Zona</th>
+                        <th class="p-3.5">Fecha &amp; Hora</th>
+                        <th class="p-3.5">Estado</th>
+                        <th class="p-3.5 text-center">Acciones WhatsApp</th>
+                      </tr>
+                    </thead>
+                    <tbody id="admin-citas-table-body" class="divide-y divide-slate-100">
+                      <!-- Inyectado vía renderAdminCitas() -->
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              <!-- Sub-sección: Registro de Asistentes a Talleres -->
+              <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
+                <div class="flex items-center justify-between mb-4">
+                  <div>
+                    <h4 class="font-serif text-lg text-slate-900 font-bold" style="font-family: 'KENAO', 'KENAEO', 'Kenao', serif !important;">
+                      Asistentes Inscritos a Talleres
+                    </h4>
+                    <p class="text-xs text-slate-500">Contacta directamente a los alumnos de los workshops.</p>
+                  </div>
+                  <span class="text-xs font-mono text-[#2756a2] font-semibold bg-blue-50 px-3 py-1 rounded-full">
+                    Control de Asistencia
+                  </span>
+                </div>
+
+                <div class="overflow-x-auto">
+                  <table class="w-full text-left text-sm">
+                    <thead>
+                      <tr>
+                        <th class="p-3.5">ID</th>
+                        <th class="p-3.5">Alumno</th>
+                        <th class="p-3.5">Contacto</th>
+                        <th class="p-3.5">Workshop Solicitado</th>
+                        <th class="p-3.5 text-center">WhatsApp</th>
+                      </tr>
+                    </thead>
+                    <tbody id="admin-inscripciones-table-body" class="divide-y divide-slate-100">
+                      <!-- Inyectado vía renderAdminInscripciones() -->
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+            <!-- ==========================================
+                 TAB 2: GESTIÓN DE TALLERES (CREAR, EDITAR & CUPOS)
+                 ========================================== -->
+            <div id="tab-pane-talleres" class="admin-tab-pane hidden">
+              <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                <!-- Formulario -->
+                <div class="lg:col-span-5 bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+                  <div class="mb-5 pb-4 border-b border-slate-100">
+                    <h3 id="form-taller-title" class="font-serif text-2xl text-slate-900 font-bold" style="font-family: 'KENAO', 'KENAEO', 'Kenao', serif !important;">
+                      Crear Nuevo Workshop
+                    </h3>
+                    <p id="form-taller-subtitle" class="text-xs text-slate-500 mt-1">
+                      Publica talleres formativos que se sincronizan de inmediato en la sección de talleres.
+                    </p>
+                  </div>
+
+                  <form id="form-nuevo-taller" onsubmit="handleCrearTaller(event)" class="space-y-4">
+                    <input type="hidden" id="editing-taller-id" value="" />
+
+                    <div>
+                      <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Título del Taller *</label>
+                      <input type="text" id="nuevo-taller-titulo" class="form-input w-full" placeholder="Ej: Masterclass: Fine Line & Aguja 03RL" required />
+                    </div>
+
+                    <div>
+                      <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Descripción y Temario *</label>
+                      <textarea id="nuevo-taller-desc" rows="3" class="form-textarea w-full" placeholder="Detalles de la técnica, qué incluye, duración y requisitos..." required></textarea>
+                    </div>
+
+                    <div>
+                      <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Instructor(as) *</label>
+                      <select id="nuevo-taller-instructor" class="form-select w-full">
+                        <option value="Adriana Carrillo & Luna">Adriana Carrillo &amp; Luna (Ambas)</option>
+                        <option value="Adriana Carrillo">Adriana Carrillo</option>
+                        <option value="Luna">Luna</option>
+                      </select>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-3">
+                      <div>
+                        <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Precio ($ USD) *</label>
+                        <input type="number" id="nuevo-taller-price" step="1" class="form-input w-full" placeholder="120" required />
+                      </div>
+                      <div>
+                        <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Cupos Totales *</label>
+                        <input type="number" id="nuevo-taller-cupos" class="form-input w-full" placeholder="6" min="1" required />
+                      </div>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-3">
+                      <div>
+                        <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Fecha del Evento *</label>
+                        <input type="date" id="nuevo-taller-fecha" class="form-input w-full" required />
+                      </div>
+                      <div>
+                        <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Horario / Duración *</label>
+                        <input type="text" id="nuevo-taller-horario" class="form-input w-full" placeholder="10:00 - 18:00 (8h)" required />
+                      </div>
+                    </div>
+
+                    <div>
+                      <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Ubicación / Sede *</label>
+                      <input type="text" id="nuevo-taller-ubicacion" class="form-input w-full" value="Estudio Privado Etérea · Quito" required />
+                    </div>
+
+                    <!-- Flyer o Imagen del Taller con Selector de Archivo Local -->
+                    <div class="p-3.5 bg-slate-50 border border-slate-200 rounded-xl space-y-2.5">
+                      <label class="block text-xs font-bold text-slate-700 uppercase">
+                        Flyer o Imagen Promocional *
+                      </label>
+                      
+                      <!-- Opción 1: Archivo desde el equipo -->
+                      <div>
+                        <span class="block text-[11px] text-slate-500 mb-1">Seleccionar foto desde tu computadora:</span>
+                        <input type="file" id="nuevo-taller-file" accept="image/*" onchange="handleAdminTallerImageFile(this)" class="w-full text-xs text-slate-600 file:mr-3 file:py-1.5 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-mono file:bg-[#2756a2] file:text-white hover:file:bg-[#1b3f7a] cursor-pointer" />
+                      </div>
+
+                      <!-- Opción 2: URL -->
+                      <div>
+                        <span class="block text-[11px] text-slate-500 mb-1">O escribe una ruta/URL de imagen:</span>
+                        <input type="text" id="nuevo-taller-img" onchange="previewTallerImage(this.value)" class="form-input w-full text-xs" placeholder="Fotos Talleres/FOTOS/igexport-Db_QsCqnDhR-3.jpg" />
+                      </div>
+
+                      <!-- Previsualización -->
+                      <div id="nuevo-taller-preview-container" class="mt-2 hidden">
+                        <span class="block text-[10px] font-mono uppercase text-slate-400 mb-1">Vista Previa:</span>
+                        <img id="nuevo-taller-preview" src="" alt="Previsualización Taller" class="w-full h-32 object-cover rounded-lg border border-slate-200" />
+                      </div>
+                    </div>
+
+                    <div class="pt-2 flex items-center gap-2">
+                      <button type="submit" id="btn-submit-taller" class="flex-1 py-3 bg-[#2756a2] hover:bg-[#1b3f7a] text-white text-xs font-mono font-bold uppercase tracking-wider rounded-xl transition-all shadow-md hover:shadow-lg flex items-center justify-center gap-2 cursor-pointer">
+                        <span>Publicar Taller</span>
+                        <i data-lucide="check" class="w-4 h-4"></i>
+                      </button>
+                      <button type="button" id="btn-cancel-edit-taller" onclick="cancelarEdicionTaller()" class="hidden py-3 px-4 bg-slate-100 hover:bg-slate-200 text-slate-600 text-xs font-mono uppercase rounded-xl transition-all cursor-pointer">
+                        Cancelar
+                      </button>
+                    </div>
+                  </form>
+                </div>
+
+                <!-- Lista de Talleres Publicados -->
+                <div class="lg:col-span-7 bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+                  <div class="flex items-center justify-between mb-5 pb-4 border-b border-slate-100">
+                    <div>
+                      <h4 class="font-serif text-xl text-slate-900 font-bold" style="font-family: 'KENAO', 'KENAEO', 'Kenao', serif !important;">
+                        Workshops Publicados
+                      </h4>
+                      <p class="text-xs text-slate-500">Edita cupos, fechas o elimina talleres del catálogo público.</p>
+                    </div>
+                    <span class="text-xs font-mono text-slate-400 font-bold" id="badge-total-talleres-count">0 talleres</span>
+                  </div>
+
+                  <div id="admin-talleres-list" class="space-y-3.5">
+                    <!-- Inyectado vía renderAdminTalleres() -->
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- ==========================================
+                 TAB 3: PORTAFOLIO Y GALERÍA (SUBIR & ORGANIZAR)
+                 ========================================== -->
+            <div id="tab-pane-galeria" class="admin-tab-pane hidden">
+              <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                <!-- Formulario de Subida -->
+                <div class="lg:col-span-5 bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+                  <div class="mb-5 pb-4 border-b border-slate-100">
+                    <h3 id="form-obra-title" class="font-serif text-2xl text-slate-900 font-bold" style="font-family: 'KENAO', 'KENAEO', 'Kenao', serif !important;">
+                      Subir Nueva Obra al Portafolio
+                    </h3>
+                    <p id="form-obra-subtitle" class="text-xs text-slate-500 mt-1">
+                      Sube fotos desde tu equipo. Se indexan al instante en la galería pública bajo la artista y técnica elegidas.
+                    </p>
+                  </div>
+
+                  <form id="form-nueva-obra" onsubmit="handleCrearObra(event)" class="space-y-4">
+                    <input type="hidden" id="editing-obra-id" value="" />
+
+                    <div>
+                      <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Título de la Obra *</label>
+                      <input type="text" id="nueva-obra-titulo" class="form-input w-full" placeholder="Ej: Crisantemo & Aguja Fine Line" required />
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-3">
+                      <div>
+                        <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Artista Creadora *</label>
+                        <select id="nueva-obra-artista" class="form-select w-full" required>
+                          <option value="Adriana Carrillo">Adriana Carrillo</option>
+                          <option value="Luna">Luna</option>
+                        </select>
+                      </div>
+                      <div>
+                        <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Técnica Exacta *</label>
+                        <select id="nueva-obra-categoria" class="form-select w-full" required>
+                          <option value="Fine Line">Fine Line</option>
+                          <option value="Handpoke">Handpoke</option>
+                          <option value="Blackwork">Blackwork Ilustrativo</option>
+                          <option value="Puntillismo de Arrastre">Puntillismo de Arrastre</option>
+                          <option value="Puntillismo Punto por Punto">Puntillismo Punto por Punto</option>
+                          <option value="Ilustración">Ilustración</option>
+                          <option value="Microrealismo">Microrealismo</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div>
+                      <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Descripción Conceptual</label>
+                      <textarea id="nueva-obra-desc" rows="2" class="form-textarea w-full" placeholder="Detalle técnico, calibración de aguja o zona del cuerpo..."></textarea>
+                    </div>
+
+                    <!-- Input de Fotografía con Carga de Archivo Local -->
+                    <div class="p-3.5 bg-slate-50 border border-slate-200 rounded-xl space-y-2.5">
+                      <label class="block text-xs font-bold text-slate-700 uppercase">
+                        Fotografía de la Obra *
+                      </label>
+                      
+                      <div>
+                        <span class="block text-[11px] text-slate-500 mb-1">Subir foto desde tu teléfono / computadora:</span>
+                        <input type="file" id="nueva-obra-file" accept="image/*" onchange="handleAdminGaleriaImageFile(this)" class="w-full text-xs text-slate-600 file:mr-3 file:py-1.5 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-mono file:bg-[#2756a2] file:text-white hover:file:bg-[#1b3f7a] cursor-pointer" />
+                      </div>
+
+                      <div>
+                        <span class="block text-[11px] text-slate-500 mb-1">O escribe una ruta/URL existente:</span>
+                        <input type="text" id="nueva-obra-img" onchange="previewGaleriaImage(this.value)" class="form-input w-full text-xs" placeholder="TRABAJOS ADRI/BLACK ILUSTRATIVO/..." required />
+                      </div>
+
+                      <!-- Previsualización -->
+                      <div id="nueva-obra-preview-container" class="mt-2 hidden">
+                        <span class="block text-[10px] font-mono uppercase text-slate-400 mb-1">Vista Previa:</span>
+                        <img id="nueva-obra-preview" src="" alt="Previsualización de Obra" class="w-full h-36 object-cover rounded-lg border border-slate-200" />
+                      </div>
+                    </div>
+
+                    <div class="pt-2 flex items-center gap-2">
+                      <button type="submit" id="btn-submit-obra" class="flex-1 py-3 bg-[#2756a2] hover:bg-[#1b3f7a] text-white text-xs font-mono font-bold uppercase tracking-wider rounded-xl transition-all shadow-md hover:shadow-lg flex items-center justify-center gap-2 cursor-pointer">
+                        <span>Añadir a Galería Pública</span>
+                        <i data-lucide="upload-cloud" class="w-4 h-4"></i>
+                      </button>
+                      <button type="button" id="btn-cancel-edit-obra" onclick="cancelarEdicionObra()" class="hidden py-3 px-4 bg-slate-100 hover:bg-slate-200 text-slate-600 text-xs font-mono uppercase rounded-xl transition-all cursor-pointer">
+                        Cancelar
+                      </button>
+                    </div>
+                  </form>
+                </div>
+
+                <!-- Lista y Catálogo Administrable -->
+                <div class="lg:col-span-7 bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+                  <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-5 pb-4 border-b border-slate-100">
+                    <div>
+                      <h4 class="font-serif text-xl text-slate-900 font-bold" style="font-family: 'KENAO', 'KENAEO', 'Kenao', serif !important;">
+                        Obras en Galería
+                      </h4>
+                      <p class="text-xs text-slate-500">Haz clic en eliminar para retirar cualquier obra de la vista pública.</p>
+                    </div>
+                    <div class="flex items-center gap-1.5">
+                      <button type="button" onclick="filtrarAdminGaleriaPorArtista('Todas')" class="px-2.5 py-1 text-[11px] font-mono rounded-lg bg-[#2756a2] text-white font-bold cursor-pointer" data-gal-filter="Todas">Todas</button>
+                      <button type="button" onclick="filtrarAdminGaleriaPorArtista('Adriana Carrillo')" class="px-2.5 py-1 text-[11px] font-mono rounded-lg bg-slate-100 text-slate-600 hover:bg-slate-200 cursor-pointer" data-gal-filter="Adriana Carrillo">Adriana</button>
+                      <button type="button" onclick="filtrarAdminGaleriaPorArtista('Luna')" class="px-2.5 py-1 text-[11px] font-mono rounded-lg bg-slate-100 text-slate-600 hover:bg-slate-200 cursor-pointer" data-gal-filter="Luna">Luna</button>
+                    </div>
+                  </div>
+
+                  <div id="admin-galeria-list" class="space-y-3 max-h-[620px] overflow-y-auto pr-2">
+                    <!-- Inyectado vía renderAdminGaleria() -->
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- ==========================================
+                 TAB 4: CONFIGURACIÓN DE ARTISTAS Y BANNER PRINCIPAL
+                 ========================================== -->
+            <div id="tab-pane-estudio" class="admin-tab-pane hidden">
+              <form id="form-estudio-config" onsubmit="guardarEstudioConfig(event)" class="space-y-8">
+                
+                <!-- Encabezado de la Sección -->
+                <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                  <div>
+                    <h3 class="font-serif text-2xl text-slate-900 font-bold" style="font-family: 'KENAO', 'KENAEO', 'Kenao', serif !important;">
+                      Configuración de Artistas &amp; Banner
+                    </h3>
+                    <p class="text-xs text-slate-500 mt-1">
+                      Modifica biografías, especialidades, fotos de perfil y las imágenes del carrusel y banner principal de la web.
+                    </p>
+                  </div>
+                  <button type="submit" class="px-6 py-3 bg-[#2756a2] hover:bg-[#1b3f7a] text-white text-xs font-mono font-bold uppercase tracking-wider rounded-xl transition-all shadow-md hover:shadow-lg flex items-center gap-2 cursor-pointer self-start sm:self-auto">
+                    <i data-lucide="save" class="w-4 h-4"></i>
+                    <span>Guardar Todo</span>
+                  </button>
+                </div>
+
+                <!-- Bloque 1: Adriana Carrillo -->
+                <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+                  <div class="flex items-center gap-3 mb-4 pb-3 border-b border-slate-100">
+                    <div class="w-8 h-8 rounded-full bg-blue-50 text-[#2756a2] flex items-center justify-center font-bold text-xs font-mono">
+                      AC
+                    </div>
+                    <div>
+                      <h4 class="font-serif text-lg font-bold text-slate-900" style="font-family: 'KENAO', 'KENAEO', 'Kenao', serif !important;">Perfil de Adriana Carrillo</h4>
+                      <p class="text-[11px] text-slate-400 font-mono">Co-Fundadora · Directora Artística</p>
+                    </div>
+                  </div>
+
+                  <div class="grid grid-cols-1 md:grid-cols-12 gap-5">
+                    <div class="md:col-span-8 space-y-4">
+                      <div>
+                        <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Especialidades &amp; Técnicas (Secciones Artistas / Reservas)</label>
+                        <input type="text" id="cfg-adriana-esp" class="form-input w-full" placeholder="Fine Line &amp; Blackwork Ilustrativo" />
+                      </div>
+
+                      <div>
+                        <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Biografía Autoral Completa</label>
+                        <textarea id="cfg-adriana-bio" rows="4" class="form-textarea w-full" placeholder="Biografía de Adriana que se muestra en el modal interactivo..."></textarea>
+                      </div>
+
+                      <div class="grid grid-cols-2 gap-3">
+                        <div>
+                          <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Instagram</label>
+                          <input type="text" id="cfg-adriana-ig" class="form-input w-full" value="@soyadri___" />
+                        </div>
+                        <div>
+                          <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Teléfono / WhatsApp</label>
+                          <input type="text" id="cfg-adriana-tel" class="form-input w-full" value="+593984123456" />
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Foto de Perfil de Adriana -->
+                    <div class="md:col-span-4 p-4 bg-slate-50 border border-slate-200 rounded-xl flex flex-col justify-between">
+                      <div>
+                        <span class="block text-xs font-bold text-slate-700 uppercase mb-2">Foto de Perfil</span>
+                        <div class="w-full h-36 rounded-lg overflow-hidden border border-slate-200 mb-2 bg-slate-200">
+                          <img id="cfg-adriana-preview" src="TRABAJOS%20ADRI/FOTO%20PERFIL%20ADRI/igexport-DDqEQgNvKiY.webp" alt="Foto Adriana" class="w-full h-full object-cover" />
+                        </div>
+                        <input type="file" id="cfg-adriana-file" accept="image/*" onchange="handleAdminProfilePicFile(this, 'adriana')" class="w-full text-[11px] text-slate-500 file:mr-2 file:py-1 file:px-2.5 file:rounded file:border-0 file:text-[10px] file:bg-[#2756a2] file:text-white cursor-pointer mb-2" />
+                        <input type="text" id="cfg-adriana-foto" onchange="document.getElementById('cfg-adriana-preview').src = this.value" class="form-input w-full text-xs" placeholder="Ruta o URL..." />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Bloque 2: Luna -->
+                <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+                  <div class="flex items-center gap-3 mb-4 pb-3 border-b border-slate-100">
+                    <div class="w-8 h-8 rounded-full bg-blue-50 text-[#2756a2] flex items-center justify-center font-bold text-xs font-mono">
+                      AL
+                    </div>
+                    <div>
+                      <h4 class="font-serif text-lg font-bold text-slate-900" style="font-family: 'KENAO', 'KENAEO', 'Kenao', serif !important;">Perfil de Luna</h4>
+                      <p class="text-[11px] text-slate-400 font-mono">Co-Fundadora · Artista Residente</p>
+                    </div>
+                  </div>
+
+                  <div class="grid grid-cols-1 md:grid-cols-12 gap-5">
+                    <div class="md:col-span-8 space-y-4">
+                      <div>
+                        <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Especialidades &amp; Técnicas (Secciones Artistas / Reservas)</label>
+                        <input type="text" id="cfg-luna-esp" class="form-input w-full" placeholder="Puntillismo punto por punto, Handpoke &amp; Fine Line" />
+                      </div>
+
+                      <div>
+                        <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Biografía Autoral Completa</label>
+                        <textarea id="cfg-luna-bio" rows="4" class="form-textarea w-full" placeholder="Biografía de Luna que se muestra en el modal interactivo..."></textarea>
+                      </div>
+
+                      <div class="grid grid-cols-2 gap-3">
+                        <div>
+                          <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Instagram</label>
+                          <input type="text" id="cfg-luna-ig" class="form-input w-full" value="@lunnapokes" />
+                        </div>
+                        <div>
+                          <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Teléfono / WhatsApp</label>
+                          <input type="text" id="cfg-luna-tel" class="form-input w-full" value="+593991234888" />
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Foto de Perfil de Luna -->
+                    <div class="md:col-span-4 p-4 bg-slate-50 border border-slate-200 rounded-xl flex flex-col justify-between">
+                      <div>
+                        <span class="block text-xs font-bold text-slate-700 uppercase mb-2">Foto de Perfil</span>
+                        <div class="w-full h-36 rounded-lg overflow-hidden border border-slate-200 mb-2 bg-slate-200">
+                          <img id="cfg-luna-preview" src="TRABAJOS%20LUNA/FOTO%20LUNA%20TRABAJANDO/igexport-C-NjoP-uXYO.jpg" alt="Foto Luna" class="w-full h-full object-cover" />
+                        </div>
+                        <input type="file" id="cfg-luna-file" accept="image/*" onchange="handleAdminProfilePicFile(this, 'luna')" class="w-full text-[11px] text-slate-500 file:mr-2 file:py-1 file:px-2.5 file:rounded file:border-0 file:text-[10px] file:bg-[#2756a2] file:text-white cursor-pointer mb-2" />
+                        <input type="text" id="cfg-luna-foto" onchange="document.getElementById('cfg-luna-preview').src = this.value" class="form-input w-full text-xs" placeholder="Ruta o URL..." />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Bloque 3: Imágenes del Banner Principal y Carrusel (Home / Inicio) -->
+                <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+                  <div class="mb-4 pb-3 border-b border-slate-100">
+                    <h4 class="font-serif text-lg font-bold text-slate-900" style="font-family: 'KENAO', 'KENAEO', 'Kenao', serif !important;">
+                      Imágenes del Banner Principal &amp; Inicio
+                    </h4>
+                    <p class="text-xs text-slate-500">Actualiza las fotografías del carrusel de bienvenida y del banner editorial Dos Miradas.</p>
+                  </div>
+
+                  <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+                    <!-- Banner 1 -->
+                    <div class="p-3.5 bg-slate-50 border border-slate-200 rounded-xl space-y-2">
+                      <span class="block text-xs font-bold text-slate-700 uppercase">Slide 1 (Portada Principal)</span>
+                      <div class="w-full h-28 rounded-lg overflow-hidden border border-slate-200 bg-slate-200">
+                        <img id="cfg-banner-slide1-preview" src="artistas-duo-chicas.jpg" alt="Slide 1" class="w-full h-full object-cover" />
+                      </div>
+                      <input type="file" id="cfg-banner-slide1-file" accept="image/*" onchange="handleAdminBannerImageFile(this, 'slide1')" class="w-full text-[10px] text-slate-500 file:mr-2 file:py-1 file:px-2 file:rounded file:border-0 file:text-[10px] file:bg-[#2756a2] file:text-white cursor-pointer" />
+                      <input type="text" id="cfg-banner-slide1" onchange="document.getElementById('cfg-banner-slide1-preview').src = this.value" class="form-input w-full text-xs" placeholder="Ruta o URL..." />
+                    </div>
+
+                    <!-- Banner 2 -->
+                    <div class="p-3.5 bg-slate-50 border border-slate-200 rounded-xl space-y-2">
+                      <span class="block text-xs font-bold text-slate-700 uppercase">Slide 2 (Carrusel Home)</span>
+                      <div class="w-full h-28 rounded-lg overflow-hidden border border-slate-200 bg-slate-200">
+                        <img id="cfg-banner-slide2-preview" src="assets/foto-adri-luna.gif" alt="Slide 2" class="w-full h-full object-cover" />
+                      </div>
+                      <input type="file" id="cfg-banner-slide2-file" accept="image/*" onchange="handleAdminBannerImageFile(this, 'slide2')" class="w-full text-[10px] text-slate-500 file:mr-2 file:py-1 file:px-2 file:rounded file:border-0 file:text-[10px] file:bg-[#2756a2] file:text-white cursor-pointer" />
+                      <input type="text" id="cfg-banner-slide2" onchange="document.getElementById('cfg-banner-slide2-preview').src = this.value" class="form-input w-full text-xs" placeholder="Ruta o URL..." />
+                    </div>
+
+                    <!-- Banner Dos Miradas -->
+                    <div class="p-3.5 bg-slate-50 border border-slate-200 rounded-xl space-y-2">
+                      <span class="block text-xs font-bold text-slate-700 uppercase">Sección "Dos Miradas"</span>
+                      <div class="w-full h-28 rounded-lg overflow-hidden border border-slate-200 bg-slate-200">
+                        <img id="cfg-banner-dosmiradas-preview" src="assets/foto-adri-luna.gif" alt="Dos Miradas" class="w-full h-full object-cover" />
+                      </div>
+                      <input type="file" id="cfg-banner-dosmiradas-file" accept="image/*" onchange="handleAdminBannerImageFile(this, 'dosmiradas')" class="w-full text-[10px] text-slate-500 file:mr-2 file:py-1 file:px-2 file:rounded file:border-0 file:text-[10px] file:bg-[#2756a2] file:text-white cursor-pointer" />
+                      <input type="text" id="cfg-banner-dosmiradas" onchange="document.getElementById('cfg-banner-dosmiradas-preview').src = this.value" class="form-input w-full text-xs" placeholder="Ruta o URL..." />
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Botón Final de Guardado -->
+                <div class="p-4 bg-white border border-slate-200 rounded-2xl shadow-sm flex items-center justify-between">
+                  <span class="text-xs font-mono text-slate-500">
+                    Los cambios se guardan permanentemente en el navegador y se reflejan de inmediato.
+                  </span>
+                  <button type="submit" class="px-8 py-3.5 bg-[#2756a2] hover:bg-[#1b3f7a] text-white text-xs font-mono font-bold uppercase tracking-wider rounded-xl transition-all shadow-md hover:shadow-lg flex items-center gap-2 cursor-pointer">
+                    <i data-lucide="check-circle" class="w-4 h-4"></i>
+                    <span>Guardar Todo el Estudio</span>
+                  </button>
+                </div>
+
+              </form>
+            </div>
+
+          </div> <!-- Cierre de flex-1 min-w-0 w-full space-y-6 -->
+        </div> <!-- Cierre de flex flex-col lg:flex-row gap-8 -->
+      </section>
+    </div>
+
+    <!-- MODAL: MENSAJES DE WHATSAPP AUTOMATIZADOS (CONFIRMACIÓN & RECORDATORIO) -->
+    <div id="admin-whatsapp-modal" class="modal-overlay" onclick="if(event.target === this) cerrarModalWhatsAppAdmin()">
+      <div class="modal-content p-6 sm:p-8 max-w-lg w-full bg-white text-slate-800 rounded-2xl shadow-2xl relative border border-slate-200">
+        <div class="flex items-center justify-between pb-4 mb-4 border-b border-slate-100">
+          <div class="flex items-center gap-2.5">
+            <div class="w-9 h-9 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center font-bold">
+              <i data-lucide="message-circle" class="w-5 h-5"></i>
+            </div>
+            <div>
+              <h3 class="font-serif text-xl text-slate-900 font-bold leading-tight" style="font-family: 'KENAO', 'KENAEO', 'Kenao', serif !important;">
+                Gestión de WhatsApp
+              </h3>
+              <p class="text-[11px] font-mono text-slate-500" id="wa-modal-client-info">Cliente: Cargando...</p>
+            </div>
+          </div>
+          <button type="button" onclick="cerrarModalWhatsAppAdmin()" class="text-slate-400 hover:text-slate-700 p-1.5 transition-colors cursor-pointer rounded-full hover:bg-slate-100" title="Cerrar">
+            <i data-lucide="x" class="w-5 h-5"></i>
+          </button>
+        </div>
+
+        <!-- Selector de Tipo de Mensaje -->
+        <div class="mb-4">
+          <label class="block text-[11px] font-bold text-slate-700 uppercase tracking-wider mb-2 font-mono">
+            Seleccionar Tipo de Mensaje:
+          </label>
+          <div class="grid grid-cols-2 gap-2">
+            <button type="button" id="wa-btn-type-confirm" onclick="setAdminWhatsAppMessageType('confirmar')" class="px-3 py-2 text-xs font-mono font-bold uppercase rounded-xl border transition-all text-center cursor-pointer bg-[#2756a2] text-white border-[#2756a2]">
+              ✓ Confirmar Cita
+            </button>
+            <button type="button" id="wa-btn-type-remind" onclick="setAdminWhatsAppMessageType('recordar')" class="px-3 py-2 text-xs font-mono font-bold uppercase rounded-xl border transition-all text-center cursor-pointer bg-slate-50 text-slate-600 border-slate-200 hover:bg-slate-100">
+              🔔 Recordatorio
+            </button>
+          </div>
+        </div>
+
+        <!-- Previsualización / Edición del Mensaje -->
+        <div class="mb-4">
+          <label class="block text-[11px] font-bold text-slate-700 uppercase tracking-wider mb-1.5 font-mono">
+            Mensaje que se enviará al cliente (Editable):
+          </label>
+          <textarea id="wa-modal-message-text" rows="7" class="w-full p-3 text-xs font-sans text-slate-800 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:border-[#2756a2] focus:bg-white transition-all resize-none leading-relaxed"></textarea>
+        </div>
+
+        <!-- Checkbox para actualizar estado automáticamente -->
+        <div class="flex items-center gap-2 mb-5">
+          <input type="checkbox" id="wa-modal-auto-confirm" checked class="w-4 h-4 text-[#2756a2] rounded border-slate-300 focus:ring-[#2756a2] cursor-pointer" />
+          <label for="wa-modal-auto-confirm" class="text-xs text-slate-600 select-none cursor-pointer">
+            Marcar cita como <strong>Confirmada</strong> automáticamente
+          </label>
+        </div>
+
+        <!-- Botones de Acción -->
+        <div class="flex items-center gap-3 pt-2">
+          <button type="button" onclick="cerrarModalWhatsAppAdmin()" class="w-1/3 py-2.5 px-4 text-xs font-mono font-bold uppercase text-slate-500 hover:text-slate-800 bg-slate-100 hover:bg-slate-200 rounded-xl transition-all cursor-pointer">
+            Cancelar
+          </button>
+          <button type="button" onclick="enviarWhatsAppAdmin()" class="w-2/3 py-2.5 px-4 text-xs font-mono font-bold uppercase text-white bg-emerald-600 hover:bg-emerald-700 rounded-xl transition-all shadow-md hover:shadow-lg flex items-center justify-center gap-2 cursor-pointer">
+            <i data-lucide="message-circle" class="w-4 h-4"></i>
+            <span>Abrir WhatsApp &amp; Enviar</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- ========================================================
+       FOOTER OFICIAL: AZUL DE LA MARCA (#2756a2) Y TIPOGRAFÍA BEIGE (#f0e9cf)
+       REPRODUCCIÓN EXACTA SEGÚN DISEÑO OFICIAL
+       ======================================================== -->
+  <footer id="main-site-footer" class="w-full bg-[#2756a2] text-[#f0e9cf] pt-10 sm:pt-12 pb-3 overflow-hidden relative">
+    <div class="max-w-7xl mx-auto px-6 sm:px-10 lg:px-12">
+      
+      <!-- COLUMNAS SUPERIORES DEL FOOTER -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-10 pb-2 sm:pb-3">
+        
+        <!-- COLUMNA 1: ESTUDIO PRIVADO -->
+        <div class="space-y-3">
+          <h3 class="font-serif text-2xl sm:text-3xl text-[#f0e9cf] font-normal leading-tight">
+            Estudio Privado
+          </h3>
+          <p class="text-xs sm:text-sm text-[#f0e9cf]/85 leading-relaxed font-light">
+            Atención únicamente con previa cita.
+          </p>
+        </div>
+
+        <!-- COLUMNA 2: ENLACES RÁPIDOS -->
+        <div class="space-y-4">
+          <h3 class="font-serif text-2xl sm:text-3xl text-[#f0e9cf] font-normal leading-tight">
+            Enlaces Rápidos
+          </h3>
+          <ul class="space-y-2 sm:space-y-2.5 text-xs sm:text-sm font-mono tracking-wider">
+            <li>
+              <button type="button" onclick="navigateToRoute('inicio', true)" class="text-[#f0e9cf] hover:text-white transition-colors uppercase cursor-pointer">
+                INICIO
+              </button>
+            </li>
+            <li>
+              <button type="button" onclick="navigateToRoute('artistas', true)" class="text-[#f0e9cf] hover:text-white transition-colors uppercase cursor-pointer">
+                ARTISTAS
+              </button>
+            </li>
+            <li>
+              <button type="button" onclick="navigateToRoute('galeria', true)" class="text-[#f0e9cf] hover:text-white transition-colors uppercase cursor-pointer">
+                GALERÍA
+              </button>
+            </li>
+            <li>
+              <button type="button" onclick="navigateToRoute('talleres', true)" class="text-[#f0e9cf] hover:text-white transition-colors uppercase cursor-pointer">
+                TALLERES
+              </button>
+            </li>
+            <li>
+              <button type="button" onclick="navigateToRoute('reservas', true)" class="text-[#f0e9cf] hover:text-white transition-colors uppercase cursor-pointer">
+                RESERVAS
+              </button>
+            </li>
+          </ul>
+        </div>
+
+        <!-- COLUMNA 3: CONECTA CON NOSOTRAS -->
+        <div class="space-y-4">
+          <h3 class="font-serif text-2xl sm:text-3xl text-[#f0e9cf] font-normal leading-tight">
+            Conecta con Nosotras
+          </h3>
+          <p class="text-xs sm:text-sm text-[#f0e9cf]/85 leading-relaxed font-light">
+            Perfiles directos de las fundadoras y atención privada de citas:
+          </p>
+          <div class="inline-flex flex-col items-start space-y-2.5 sm:space-y-3 text-xs sm:text-sm font-mono">
+            <div>
+              <a href="https://www.instagram.com/eterea.tattoostudio?utm_source=ig_web_button_share_sheet&obrf=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener noreferrer" class="text-[#f0e9cf] hover:text-white transition-colors inline-flex items-center gap-2.5">
+                <svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect width="20" height="20" x="2" y="2" rx="5" ry="5"/>
+                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                  <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/>
+                </svg>
+                <span>@eterea.tattoostudio</span>
+              </a>
+            </div>
+            <div>
+              <a href="https://www.instagram.com/soyadri___?utm_source=ig_web_button_share_sheet&mdxt=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener noreferrer" class="text-[#f0e9cf] hover:text-white transition-colors inline-flex items-center gap-2.5">
+                <svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect width="20" height="20" x="2" y="2" rx="5" ry="5"/>
+                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                  <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/>
+                </svg>
+                <span>@soyadri___</span>
+              </a>
+            </div>
+            <div>
+              <a href="https://www.instagram.com/lunnapokes?utm_source=ig_web_button_share_sheet&xtok=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener noreferrer" class="text-[#f0e9cf] hover:text-white transition-colors inline-flex items-center gap-2.5">
+                <svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect width="20" height="20" x="2" y="2" rx="5" ry="5"/>
+                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                  <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/>
+                </svg>
+                <span>@lunnapokes</span>
+              </a>
+            </div>
+            <div class="w-full flex justify-center pt-1.5">
+              <a href="https://wa.me/593984123456" target="_blank" rel="noopener noreferrer" class="w-7 h-7 sm:w-8 sm:h-8 rounded-full border border-[#f0e9cf]/60 hover:border-[#f0e9cf] hover:bg-[#f0e9cf]/15 text-[#f0e9cf] inline-flex items-center justify-center transition-all" title="WhatsApp Estudio">
+                <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- LOGOTIPO OFICIAL GIGANTE DE ETÉREA DE MARCO A MARCO (MÁS PEGADO A LAS COLUMNAS SUPERIORES) -->
+    <div class="w-full px-2 sm:px-4 md:px-6 pt-0 pb-1 overflow-hidden pointer-events-none select-none">
+      <img src="LOGO%20ET%C3%89REA/logo-eterea-beige.svg" alt="Etérea Tattoo Studio" class="w-full h-auto block select-none mx-auto" />
+      <div class="text-center mt-2 sm:mt-3 mb-2 sm:mb-3">
+        <span class="font-mono text-[10px] sm:text-xs md:text-sm tracking-[0.45em] uppercase text-[#f0e9cf]/90 font-medium">T A T T O O &nbsp; S T U D I O</span>
+      </div>
+    </div>
+
+    <!-- CRÉDITOS Y DERECHOS INFERIORES -->
+    <div class="w-full">
+      <div class="max-w-7xl mx-auto py-4 px-6 sm:px-10 lg:px-12 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] sm:text-xs font-mono uppercase tracking-widest text-[#f0e9cf]/75">
+        <div>
+          <span>QUITO, ECUADOR · ESTUDIO PRIVADO</span>
+        </div>
+        <div>
+          <span>© 2026 ETÉREA</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========================================================
+       MODALES DEL SISTEMA (INTERACTIVIDAD Y CONFIRMACIÓN)
+       ======================================================== -->
+
+  <!-- MODAL: LOGIN ADMINISTRACIÓN -->
+  <div id="admin-login-modal" class="modal-overlay">
+    <div class="modal-content p-8 max-w-md bg-white">
+      <div class="flex justify-between items-center mb-6">
+        <div>
+          <span class="pill-badge active text-[10px]">ACCESO INTERNO</span>
+          <h3 class="font-serif text-2xl text-[#1b3f7a] font-semibold mt-1">Administración Etérea</h3>
+        </div>
+        <button type="button" onclick="closeAdminLoginModal()" class="text-[#738eb2] hover:text-[#2756a2] p-2">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <form onsubmit="handleAdminLogin(event)" class="space-y-4">
+        <div>
+          <label class="block text-xs font-bold text-[#2756a2] uppercase mb-1">Correo Electrónico</label>
+          <input type="email" id="admin-user" class="form-input" placeholder="admin@eterea.com" required />
+        </div>
+        <div>
+          <label class="block text-xs font-bold text-[#2756a2] uppercase mb-1">Contraseña</label>
+          <input type="password" id="admin-pass" class="form-input" placeholder="••••••••" required />
+        </div>
+
+        <div class="pt-2">
+          <button type="submit" class="btn-primary w-full py-3 text-xs shadow-md">
+            <span>Ingresar al Panel de Gestión</span>
+          </button>
+        </div>
+
+        <!-- Acceso Rápido de Prueba -->
+        <div class="pt-3 border-t border-[#2756a2]/15 text-center">
+          <button type="button" onclick="autoFillAdminCredentials()" class="text-xs text-[#2756a2] hover:underline font-semibold">
+            ⚡ Autocompletar credenciales demo (Evaluador)
+          </button>
+          <p class="text-[10px] text-[#738eb2] mt-1 font-mono">admin@eterea.com / eterea2025</p>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL: CONFIRMACIÓN DE CITA Y WHATSAPP DIRECTO -->
+  <div id="booking-confirmation-modal" class="modal-overlay">
+    <div class="modal-content p-8 max-w-lg bg-white">
+      <div class="text-center mb-6">
+        <div class="w-14 h-14 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center mx-auto mb-3 border border-emerald-300">
+          <i data-lucide="check" class="w-7 h-7"></i>
+        </div>
+        <span class="pill-badge mb-2 bg-[#2756a2] text-white border-transparent">SOLICITUD ENVIADA</span>
+        <h3 class="font-serif text-3xl text-[#1b3f7a] font-semibold">¡Experiencia Registrada!</h3>
+        <p class="text-xs text-[#4e6f9e] mt-1">Tus datos han sido guardados en el sistema de Etérea Tattoo Studio.</p>
+      </div>
+
+      <!-- Resumen de Solicitud -->
+      <div class="bg-[#fbf8ef] p-5 rounded-2xl border border-[#2756a2]/15 space-y-2.5 text-xs mb-6">
+        <div class="flex justify-between">
+          <span class="text-[#738eb2] font-mono">ID de Solicitud:</span>
+          <span id="conf-id" class="text-[#2756a2] font-mono font-bold"></span>
+        </div>
+        <div class="flex justify-between">
+          <span class="text-[#738eb2] font-mono">Cliente:</span>
+          <span id="conf-cliente" class="text-[#1b3f7a] font-semibold"></span>
+        </div>
+        <div class="flex justify-between">
+          <span class="text-[#738eb2] font-mono">Artista Asignada:</span>
+          <span id="conf-artista" class="text-[#1b3f7a] font-semibold"></span>
+        </div>
+        <div class="flex justify-between">
+          <span class="text-[#738eb2] font-mono">Estilo / Técnica:</span>
+          <span id="conf-estilo" class="text-[#2756a2] font-semibold"></span>
+        </div>
+        <div class="flex justify-between">
+          <span class="text-[#738eb2] font-mono">Zona del Cuerpo:</span>
+          <span id="conf-zona" class="text-[#1b3f7a]"></span>
+        </div>
+        <div class="flex justify-between border-t border-[#2756a2]/10 pt-2">
+          <span class="text-[#738eb2] font-mono">Fecha & Hora:</span>
+          <span id="conf-fecha-hora" class="text-[#1b3f7a] font-bold"></span>
+        </div>
+      </div>
+
+      <!-- Botón de Acción Directa -->
+      <div class="pt-2">
+        <button type="button" onclick="closeBookingConfirmation(); navigateToRoute('inicio', true);" class="w-full py-3.5 px-6 rounded-none font-semibold text-xs tracking-wider uppercase text-white bg-[#2756a2] hover:bg-[#1e4688] shadow-md transition-all font-mono">
+          Cerrar y Volver a la Portada
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: DETALLE COMPLETO DEL TALLER (VENTANA AMPLIA CON IMAGEN A LA IZQUIERDA Y DETALLES) -->
+  <div id="workshop-detail-modal" class="modal-overlay" onclick="if(event.target === this) cerrarModalDetalleTaller()">
+    <div class="modal-content max-w-4xl w-full bg-white text-gray-900 rounded-3xl shadow-2xl relative border border-gray-100 overflow-hidden my-4 sm:my-8 mx-auto">
+      
+      <div class="grid grid-cols-1 md:grid-cols-12 min-h-[500px]">
+        <!-- Columna Izquierda: Fotografía Real del Taller -->
+        <div class="md:col-span-5 relative min-h-[260px] md:min-h-full bg-[#1b3f7a] overflow-hidden">
+          <img 
+            id="detail-taller-img" 
+            src="Fotos%20Talleres/FOTOS/igexport-Db_QsCqnDhR-3.jpg" 
+            alt="Fotografía del Taller Etérea" 
+            class="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-700 hover:scale-105" 
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent pointer-events-none"></div>
+          
+          <div class="absolute bottom-5 left-5 right-5 z-10 text-white">
+            <span class="inline-block px-3 py-1 bg-white/20 backdrop-blur-md text-[10px] font-mono uppercase tracking-widest text-[#f0e9cf] rounded-full mb-2">
+              Formación Presencial
+            </span>
+            <p id="detail-taller-instructor" class="text-xs font-mono text-white/90">
+              Dictado por Adriana Carrillo &amp; Luna
+            </p>
+          </div>
+        </div>
+
+        <!-- Columna Derecha: Información Editorial y Acción de Reserva -->
+        <div class="md:col-span-7 p-6 sm:p-8 md:p-10 flex flex-col justify-between bg-white">
+          <div>
+            <!-- Encabezado con Badges y Botón de Cerrar -->
+            <div class="flex items-center justify-between gap-3 mb-4">
+              <div class="flex items-center gap-2 flex-wrap">
+                <span class="px-3.5 py-1 bg-[#2756a2] text-white text-[10px] font-mono font-bold tracking-widest rounded-full uppercase">
+                  ETÉREA WORKSHOP
+                </span>
+                <span id="detail-taller-cupos-badge" class="px-3 py-0.5 bg-emerald-50 text-emerald-700 border border-emerald-200 text-[10px] font-mono font-bold uppercase rounded-full">
+                  3 cupos disponibles
+                </span>
+              </div>
+              <button type="button" onclick="cerrarModalDetalleTaller()" class="text-gray-400 hover:text-gray-700 p-1.5 transition-colors cursor-pointer rounded-full hover:bg-gray-100" title="Cerrar">
+                <i data-lucide="x" class="w-5 h-5"></i>
+              </button>
+            </div>
+
+            <!-- Título del Taller -->
+            <h3 id="detail-taller-titulo" class="font-serif text-2xl sm:text-3xl lg:text-4xl text-[#1b3f7a] font-normal leading-tight mb-4" style="font-family: 'KENAO', 'KENAEO', 'Kenao', serif !important;">
+              Masterclass: Fine Line & Aguja 03RL
+            </h3>
+
+            <!-- Descripción a Profundidad -->
+            <p id="detail-taller-descripcion" class="text-xs sm:text-sm text-gray-600 leading-relaxed font-light mb-6">
+              Técnica de trazo invisible, regulación precisa de voltaje, control milimétrico de vibración y calibración de pigmento negro de humo en piel viva.
+            </p>
+
+            <!-- Ficha Técnica Estructurada: Fecha, Horario, Dónde es, Inversión -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 p-4 bg-[#fbf8ef] border border-[#f0e9cf] rounded-2xl mb-6">
+              <div class="flex items-start gap-2.5">
+                <i data-lucide="calendar" class="w-4 h-4 text-[#2756a2] mt-0.5 shrink-0"></i>
+                <div>
+                  <span class="block text-[10px] font-mono uppercase text-[#2756a2]/70 font-semibold">Fecha</span>
+                  <span id="detail-taller-fecha" class="text-xs font-semibold text-[#1b3f7a]">28 Nov, 2026</span>
+                </div>
+              </div>
+
+              <div class="flex items-start gap-2.5">
+                <i data-lucide="clock" class="w-4 h-4 text-[#2756a2] mt-0.5 shrink-0"></i>
+                <div>
+                  <span class="block text-[10px] font-mono uppercase text-[#2756a2]/70 font-semibold">Horario / Duración</span>
+                  <span id="detail-taller-horario" class="text-xs font-semibold text-[#1b3f7a]">1 día intensivo (8 horas)</span>
+                </div>
+              </div>
+
+              <div class="flex items-start gap-2.5">
+                <i data-lucide="map-pin" class="w-4 h-4 text-[#2756a2] mt-0.5 shrink-0"></i>
+                <div>
+                  <span class="block text-[10px] font-mono uppercase text-[#2756a2]/70 font-semibold">Dónde es</span>
+                  <span id="detail-taller-ubicacion" class="text-xs font-semibold text-[#1b3f7a]">Estudio Privado Etérea · Quito</span>
+                </div>
+              </div>
+
+              <div class="flex items-start gap-2.5">
+                <i data-lucide="tag" class="w-4 h-4 text-[#2756a2] mt-0.5 shrink-0"></i>
+                <div>
+                  <span class="block text-[10px] font-mono uppercase text-[#2756a2]/70 font-semibold">Inversión</span>
+                  <span id="detail-taller-precio" class="text-xs font-semibold text-[#1b3f7a]">$120.00 USD (Incluye materiales)</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Botón de Acción para Reservar Cupo -->
+          <div class="pt-3 border-t border-gray-100 flex flex-col sm:flex-row items-center justify-between gap-3">
+            <span class="text-xs font-mono text-gray-400">
+              Atención y cupos por orden de registro
+            </span>
+            <button 
+              type="button" 
+              id="btn-detail-avanzar-reserva" 
+              onclick="avanzarAInscripcion()" 
+              class="w-full sm:w-auto px-7 py-3.5 bg-[#2756a2] hover:bg-[#1b3f7a] text-white text-xs font-mono uppercase tracking-widest font-bold transition-all rounded-full shadow-lg hover:shadow-xl hover:scale-[1.02] cursor-pointer inline-flex items-center justify-center gap-2"
+            >
+              <span>Reservar cupo al taller</span>
+              <span class="font-bold">&rarr;</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- MODAL: REGISTRO A TALLER (IDÉNTICO A SCREENSHOT 6) -->
+  <div id="workshop-registration-modal" class="modal-overlay" onclick="if(event.target === this) cerrarModalInscripcion()">
+    <div class="modal-content p-6 sm:p-8 max-w-lg w-full bg-white text-gray-900 rounded-3xl shadow-2xl relative border border-gray-100">
+      
+      <div class="flex items-center justify-between mb-4">
+        <div class="flex items-center gap-2">
+          <span class="px-3.5 py-1 bg-[#2756a2] text-white text-[10px] font-mono font-bold tracking-widest rounded-full uppercase">
+            INSCRIPCIÓN TALLER
+          </span>
+          <button type="button" onclick="volverADetalleTaller()" class="text-[#2756a2] hover:text-[#1b3f7a] text-xs font-mono flex items-center gap-1 transition-colors cursor-pointer px-2 py-0.5 rounded hover:bg-blue-50" title="Volver al detalle del taller">
+            <span>&larr;</span>
+            <span>Ver detalles</span>
+          </button>
+        </div>
+        <button type="button" onclick="cerrarModalInscripcion()" class="text-gray-400 hover:text-gray-700 p-1.5 transition-colors cursor-pointer" title="Cerrar">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <h3 id="insc-taller-titulo" class="font-serif text-2xl sm:text-3xl text-[#1b3f7a] font-normal leading-tight mb-1.5">
+        Masterclass: Fine Line & Aguja 03RL
+      </h3>
+
+      <p class="text-xs text-gray-500 mb-6 font-mono">
+        <span id="insc-taller-fecha">15 Nov, 2026</span> &nbsp;&bull;&nbsp; 
+        <span id="insc-taller-precio">$120.00 USD</span> &nbsp;&bull;&nbsp; 
+        <span id="insc-taller-cupos" class="text-emerald-600 font-semibold">3 cupos disponibles</span>
+      </p>
+
+      <form id="workshop-registration-form" onsubmit="submitInscripcionTaller(event)" class="space-y-4">
+        <div>
+          <label class="block text-[11px] font-bold text-[#2756a2] uppercase tracking-wider mb-1.5 font-mono">
+            NOMBRE COMPLETO *
+          </label>
+          <input 
+            type="text" 
+            id="insc-nombre" 
+            class="w-full px-4 py-3 rounded-xl border border-gray-300 text-sm focus:outline-none focus:border-[#2756a2] text-gray-800 transition-colors" 
+            placeholder="Tu nombre" 
+            required 
+          />
+        </div>
+
+        <div>
+          <label class="block text-[11px] font-bold text-[#2756a2] uppercase tracking-wider mb-1.5 font-mono">
+            WHATSAPP / TELÉFONO *
+          </label>
+          <input 
+            type="tel" 
+            id="insc-telefono" 
+            class="w-full px-4 py-3 rounded-xl border border-gray-300 text-sm focus:outline-none focus:border-[#2756a2] text-gray-800 transition-colors" 
+            placeholder="+593 9..." 
+            required 
+          />
+        </div>
+
+        <div>
+          <label class="block text-[11px] font-bold text-[#2756a2] uppercase tracking-wider mb-1.5 font-mono">
+            CORREO ELECTRÓNICO *
+          </label>
+          <input 
+            type="email" 
+            id="insc-correo" 
+            class="w-full px-4 py-3 rounded-xl border border-gray-300 text-sm focus:outline-none focus:border-[#2756a2] text-gray-800 transition-colors" 
+            placeholder="correo@ejemplo.com" 
+            required 
+          />
+        </div>
+
+        <button 
+          type="submit" 
+          id="insc-submit-btn" 
+          class="w-full mt-4 py-3.5 bg-[#2756a2] hover:bg-[#1b3f7a] text-white text-sm font-semibold rounded-full shadow-md transition-all cursor-pointer font-sans"
+        >
+          Confirmar Cupo en Taller
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL: ÉXITO INSCRIPCIÓN TALLER -->
+  <div id="workshop-success-modal" class="modal-overlay">
+    <div class="modal-content p-8 max-w-md text-center bg-white">
+      <div class="w-14 h-14 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center mx-auto mb-3 border border-emerald-300">
+        <i data-lucide="check" class="w-7 h-7"></i>
+      </div>
+      <h3 class="font-serif text-3xl text-[#1b3f7a] font-semibold mb-2">¡Cupo Reservado!</h3>
+      <p class="text-xs text-[#4e6f9e] mb-4">
+        Hola <strong id="insc-success-participante" class="text-[#1b3f7a]"></strong>, has asegurado tu plaza para el workshop:
+      </p>
+      <div class="bg-[#fbf8ef] p-4 rounded-xl border border-[#2756a2]/20 font-serif text-lg text-[#2756a2] font-semibold mb-6" id="insc-success-titulo">
+      </div>
+
+      <div class="space-y-3">
+        <a id="insc-success-wa-btn" href="#" target="_blank" class="w-full py-3.5 px-6 rounded-full font-semibold text-xs tracking-wider uppercase text-white flex items-center justify-center gap-2 btn-whatsapp transition-all">
+          <i data-lucide="message-circle" class="w-4 h-4"></i>
+          <span>Enviar Comprobante por WhatsApp</span>
+        </a>
+        <button type="button" onclick="document.getElementById('workshop-success-modal').classList.remove('active')" class="btn-secondary w-full py-2.5 text-xs">
+          Entendido, gracias
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: OBRA AMPLIADA RECTANGULAR A PANTALLA COMPLETA CON SCROLL INFERIOR -->
+  <div id="artwork-detail-modal" class="modal-overlay">
+    <div class="modal-content p-0 rounded-none bg-[#091220] border border-white/20 shadow-2xl overflow-y-auto max-h-[94vh] w-full max-w-5xl relative">
+      
+      <!-- BOTÓN FLOTANTE DE CIERRE -->
+      <button 
+        type="button" 
+        onclick="closeArtworkModal()" 
+        class="fixed sm:absolute top-4 right-4 z-30 bg-black/75 hover:bg-black text-white p-3 rounded-full backdrop-blur-md transition-all shadow-xl border border-white/20"
+        title="Cerrar vista ampliada"
+      >
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+
+      <!-- FOTOGRAFÍA HEADER GIGANTE (UTILIZA CASI TODA LA PANTALLA, SIN MARCOS NI ESPACIADOS) -->
+      <div class="relative w-full min-h-[75vh] md:min-h-[84vh] bg-black flex items-center justify-center p-0 m-0">
+        <img 
+          id="modal-artwork-img" 
+          src="" 
+          alt="Obra de autor" 
+          class="w-full h-full max-h-[85vh] object-contain md:object-cover rounded-none" 
+        />
+        
+        <!-- Indicador animado de scroll para ver detalles abajo -->
+        <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-2 bg-black/70 backdrop-blur-md px-5 py-2 rounded-full border border-white/15 text-[11px] font-mono text-[#f0e9cf] tracking-widest uppercase pointer-events-none shadow-lg">
+          <span>Desliza hacia abajo</span>
+          <i data-lucide="arrow-down" class="w-3.5 h-3.5 animate-bounce"></i>
+        </div>
+      </div>
+
+      <!-- SECCIÓN INFERIOR EDITORIAL: AUTORÍA, TÉCNICA Y PROPÓSITO DEL DISEÑO (SIN NOMBRE DE OBRA) -->
+      <div class="p-6 sm:p-10 md:p-12 bg-[#091220] text-white space-y-6 border-t border-white/15">
+        
+        <!-- CABECERA DE AUTORÍA (SIN NOMBRE DE OBRA) -->
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-white/10 pb-6">
+          <div>
+            <span class="text-[10px] font-mono tracking-[0.25em] uppercase text-[#f0e9cf]/75 block mb-1">
+              PIEZA DE AUTOR · ETÉREA TATTOO STUDIO
+            </span>
+            <h3 class="font-serif text-3xl sm:text-4xl text-[#f0e9cf] font-normal">
+              Por <span id="modal-artwork-artist" class="font-medium"></span>
+            </h3>
+          </div>
+          
+          <div class="flex items-center gap-3">
+            <span id="modal-artwork-category" class="px-4 py-1.5 text-xs font-mono uppercase bg-[#2756a2] text-white tracking-wider border border-white/20"></span>
+            <span class="px-3.5 py-1.5 text-xs font-mono uppercase bg-white/10 text-[#f0e9cf]/90 tracking-wider">Estudio Privado</span>
+          </div>
+        </div>
+
+        <!-- EXPLICACIÓN: POR QUÉ ESTÁ HECHO Y CONCEPCIÓN ARTÍSTICA -->
+        <div class="space-y-3 py-2">
+          <h4 class="text-xs font-mono uppercase tracking-[0.2em] text-[#f0e9cf]/80">
+            Concepción y Propósito de la Obra
+          </h4>
+          <p id="modal-artwork-desc" class="text-sm sm:text-base text-white/90 leading-relaxed font-light max-w-3xl"></p>
+        </div>
+
+        <!-- GARANTÍA Y ACCIÓN DE AGENDAR -->
+        <div class="pt-6 border-t border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-5">
+          <div class="text-xs text-[#f0e9cf]/70 font-mono flex items-center gap-2">
+            <i data-lucide="shield-check" class="w-4 h-4 text-[#f0e9cf]"></i>
+            <span>Esterilización grado quirúrgico · Trazo de autor irrepetible</span>
+          </div>
+          <button 
+            type="button" 
+            onclick="agendarDesdeObra()" 
+            class="px-8 py-4 bg-[#2756a2] hover:bg-[#1b3f7a] text-white font-semibold text-xs tracking-widest uppercase transition-all shadow-xl hover:scale-[1.02] flex items-center justify-center gap-3 border border-white/20"
+          >
+            <span>Agendar cita con la artista</span>
+            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </button>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <!-- MODAL: BIOGRAFÍA Y TRAYECTORIA COMPLETA DE ARTISTA (DISEÑO HORIZONTAL EN DOS COLUMNAS - VERDE #2756a2 Y BEIGE #f0e9cf) -->
+  <div id="artist-bio-modal" class="modal-overlay">
+    <div class="modal-content p-0 rounded-none bg-[#2756a2] text-[#f0e9cf] shadow-2xl overflow-hidden w-full max-w-5xl relative border border-[#f0e9cf]/25" style="border-radius: 0 !important; background-color: #2756a2 !important;">
+      
+      <!-- Botón de Cierre Superior Derecho (Estricta Estética Rectangular) -->
+      <button 
+        type="button" 
+        onclick="closeArtistBioModal()" 
+        class="absolute top-4 right-4 z-40 text-[#f0e9cf] hover:text-white p-2.5 transition-colors bg-black/60 hover:bg-black/85 backdrop-blur-md rounded-none border border-[#f0e9cf]/30 cursor-pointer"
+        title="Cerrar biografía"
+      >
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+
+      <!-- CONTENEDOR EN DOS COLUMNAS: IZQUIERDA (INFO Y PERFIL) / DERECHA (VIDEO DE MARCO A MARCO) -->
+      <div class="flex flex-col md:flex-row w-full max-h-[88vh] md:max-h-[85vh] overflow-hidden">
+        
+        <!-- COLUMNA IZQUIERDA: INFORMACIÓN Y PERFIL AUTORAL -->
+        <div class="flex-1 p-6 sm:p-8 md:p-10 lg:p-12 space-y-6 flex flex-col justify-between overflow-y-auto bio-modal-scrollable">
+          
+          <div class="space-y-6">
+            <!-- Cabecera del Perfil con Foto Autoral -->
+            <div class="flex items-start gap-5 sm:gap-6 pb-6 border-b border-[#f0e9cf]/25">
+              <img 
+                id="artist-bio-modal-img" 
+                src="TRABAJOS%20ADRI/FOTO%20PERFIL%20ADRI/igexport-DDqEQgNvKiY.webp" 
+                alt="Foto de perfil de la artista" 
+                class="w-20 h-24 sm:w-24 sm:h-28 md:w-28 md:h-32 object-cover rounded-none shadow-xl shrink-0 border border-[#f0e9cf]/40" 
+              />
+              <div class="min-w-0 flex-1">
+                <span class="font-mono text-[10px] sm:text-xs uppercase tracking-[0.25em] text-[#f0e9cf]/80 block font-semibold mb-1">
+                  PERFIL AUTORAL · CO-FUNDADORA
+                </span>
+                <h2 id="artist-bio-modal-name" class="font-serif text-2xl sm:text-3xl md:text-4xl text-[#f0e9cf] font-normal leading-tight">
+                  Adriana Carrillo
+                </h2>
+                <p id="artist-bio-modal-specialty" class="font-mono text-xs sm:text-[13px] text-[#f0e9cf] mt-1.5 font-medium leading-relaxed">
+                  Fine Line & Blackwork Ilustrativo
+                </p>
+              </div>
+            </div>
+
+            <!-- Biografía editorial con párrafos profundos -->
+            <div class="space-y-3">
+              <span class="font-mono text-[10px] uppercase tracking-[0.2em] text-[#f0e9cf]/75 block font-bold">
+                TRAYECTORIA & FILOSOFÍA DE TRAZO
+              </span>
+              <div id="artist-bio-modal-text" class="text-xs sm:text-sm text-[#f0e9cf]/90 font-light leading-relaxed space-y-3 font-body">
+              </div>
+            </div>
+          </div>
+
+          <!-- Acciones Inferiores: Ver Obras en Galería y Agendar Cita Privada -->
+          <div class="pt-6 border-t border-[#f0e9cf]/25 flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5">
+            <button 
+              type="button" 
+              id="artist-bio-modal-gallery-btn" 
+              class="px-5 py-3.5 border border-[#f0e9cf] hover:bg-[#f0e9cf]/15 text-[#f0e9cf] text-xs font-mono uppercase tracking-wider rounded-none transition-all flex items-center justify-center gap-2 cursor-pointer"
+            >
+              <span>Ver obras en Galería</span>
+              <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+            </button>
+            <button 
+              type="button" 
+              id="artist-bio-modal-booking-btn" 
+              class="px-6 py-3.5 bg-[#f0e9cf] hover:bg-white text-[#2756a2] text-xs font-mono font-bold uppercase tracking-wider rounded-none shadow-lg transition-all flex items-center justify-center gap-2 cursor-pointer hover:scale-[1.01]"
+            >
+              <span>Agendar Cita Privada</span>
+              <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+            </button>
+          </div>
+
+        </div>
+
+        <!-- COLUMNA DERECHA: VIDEO INTEGRADO DE MARCO A MARCO (FULL HEIGHT) -->
+        <div class="relative w-full md:w-[45%] lg:w-[48%] min-h-[300px] md:min-h-full bg-black/60 flex-shrink-0 overflow-hidden border-t md:border-t-0 md:border-l border-[#f0e9cf]/20">
+          <video 
+            id="artist-bio-video" 
+            autoplay 
+            muted 
+            loop 
+            playsinline 
+            class="absolute inset-0 w-full h-full object-cover"
+            style="object-position: center 75%;"
+          ></video>
+          <!-- Fallback de imagen de perfil de alta calidad si el navegador no permite autoplay -->
+          <img 
+            id="artist-bio-video-fallback" 
+            src="" 
+            alt="Artista en el estudio" 
+            class="hidden absolute inset-0 w-full h-full object-cover object-center" 
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-black/30 pointer-events-none"></div>
+          
+          <!-- Etiqueta técnica sobre el video de fondo -->
+          <div class="absolute bottom-6 left-6 right-6 z-10 pointer-events-none text-white drop-shadow-md">
+            <span class="font-mono text-[10px] tracking-[0.25em] uppercase text-[#f0e9cf] bg-black/60 backdrop-blur-sm px-3 py-1.5 border-l-2 border-[#f0e9cf] inline-block">
+              REGISTRO EN VIVO · ESTUDIO PRIVADO
+            </span>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+
+
+  <!-- DOCK / MENÚ FLOTANTE INFERIOR DINÁMICO (REFERENCIA OFICIAL) -->
+  <nav id="floating-bottom-dock" class="floating-bottom-dock" aria-label="Navegación flotante inferior">
+    <div class="floating-dock-inner">
+      <button type="button" class="floating-dock-btn active" data-route="inicio" onclick="navigateToRoute('inicio', true)">
+        <i data-lucide="home"></i>
+        <span>Inicio</span>
+      </button>
+      <button type="button" class="floating-dock-btn" data-route="artistas" onclick="navigateToRoute('artistas', true)">
+        <i data-lucide="users"></i>
+        <span>Artistas</span>
+      </button>
+      <button type="button" class="floating-dock-btn" data-route="galeria" onclick="navigateToRoute('galeria', true)">
+        <i data-lucide="image"></i>
+        <span>Galería</span>
+      </button>
+      <button type="button" class="floating-dock-btn" data-route="talleres" onclick="navigateToRoute('talleres', true)">
+        <i data-lucide="book-open"></i>
+        <span>Talleres</span>
+      </button>
+      <button type="button" class="floating-dock-btn" data-route="reservas" onclick="navigateToRoute('reservas', true)">
+        <i data-lucide="calendar"></i>
+        <span>Reservas</span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- CONTENEDOR DE TOASTS -->
+  <div id="toast-container"></div>
+
+  <!-- CLIENTE OFICIAL DE SUPABASE JS V2 -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <!-- SCRIPT PRINCIPAL DE LA APLICACIÓN -->
+  <script src="app.js?v=12"></script>
+
+</body>
+</html>

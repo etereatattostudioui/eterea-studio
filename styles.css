@@ -1,0 +1,2571 @@
+/* ========================================================
+   ETÉREA TATTOO STUDIO - DESIGN SYSTEM
+   Fuentes Oficiales: KENAEO (Titulares) & Poppins (Cuerpo)
+   Paleta Oficial: Beige Crema (#f0e9cf) + Azul Marca (#2756a2)
+   ======================================================== */
+
+/* 1. CONFIGURACIÓN @font-face LOCAL */
+@font-face {
+  font-family: 'KENAEO';
+  src: url('assets/fonts/kenaeo.otf') format('opentype'),
+       url('assets/fonts/Kenao.otf') format('opentype'),
+       url('assetsfonts/Kenao.otf') format('opentype');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Kenao';
+  src: url('assets/fonts/kenaeo.otf') format('opentype'),
+       url('assets/fonts/Kenao.otf') format('opentype'),
+       url('assetsfonts/Kenao.otf') format('opentype');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'KENAO';
+  src: url('assets/fonts/kenaeo.otf') format('opentype'),
+       url('assets/fonts/Kenao.otf') format('opentype'),
+       url('assetsfonts/Kenao.otf') format('opentype');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url('assets/fonts/poppins.ttf') format('truetype'),
+       url('assets/fonts/Poppins-Medium.ttf') format('truetype'),
+       url('assetsfonts/Poppins-Medium.ttf') format('truetype');
+  font-weight: 400 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  /* 1. SISTEMA DE COLORES OFICIAL DE LA MARCA */
+  --bg-primary: #f0e9cf;            /* Beige Crema oficial */
+  --bg-secondary: #fbf8ef;          /* Crema suave elevado para tarjetas */
+  --bg-tertiary: #ffffff;           /* Blanco puro para inputs y contrastes */
+  --bg-elevated: #ffffff;
+  --bg-muted: #e7dfc3;              /* Crema medio para acentos sutiles */
+  --bg-card-hover: #ffffff;
+
+  /* Azul Marca Oficial y Variaciones (Todo Unificado a #2756a2) */
+  --brand-blue: #2756a2;            /* Azul Marca Oficial */
+  --brand-blue-dark: #2756a2;       /* Unificado al Azul de Marca Oficial */
+  --brand-blue-deep: #2756a2;       /* Unificado al Azul de Marca Oficial */
+  --brand-blue-hover: #1f488a;
+  --brand-blue-light: #e8f0fc;      /* Azul claro para estados activos */
+  --brand-blue-dim: rgba(39, 86, 162, 0.08);
+
+  /* Contrastes y Bordes */
+  --border-subtle: rgba(39, 86, 162, 0.16);
+  --border-medium: rgba(39, 86, 162, 0.28);
+  --border-hover: #2756a2;
+
+  /* Textos */
+  --text-primary: #2756a2;          /* Texto principal en Azul Marca */
+  --text-heading: #2756a2;          /* Títulos en Azul de Marca */
+  --text-muted: #4e6f9e;            /* Texto secundario azul medio */
+  --text-dim: #738eb2;              /* Textos de apoyo */
+  --text-inverse: #ffffff;
+
+  /* Estados Funcionales */
+  --accent-danger: #d9383a;
+  --accent-success: #15803d;
+  --accent-warning: #b45309;
+
+  /* 2. JERARQUÍA TIPOGRÁFICA OFICIAL */
+  --font-body: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-display: 'KENAEO', 'Kenao', sans-serif;
+  --font-serif: 'KENAEO', 'Kenao', sans-serif;
+  --font-mono: 'Space Mono', monospace;
+
+  --transition-smooth: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  --shadow-soft: 0 10px 30px -10px rgba(39, 86, 162, 0.12);
+  --shadow-hover: 0 20px 40px -12px rgba(39, 86, 162, 0.22);
+  --shadow-dock: 0 15px 35px -8px rgba(39, 86, 162, 0.2);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  color-scheme: light;
+}
+
+/* ========================================================
+   JERARQUÍA GLOBAL ESTRICTA Y DEFINITIVA
+   ======================================================== */
+
+/* TODOS los títulos y elementos de encabezado usan obligatoriamente KENAEO */
+h1, h2, h3, h4, h5, h6,
+.font-serif,
+.font-display,
+.font-heading {
+  font-family: 'KENAEO', 'Kenao', sans-serif !important;
+  letter-spacing: 0.02em;
+}
+
+/* TODO el cuerpo de texto, párrafos, enlaces, botones, etiquetas y controles usan Poppins */
+body,
+p,
+span:not(.font-serif):not(.font-display),
+a,
+button,
+label,
+input,
+select,
+textarea,
+table,
+td,
+th,
+li,
+small,
+.font-body {
+  font-family: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif !important;
+}
+
+/* Clases Utilitarias Tipográficas con Prioridad */
+.font-body { font-family: 'Poppins', sans-serif !important; }
+.font-display { font-family: 'KENAEO', 'Kenao', sans-serif !important; }
+.font-serif { font-family: 'KENAEO', 'Kenao', sans-serif !important; }
+.font-mono { font-family: 'Space Mono', monospace !important; }
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.6;
+  overflow-x: hidden;
+  position: relative;
+  min-height: 100vh;
+}
+
+/* Grano editorial sutil sobre fondo crema */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* Tipografías Utilitarias */
+.font-body { font-family: var(--font-body); }
+.font-display { font-family: var(--font-display); }
+.font-serif { font-family: var(--font-serif); }
+.font-mono { font-family: var(--font-mono); }
+
+/* Luces sutiles y gradientes de fondo */
+.hero-glow {
+  position: absolute;
+  top: 15%;
+  right: 10%;
+  width: 550px;
+  height: 550px;
+  background: radial-gradient(circle, rgba(39, 86, 162, 0.09) 0%, rgba(240, 233, 207, 0) 70%);
+  filter: blur(80px);
+  pointer-events: none;
+}
+
+.hero-glow-secondary {
+  position: absolute;
+  top: 55%;
+  left: 5%;
+  width: 450px;
+  height: 450px;
+  background: radial-gradient(circle, rgba(39, 86, 162, 0.06) 0%, rgba(240, 233, 207, 0) 70%);
+  filter: blur(90px);
+  pointer-events: none;
+}
+
+/* 1. BARRA DE NAVEGACIÓN ANCLADA ARRIBA (NO SIGUE AL USUARIO AL HACER SCROLL) */
+.nav-floating-dock {
+  position: absolute !important;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  max-width: 100%;
+  transform: none !important;
+  z-index: 50;
+  background: transparent !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  border: none !important;
+  border-radius: 0;
+  padding: 1.25rem 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: none !important;
+  transition: none !important;
+}
+
+.nav-floating-dock.nav-hidden {
+  transform: none !important;
+  opacity: 1 !important;
+  pointer-events: auto !important;
+}
+
+.nav-floating-dock.scrolled {
+  background: transparent !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  box-shadow: none !important;
+}
+
+/* Ocultar barra superior pública de navegación exclusivamente en el panel de administración */
+body.page-theme-admin .nav-floating-dock {
+  display: none !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  visibility: hidden !important;
+}
+
+/* Ocultar footer público exclusivamente en el panel de administración */
+body.page-theme-admin footer,
+body.page-theme-admin #main-site-footer {
+  display: none !important;
+}
+
+/* Menú de Navegación Limpio (Sin Cápsula de Color Atrás) */
+.dynamic-nav-pills {
+  display: flex;
+  align-items: center;
+  gap: 1.75rem;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+}
+
+.nav-pill-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.35rem 0.25rem;
+  border-radius: 0;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  text-decoration: none;
+  border: none !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  transition: var(--transition-smooth);
+  cursor: pointer;
+  white-space: nowrap;
+  position: relative;
+}
+
+/* Sin relleno al hacer hover */
+.nav-pill-btn:hover {
+  color: var(--brand-blue-dark);
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.nav-pill-btn:hover .nav-indicator-dot {
+  opacity: 0.9;
+  transform: scale(1.2) rotate(6deg);
+}
+
+/* Estado Activo Limpio sin cápsula */
+.nav-pill-btn.active {
+  background: transparent !important;
+  color: var(--brand-blue-dark) !important;
+  font-weight: 600;
+  box-shadow: none !important;
+  border: none !important;
+}
+
+.nav-pill-btn.active::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background-color: var(--brand-blue);
+  border-radius: 9999px;
+}
+
+.nav-pill-btn.active:hover {
+  background: transparent !important;
+  color: var(--brand-blue-dark) !important;
+}
+
+.nav-pill-btn.active .nav-indicator-dot {
+  opacity: 1;
+  transform: scale(1.25);
+  filter: drop-shadow(0 0 3px rgba(39, 86, 162, 0.45));
+}
+
+.nav-indicator-dot {
+  width: 9px;
+  height: 14px;
+  object-fit: contain;
+  display: inline-block;
+  border-radius: 0 !important;
+  background-color: transparent !important;
+  opacity: 0.45;
+  transition: opacity 0.25s ease, transform 0.25s ease, filter 0.25s ease;
+}
+
+.dynamic-nav-pills {
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* ========================================================
+   DOCK / MENÚ FLOTANTE INFERIOR DINÁMICO (REFERENCIA OFICIAL)
+   Fondo oscuro (#080f1d), Acento azul (#2756a2), Iconos y textos limpios
+   ======================================================== */
+.floating-bottom-dock {
+  position: fixed;
+  bottom: 1.75rem;
+  left: 50%;
+  transform: translate(-50%, 28px);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 99;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.28s ease;
+  user-select: none;
+}
+
+.floating-bottom-dock.dock-visible {
+  transform: translate(-50%, 0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.floating-dock-inner {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.35rem 0.4rem;
+  background-color: #070e1b;
+  background: rgba(7, 14, 27, 0.96);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 3px;
+  box-shadow: 0 14px 40px -4px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(255, 255, 255, 0.05);
+}
+
+.floating-dock-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.55rem 1.15rem;
+  border-radius: 2px !important;
+  font-family: var(--font-body), system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: #e2e8f0;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  text-decoration: none;
+  line-height: 1;
+}
+
+.floating-dock-btn i,
+.floating-dock-btn svg {
+  width: 15px;
+  height: 15px;
+  stroke-width: 2.2;
+  flex-shrink: 0;
+  transition: transform 0.2s ease;
+}
+
+.floating-dock-btn:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: #ffffff;
+}
+
+.floating-dock-btn:hover i,
+.floating-dock-btn:hover svg {
+  transform: scale(1.08);
+}
+
+.floating-dock-btn.active {
+  background: #2756a2 !important;
+  color: #ffffff !important;
+  font-weight: 600;
+  box-shadow: 0 2px 10px rgba(39, 86, 162, 0.5);
+}
+
+.floating-dock-btn.active:hover {
+  background: #1f4b8f !important;
+  color: #ffffff !important;
+}
+
+@media (max-width: 640px) {
+  .floating-bottom-dock {
+    bottom: 1rem;
+    width: calc(100% - 1.5rem);
+    max-width: 440px;
+  }
+  .floating-dock-inner {
+    justify-content: space-between;
+    padding: 0.25rem;
+    gap: 0.15rem;
+  }
+  .floating-dock-btn {
+    padding: 0.5rem 0.65rem;
+    font-size: 0.72rem;
+    gap: 0.35rem;
+  }
+  .floating-dock-btn i,
+  .floating-dock-btn svg {
+    width: 14px;
+    height: 14px;
+  }
+}
+
+/* 1. CONTENEDOR DE PÁGINAS INDEPENDIENTES */
+.page-view {
+  display: block;
+  opacity: 1;
+  animation: pageFadeIn 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  padding-top: 5.25rem;
+  padding-bottom: 5rem;
+}
+
+#page-inicio {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+#page-artistas {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+#page-reservas {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  background-color: #0e0a08 !important;
+}
+
+/* Altura equilibrada y encuadre fotográfico de las artistas en Artistas y Reservas */
+#page-reservas > section,
+#page-artistas > section {
+  min-height: 980px !important;
+  position: relative !important;
+  justify-content: flex-start !important;
+}
+
+@media (min-width: 1024px) {
+  #page-reservas > section,
+  #page-artistas > section {
+    min-height: 1040px !important;
+  }
+}
+
+#booking-hero-bg,
+#artist-spotlight-bg {
+  object-fit: cover !important;
+  object-position: center top !important;
+  transform: scale(1.0) !important;
+  transform-origin: center center;
+  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+#booking-guide-svg,
+#artist-guide-svg {
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 768px !important;
+  max-height: 800px !important;
+}
+
+#booking-step1-panels-layer,
+#artist-step1-panels-layer {
+  margin-top: 260px !important;
+  margin-bottom: 50px !important;
+  align-items: flex-start !important;
+  width: 100% !important;
+}
+
+@media (min-width: 768px) {
+  #booking-step1-panels-layer,
+  #artist-step1-panels-layer {
+    margin-top: 250px !important;
+    margin-bottom: 60px !important;
+  }
+  
+  #artist-panel-adriana,
+  #booking-panel-adriana {
+    margin-top: 30px !important;
+  }
+  
+  #artist-panel-luna,
+  #booking-panel-luna {
+    margin-top: 55px !important; /* Luna con desplazamiento de ~2.5 cm hacia abajo para despejar el rostro */
+  }
+}
+
+.hero-viewport-banner {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+.hero-viewport-banner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+.hero-carousel-slide {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+}
+
+.hero-carousel-slide.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Etérea Wordmark Inferior - De Borde a Borde en Borde Inferior */
+.hero-wordmark-bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  width: 100vw;
+  z-index: 20;
+  pointer-events: none;
+  line-height: 0;
+  margin: 0;
+  padding: 0;
+  display: block;
+}
+
+.hero-wordmark-bottom svg,
+.hero-wordmark-bottom .hero-wordmark-svg,
+.hero-wordmark-bottom img {
+  display: block;
+  width: 100% !important;
+  width: 100vw !important;
+  height: calc(100vw * 143.04 / 549.06) !important;
+  min-width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  fill: #2756a2 !important;
+}
+
+.page-view.hidden {
+  display: none !important;
+}
+
+@keyframes pageFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 2. BOTONES Y ACCIONES */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: var(--brand-blue);
+  color: #ffffff;
+  font-family: var(--font-body);
+  font-size: 0.825rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  padding: 0.875rem 1.85rem;
+  border-radius: 9999px;
+  border: 1px solid var(--brand-blue);
+  transition: var(--transition-smooth);
+  cursor: pointer;
+  text-decoration: none;
+  box-shadow: 0 6px 18px -4px rgba(39, 86, 162, 0.35);
+}
+
+.btn-primary:hover {
+  background: var(--brand-blue-dark);
+  border-color: var(--brand-blue-dark);
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 26px -6px rgba(39, 86, 162, 0.45);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: rgba(255, 255, 255, 0.65);
+  color: var(--brand-blue);
+  font-family: var(--font-body);
+  font-size: 0.825rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  padding: 0.875rem 1.85rem;
+  border-radius: 9999px;
+  border: 1px solid var(--border-medium);
+  backdrop-filter: blur(8px);
+  transition: var(--transition-smooth);
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.btn-secondary:hover {
+  background: #ffffff;
+  border-color: var(--brand-blue);
+  color: var(--brand-blue-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px -6px rgba(39, 86, 162, 0.18);
+}
+
+.btn-whatsapp {
+  background: #25d366;
+  color: #ffffff;
+  font-weight: 600;
+  border: none;
+  box-shadow: 0 8px 22px -6px rgba(37, 211, 102, 0.4);
+}
+
+.btn-whatsapp:hover {
+  background: #1eb957;
+  color: #ffffff;
+  transform: translateY(-2px);
+}
+
+/* Studio Pill Badges */
+.pill-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.35rem 0.95rem;
+  border-radius: 9999px;
+  font-size: 0.7rem;
+  font-family: var(--font-body);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  border: 1px solid var(--border-subtle);
+  background: rgba(39, 86, 162, 0.07);
+  color: var(--brand-blue);
+  transition: var(--transition-smooth);
+  cursor: pointer;
+}
+
+.pill-badge.active, .pill-badge:hover {
+  border-color: var(--brand-blue);
+  color: #ffffff;
+  background: var(--brand-blue);
+}
+
+/* Tarjetas Generales */
+.studio-card {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
+  border-radius: 1.25rem;
+  transition: var(--transition-smooth);
+  overflow: hidden;
+  position: relative;
+  box-shadow: var(--shadow-soft);
+}
+
+.studio-card:hover {
+  border-color: var(--border-hover);
+  transform: translateY(-4px);
+  background: var(--bg-card-hover);
+  box-shadow: var(--shadow-hover);
+}
+
+/* Hook de Métricas Flotantes */
+.metric-hook-card {
+  background: rgba(251, 248, 239, 0.95);
+  backdrop-filter: blur(16px);
+  border: 1px solid var(--border-subtle);
+  border-radius: 1.25rem;
+  padding: 1.5rem;
+  transition: var(--transition-smooth);
+  box-shadow: var(--shadow-soft);
+  position: relative;
+  overflow: hidden;
+}
+
+.metric-hook-card:hover {
+  transform: translateY(-5px);
+  background: #ffffff;
+  border-color: var(--brand-blue);
+  box-shadow: var(--shadow-hover);
+}
+
+.metric-hook-card::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--brand-blue) 0%, rgba(39, 86, 162, 0.2) 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.metric-hook-card:hover::after {
+  opacity: 1;
+}
+
+/* 3. GALERÍA DE OBRAS (COLLAGE EDITORIAL TIPO CONTACT SHEET - SIN BORDES REDONDEADOS) */
+.gallery-card {
+  position: relative;
+  border-radius: 0 !important;
+  overflow: hidden;
+  background: #091220;
+  border: none !important;
+  aspect-ratio: 3 / 4;
+  cursor: pointer;
+  box-shadow: none !important;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1), filter 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* 1. SECCIÓN DE GALERÍA: Efecto Zoom Inmediato y Desenfoque por Retardo (3-4 seg) */
+#galeria-grid {
+  background-color: #091220 !important;
+  position: relative;
+}
+
+/* El zoom ocurre inmediatamente en la tarjeta sobre la que se pasa el cursor */
+#galeria-grid .gallery-card {
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s ease, filter 0.5s ease;
+}
+
+#galeria-grid .gallery-card:hover {
+  opacity: 1 !important;
+  filter: blur(0px) !important;
+  transform: scale(1.04) !important;
+  z-index: 35;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.45) !important;
+}
+
+#galeria-grid .gallery-card:hover img {
+  opacity: 1 !important;
+  filter: blur(0px) brightness(1) !important;
+  transform: scale(1.06) !important;
+}
+
+#galeria-grid .gallery-card:hover .gallery-overlay {
+  background: linear-gradient(to top, rgba(10, 18, 32, 0.92) 0%, rgba(10, 18, 32, 0.35) 55%, transparent 100%) !important;
+  backdrop-filter: blur(1px);
+  -webkit-backdrop-filter: blur(1px);
+}
+
+/* DESENFOQUE POR RETARDO (DELAY BLUR DE 3-4 SEGUNDOS CONTROLADO POR JS) */
+#galeria-grid.gallery-delayed-blur .gallery-card:not(:hover) {
+  opacity: 0.92;
+  filter: blur(5px);
+  transition: filter 0.8s ease, opacity 0.8s ease;
+}
+
+#galeria-grid.gallery-delayed-blur .gallery-card:not(:hover) img {
+  opacity: 0.92;
+  filter: blur(5px) brightness(0.95);
+  transition: filter 0.8s ease, opacity 0.8s ease;
+}
+
+/* ========================================================
+   MENÚ FLOTANTE LATERAL IZQUIERDO: FILTRO DE TÉCNICAS (GALERÍA)
+   A la altura del título con brillo tenue de luz etérea
+   ======================================================== */
+.gallery-floating-tab {
+  position: fixed;
+  left: 0;
+  top: 135px;
+  transform: translateY(-50%);
+  z-index: 45;
+  background: #0d1e38;
+  color: #f0e9cf;
+  border: 1px solid rgba(240, 233, 207, 0.45);
+  border-left: none;
+  padding: 0.75rem 1.15rem 0.75rem 0.85rem;
+  border-radius: 0 0.85rem 0.85rem 0;
+  cursor: pointer;
+  /* En vez de sombra oscura: LUZ suave y brillo tenue que invita a acercarse */
+  box-shadow: 0 0 15px rgba(240, 233, 207, 0.35), 
+              0 0 30px rgba(240, 233, 207, 0.16),
+              inset 0 0 10px rgba(240, 233, 207, 0.1);
+  animation: galleryTabGlowLight 3s infinite ease-in-out;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  user-select: none;
+}
+
+@keyframes galleryTabGlowLight {
+  0%, 100% {
+    box-shadow: 0 0 12px rgba(240, 233, 207, 0.28), 
+                0 0 24px rgba(240, 233, 207, 0.12),
+                inset 0 0 8px rgba(240, 233, 207, 0.08);
+    border-color: rgba(240, 233, 207, 0.38);
+  }
+  50% {
+    box-shadow: 0 0 22px rgba(240, 233, 207, 0.58), 
+                0 0 42px rgba(240, 233, 207, 0.28),
+                inset 0 0 14px rgba(240, 233, 207, 0.18);
+    border-color: rgba(240, 233, 207, 0.75);
+  }
+}
+
+.gallery-floating-tab:hover {
+  background: #1b3f7a;
+  transform: translateY(-50%) translateX(4px);
+  box-shadow: 0 0 26px rgba(240, 233, 207, 0.8), 
+              0 0 50px rgba(240, 233, 207, 0.4),
+              inset 0 0 14px rgba(240, 233, 207, 0.22);
+  border-color: #f0e9cf;
+}
+
+@media (max-width: 768px) {
+  .gallery-floating-tab {
+    top: 118px;
+    padding: 0.65rem 0.95rem 0.65rem 0.75rem;
+  }
+}
+
+.gallery-floating-tab.sidebar-active {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-50%) translateX(-20px);
+}
+
+.gallery-left-hover-zone {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 20px;
+  z-index: 44;
+  pointer-events: auto;
+}
+
+/* El botón y menú lateral de galería solo existen mientras se esté en /galeria */
+body:not(.page-theme-galeria-blue) .gallery-floating-tab,
+body:not(.page-theme-galeria-blue) .gallery-left-hover-zone,
+body:not(.page-theme-galeria-blue) #gallery-filter-sidebar,
+body:not(.page-theme-galeria-blue) #gallery-sidebar-backdrop {
+  display: none !important;
+}
+
+.gallery-filter-sidebar {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 320px;
+  max-width: 85vw;
+  background: rgba(9, 18, 32, 0.97);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border-right: 1px solid rgba(240, 233, 207, 0.25);
+  box-shadow: 20px 0 50px rgba(0, 0, 0, 0.65);
+  z-index: 50;
+  transform: translateX(-100%);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  flex-direction: column;
+}
+
+.gallery-filter-sidebar.open {
+  transform: translateX(0);
+}
+
+.gallery-technique-item {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.8rem 1rem;
+  border-radius: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: rgba(240, 233, 207, 0.85);
+  background: transparent;
+  border: 1px solid transparent;
+  transition: all 0.22s ease;
+  cursor: pointer;
+  text-align: left;
+}
+
+.gallery-technique-item:hover {
+  background: rgba(240, 233, 207, 0.1);
+  color: #f0e9cf;
+  transform: translateX(4px);
+  border-color: rgba(240, 233, 207, 0.2);
+}
+
+.gallery-technique-item.active {
+  background: #f0e9cf !important;
+  color: #2756a2 !important;
+  font-weight: 800;
+  border-color: #f0e9cf !important;
+  box-shadow: 0 4px 14px rgba(240, 233, 207, 0.25);
+  transform: translateX(4px);
+}
+
+.gallery-technique-item .technique-bullet {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(240, 233, 207, 0.4);
+  margin-right: 0.65rem;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.gallery-technique-item.active .technique-bullet {
+  background: #2756a2;
+  transform: scale(1.3);
+}
+
+.gallery-technique-item .technique-name {
+  flex: 1;
+}
+
+.gallery-technique-item .technique-count {
+  font-size: 0.7rem;
+  opacity: 0.7;
+  margin-left: 0.5rem;
+  font-family: var(--font-mono);
+}
+
+.gallery-technique-item.active .technique-count {
+  opacity: 1;
+  color: #2756a2;
+  font-weight: 800;
+}
+
+.gallery-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 0 !important;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), filter 0.4s ease;
+  display: block;
+}
+
+.gallery-card:hover img {
+  transform: scale(1.05);
+}
+
+/* Overlay oscuro y elegante con animación suave (fade-in) */
+.gallery-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(8, 16, 32, 0.95) 0%, rgba(8, 16, 32, 0.65) 50%, rgba(8, 16, 32, 0.25) 100%);
+  padding: 1.15rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  opacity: 0;
+  pointer-events: none;
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  transition: opacity 0.3s ease;
+  color: #ffffff;
+  border-radius: 0 !important;
+}
+
+.gallery-card:hover .gallery-overlay {
+  opacity: 1;
+}
+
+/* Formularios adaptados a Crema y Azul */
+.form-input, .form-select, .form-textarea {
+  width: 100%;
+  background: #ffffff;
+  border: 1px solid var(--border-medium);
+  border-radius: 0.75rem;
+  padding: 0.875rem 1.1rem;
+  color: var(--text-heading);
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  transition: var(--transition-smooth);
+  outline: none;
+}
+
+.form-input::placeholder, .form-textarea::placeholder {
+  color: #92a8c5;
+}
+
+.form-input:focus, .form-select:focus, .form-textarea:focus {
+  border-color: var(--brand-blue);
+  background: #ffffff;
+  box-shadow: 0 0 0 4px rgba(39, 86, 162, 0.15);
+}
+
+.form-input.input-error, .form-select.input-error, .form-textarea.input-error {
+  border-color: var(--accent-danger);
+  box-shadow: 0 0 0 4px rgba(217, 56, 58, 0.15);
+}
+
+.error-text {
+  font-size: 0.75rem;
+  color: var(--accent-danger);
+  margin-top: 0.35rem;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-weight: 500;
+}
+
+/* Franjas Horarias en Bloques de 2 horas (Estilo Beige y Azul de Marca) */
+.time-slot-btn {
+  background: #ffffff;
+  border: 1.5px solid rgba(39, 86, 162, 0.22);
+  color: var(--brand-blue);
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0.75rem 0.5rem;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.time-slot-btn:hover {
+  border-color: var(--brand-blue);
+  background: rgba(39, 86, 162, 0.06);
+}
+
+.time-slot-btn.active {
+  background: var(--brand-blue) !important;
+  color: #ffffff !important;
+  border-color: var(--brand-blue) !important;
+  box-shadow: 0 4px 14px rgba(39, 86, 162, 0.22);
+}
+
+#booking-date {
+  color-scheme: light;
+  accent-color: var(--brand-blue);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #dfd5b2;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--brand-blue);
+}
+
+/* Modales */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(18, 44, 84, 0.45);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.modal-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal-content {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-medium);
+  border-radius: 1.5rem;
+  max-width: 650px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 25px 65px -15px rgba(27, 63, 122, 0.3);
+  transform: scale(0.96) translateY(12px);
+  transition: var(--transition-smooth);
+}
+
+.modal-overlay.active .modal-content {
+  transform: scale(1) translateY(0);
+}
+
+/* Floating Toast */
+#toast-container {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 120;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  pointer-events: none;
+}
+
+.toast {
+  pointer-events: auto;
+  background: #ffffff;
+  border: 1px solid var(--border-medium);
+  padding: 0.875rem 1.35rem;
+  border-radius: 0.875rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.85rem;
+  color: var(--text-heading);
+  box-shadow: 0 15px 35px rgba(27, 63, 122, 0.16);
+  animation: toastIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes toastIn {
+  from { opacity: 0; transform: translateY(15px) scale(0.95); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* Badges de Estado */
+.badge-pendiente {
+  background: rgba(180, 83, 9, 0.12);
+  color: #b45309;
+  border: 1px solid rgba(180, 83, 9, 0.28);
+}
+
+.badge-confirmada {
+  background: rgba(21, 128, 61, 0.12);
+  color: #15803d;
+  border: 1px solid rgba(21, 128, 61, 0.28);
+}
+
+.badge-cancelada {
+  background: rgba(217, 56, 58, 0.12);
+  color: #d9383a;
+  border: 1px solid rgba(217, 56, 58, 0.28);
+}
+
+.badge-agotado {
+  background: rgba(217, 56, 58, 0.12);
+  color: #d9383a;
+  border: 1px solid rgba(217, 56, 58, 0.28);
+}
+
+.badge-activo {
+  background: rgba(21, 128, 61, 0.12);
+  color: #15803d;
+  border: 1px solid rgba(21, 128, 61, 0.28);
+}
+
+/* ========================================================
+   RESERVAS: SPLIT MULTI-STEP FORM
+   ======================================================== */
+.step-indicator-item {
+  transition: all 0.25s ease;
+}
+.step-indicator-item.active {
+  color: var(--brand-blue);
+  font-weight: 700;
+}
+.step-indicator-item.completed {
+  color: var(--brand-blue);
+}
+.step-number-bubble {
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 0 !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  font-weight: 700;
+  background: rgba(39, 86, 162, 0.08);
+  color: #738eb2;
+  transition: all 0.25s ease;
+  border: 1px solid rgba(39, 86, 162, 0.15);
+}
+.step-indicator-item.active .step-number-bubble {
+  background: var(--brand-blue);
+  color: #ffffff;
+  border-color: var(--brand-blue);
+  box-shadow: 0 4px 14px rgba(39, 86, 162, 0.25);
+}
+.step-indicator-item.completed .step-number-bubble {
+  background: rgba(39, 86, 162, 0.15);
+  color: var(--brand-blue);
+  border-color: var(--brand-blue);
+}
+
+.booking-artist-card {
+  border: 1.5px solid rgba(39, 86, 162, 0.18);
+  background: #ffffff;
+  border-radius: 0 !important;
+  padding: 1rem 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+.booking-artist-card:hover {
+  border-color: var(--brand-blue);
+  background: #fbf8ef;
+}
+.booking-artist-card.selected {
+  border-color: var(--brand-blue);
+  background: #fbf8ef;
+  box-shadow: 0 4px 18px rgba(39, 86, 162, 0.14);
+}
+
+.style-pill-btn {
+  padding: 0.6rem 1.2rem;
+  border-radius: 0 !important;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  border: 1px solid rgba(39, 86, 162, 0.22);
+  background: #ffffff;
+  color: #4e6f9e;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.style-pill-btn:hover {
+  border-color: var(--brand-blue);
+  color: var(--brand-blue);
+  background: rgba(39, 86, 162, 0.04);
+}
+.style-pill-btn.active {
+  background: var(--brand-blue);
+  color: #ffffff;
+  border-color: var(--brand-blue);
+  box-shadow: 0 4px 14px rgba(39, 86, 162, 0.22);
+}
+
+.step-panel {
+  display: none;
+}
+.step-panel.active {
+  display: block;
+  animation: stepFadeIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes stepFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ========================================================
+   ESTILOS EDITORIALES PARA CO-FUNDADORAS / ARTISTAS
+   ======================================================== */
+.artist-spotlight-item {
+  border-radius: 0 !important;
+  transition: all 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, opacity, box-shadow;
+}
+
+.artist-spotlight-item img {
+  border-radius: 9999px !important;
+  border: none !important;
+}
+
+.artist-editorial-card {
+  transition: all 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, opacity, box-shadow;
+}
+
+.artist-spotlight-item:hover,
+.artist-editorial-card:hover {
+  opacity: 1 !important;
+  transform: translateY(-2px) scale(1.02) !important;
+}
+
+#artist-spotlight-bg {
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.6s ease;
+  will-change: transform;
+}
+
+/* ========================================================
+   DISEÑO ARQUITECTÓNICO DE TALLERES (AZUL MARCA #2756a2)
+   ======================================================== */
+.workshop-card-blue {
+  background: linear-gradient(135deg, #1b4382 0%, #2756a2 100%);
+  color: #f0e9cf;
+  border: 1.5px solid rgba(240, 233, 207, 0.25);
+  border-radius: 0;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 10px 30px -5px rgba(27, 67, 130, 0.28);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease, border-color 0.35s ease;
+}
+
+.workshop-card-blue:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 45px -10px rgba(39, 86, 162, 0.4);
+  border-color: rgba(240, 233, 207, 0.6);
+}
+
+.ticket-wrapper {
+  position: relative;
+}
+
+/* ========================================================
+   ANIMACIONES DE SÍMBOLOS SAGRADOS (PILARES DE PRÁCTICA)
+   Altamente dinámicos, celestiales y reactivos
+   ======================================================== */
+@keyframes spinSacred {
+  0% {
+    transform: rotate(0deg) scale(1);
+    filter: drop-shadow(0 0 2px rgba(39, 86, 162, 0.2));
+  }
+  50% {
+    transform: rotate(180deg) scale(1.08);
+    filter: drop-shadow(0 0 12px rgba(39, 86, 162, 0.5));
+  }
+  100% {
+    transform: rotate(360deg) scale(1);
+    filter: drop-shadow(0 0 2px rgba(39, 86, 162, 0.2));
+  }
+}
+
+@keyframes floatSacred {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg) scale(1);
+    filter: drop-shadow(0 0 2px rgba(39, 86, 162, 0.2));
+  }
+  33% {
+    transform: translateY(-10px) rotate(-4deg) scale(1.06);
+    filter: drop-shadow(0 8px 14px rgba(39, 86, 162, 0.4));
+  }
+  66% {
+    transform: translateY(-4px) rotate(4deg) scale(1.03);
+    filter: drop-shadow(0 4px 8px rgba(39, 86, 162, 0.3));
+  }
+}
+
+@keyframes pulseSacred {
+  0%, 100% {
+    transform: scale(1) rotate(0deg);
+    filter: drop-shadow(0 0 2px rgba(39, 86, 162, 0.2));
+  }
+  50% {
+    transform: scale(1.15) rotate(10deg);
+    filter: drop-shadow(0 0 16px rgba(39, 86, 162, 0.55));
+  }
+}
+
+.sacred-anim-spin {
+  animation: spinSacred 7s linear infinite;
+  transform-origin: center;
+  display: inline-block;
+  will-change: transform, filter;
+}
+
+.sacred-anim-float {
+  animation: floatSacred 3.2s ease-in-out infinite;
+  transform-origin: center;
+  display: inline-block;
+  will-change: transform, filter;
+}
+
+.sacred-anim-pulse {
+  animation: pulseSacred 2.4s ease-in-out infinite;
+  transform-origin: center;
+  display: inline-block;
+  will-change: transform, filter;
+}
+
+.group:hover .sacred-anim-spin {
+  animation-duration: 2.8s;
+  animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.group:hover .sacred-anim-float {
+  animation-duration: 1.6s;
+}
+
+.group:hover .sacred-anim-pulse {
+  animation-duration: 1.2s;
+}
+
+/* ========================================================
+   ESTILOS ESPECÍFICOS: GALERÍA INVERTIDA (FONDO AZUL MARCA #2756a2 Y TEXTOS BEIGE #f0e9cf)
+   ======================================================== */
+#page-galeria {
+  background-color: #2756a2 !important;
+  color: #f0e9cf !important;
+}
+
+#page-galeria h2, 
+#page-galeria h3, 
+#page-galeria h4 {
+  color: #f0e9cf !important;
+}
+
+#page-galeria p {
+  color: rgba(240, 233, 207, 0.9) !important;
+}
+
+#page-galeria .artist-filter-btn {
+  background: transparent !important;
+  color: #f0e9cf !important;
+  border: 1px solid rgba(240, 233, 207, 0.35) !important;
+  transition: all 0.25s ease;
+}
+
+#page-galeria .artist-filter-btn:hover {
+  background: rgba(240, 233, 207, 0.18) !important;
+  color: #ffffff !important;
+  border-color: #f0e9cf !important;
+}
+
+#page-galeria .artist-filter-btn.active {
+  background: #f0e9cf !important;
+  color: #2756a2 !important;
+  border-color: #f0e9cf !important;
+  font-weight: 700 !important;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25) !important;
+}
+
+/* ========================================================
+   MODAL DE OBRA RECTANGULAR SIN BORDES REDONDEADOS NI MARGENES
+   ======================================================== */
+#artwork-detail-modal .modal-content {
+  border-radius: 0 !important;
+  max-width: 980px !important;
+  width: 95vw !important;
+  max-height: 94vh !important;
+  padding: 0 !important;
+  background: #091220 !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  box-shadow: 0 35px 80px rgba(0, 0, 0, 0.85) !important;
+  overflow-y: auto !important;
+}
+
+/* Líneas Guía de Dirección Editorial para Artistas */
+.artist-guideline {
+  stroke: #f0e9cf;
+  stroke-width: 1.5;
+  stroke-dasharray: 4 4;
+  opacity: 0.75;
+  animation: guideDash 3s linear infinite;
+}
+
+@keyframes guideDash {
+  to {
+    stroke-dashoffset: -16;
+  }
+}
+
+.artist-guideline-continuous {
+  stroke: #f0e9cf;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  opacity: 0.9;
+  filter: drop-shadow(0 0 3px rgba(240, 233, 207, 0.4));
+}
+
+/* Estrella Etérea Resplandeciente con Respiración Suave (Sin alterar transform SVG) */
+.eterea-star-glow {
+  transform-origin: center;
+  animation: etereaPulseGlow 3s ease-in-out infinite;
+}
+
+@keyframes etereaPulseGlow {
+  0%, 100% {
+    filter: drop-shadow(0 0 5px rgba(240, 233, 207, 0.75)) drop-shadow(0 0 14px rgba(39, 86, 162, 0.7));
+    opacity: 0.9;
+  }
+  50% {
+    filter: drop-shadow(0 0 16px rgba(240, 233, 207, 1)) drop-shadow(0 0 32px rgba(240, 233, 207, 0.9));
+    opacity: 1;
+  }
+}
+
+/* ========================================================
+   MODO GALERÍA 100% AZUL OFICIAL (#2756a2) CON ELEMENTOS BEIGE (#f0e9cf)
+   Se activa mediante la clase .page-theme-galeria-blue en el body
+   ======================================================== */
+body.page-theme-galeria-blue {
+  background-color: #2756a2 !important;
+  color: #f0e9cf !important;
+}
+
+/* 1. Header completo en Azul Marca con borde sutil en beige */
+body.page-theme-galeria-blue .nav-floating-dock {
+  background: #2756a2 !important;
+  border-bottom: 1px solid rgba(240, 233, 207, 0.15) !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25) !important;
+}
+
+body.page-theme-galeria-blue .nav-floating-dock.scrolled {
+  background: rgba(39, 86, 162, 0.96) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.35) !important;
+}
+
+/* 2. Logo oficial en Beige Crema */
+body.page-theme-galeria-blue .logo-eterea-container img {
+  filter: brightness(0) saturate(100%) invert(95%) sepia(18%) saturate(350%) hue-rotate(345deg) !important;
+}
+
+/* 3. Píldoras de navegación en Beige */
+body.page-theme-galeria-blue .nav-pill-btn {
+  color: #f0e9cf !important;
+}
+
+body.page-theme-galeria-blue .nav-pill-btn:hover {
+  color: #ffffff !important;
+}
+
+body.page-theme-galeria-blue .nav-pill-btn.active {
+  color: #f0e9cf !important;
+  font-weight: 700 !important;
+}
+
+body.page-theme-galeria-blue .nav-pill-btn.active::after {
+  background-color: #f0e9cf !important;
+}
+
+body.page-theme-galeria-blue .nav-indicator-dot {
+  filter: brightness(0) saturate(100%) invert(95%) sepia(18%) saturate(350%) hue-rotate(345deg) !important;
+}
+
+/* 4. Botón Dueñas (Borde y texto beige) */
+body.page-theme-galeria-blue .nav-floating-dock button[onclick="openAdminModal()"] {
+  color: #f0e9cf !important;
+  border-color: rgba(240, 233, 207, 0.5) !important;
+  background: rgba(240, 233, 207, 0.12) !important;
+}
+
+body.page-theme-galeria-blue .nav-floating-dock button[onclick="openAdminModal()"]:hover {
+  border-color: #f0e9cf !important;
+  background: rgba(240, 233, 207, 0.25) !important;
+}
+
+/* 5. Botón Agendar (Fondo beige y texto azul de marca) */
+body.page-theme-galeria-blue .nav-floating-dock a[href="#/reservas"] {
+  background: #f0e9cf !important;
+  color: #2756a2 !important;
+  font-weight: 700 !important;
+  border: 1px solid #f0e9cf !important;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2) !important;
+}
+
+body.page-theme-galeria-blue .nav-floating-dock a[href="#/reservas"]:hover {
+  background: #ffffff !important;
+  color: #2756a2 !important;
+}
+
+/* 6. Footer completo en Azul Marca con textos en Beige */
+body.page-theme-galeria-blue footer {
+  background: #2756a2 !important;
+  color: #f0e9cf !important;
+  border-top: 1px solid rgba(240, 233, 207, 0.18) !important;
+}
+
+body.page-theme-galeria-blue footer span,
+body.page-theme-galeria-blue footer div,
+body.page-theme-galeria-blue footer p {
+  color: #f0e9cf !important;
+}
+
+
+/* ========================================================
+   FOOTER MASIVO A DOS TONOS (#2756a2 y #f0e9cf)
+   Inspiración Editorial KRONGAUZ
+   ======================================================== */
+footer.footer-massive {
+  background-color: #2756a2 !important;
+  color: #f0e9cf !important;
+  border-top: 1px solid rgba(240, 233, 207, 0.2) !important;
+  position: relative;
+  overflow: hidden;
+}
+
+.footer-nav-link {
+  font-family: var(--font-body);
+  font-size: 0.8125rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #f0e9cf;
+  transition: all 0.25s ease;
+  display: block;
+  padding: 0.35rem 0;
+  text-decoration: none;
+}
+
+.footer-nav-link:hover {
+  color: #ffffff;
+  transform: translateX(4px);
+}
+
+.footer-social-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: #f0e9cf;
+  font-family: var(--font-body);
+  font-size: 0.8125rem;
+  letter-spacing: 0.05em;
+  transition: all 0.25s ease;
+  text-decoration: none;
+  padding: 0.35rem 0;
+}
+
+.footer-social-link:hover {
+  color: #ffffff;
+  transform: translateX(4px);
+}
+
+.footer-social-link svg {
+  width: 1.25rem;
+  height: 1.25rem;
+  fill: currentColor;
+  flex-shrink: 0;
+}
+
+.footer-wordmark-container {
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+}
+
+.footer-wordmark-container svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ========================================================
+   SECCIÓN SOBRE NOSOTRAS - ESTILO EDITORIAL ASIMÉTRICO
+   ======================================================== */
+.about-asymmetric-section {
+  position: relative;
+  background-color: #f0e9cf;
+  border-top: 1px solid rgba(39, 86, 162, 0.15);
+  border-bottom: 1px solid rgba(39, 86, 162, 0.15);
+  overflow: hidden;
+}
+
+/* ========================================================
+   TARJETAS EDITORIALES: CAPA AZUL DE MARCA + DESENFOQUE AL HOVER
+   ======================================================== */
+.editorial-cards-container {
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+}
+@media (min-width: 768px) {
+  .editorial-cards-container {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.editorial-card {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  background-color: #0b1a33;
+  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), transform 0.5s ease;
+}
+
+.editorial-card-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: filter 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s ease;
+  filter: blur(0px) brightness(0.95);
+  pointer-events: none;
+}
+
+/* Capa transparente con opacidad azul oficial de la marca (#2756a2) */
+.editorial-card-blue-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(10, 22, 45, 0.88) 0%, rgba(39, 86, 162, 0.35) 55%, rgba(39, 86, 162, 0.20) 100%);
+  transition: background 0.5s cubic-bezier(0.16, 1, 0.3, 1), backdrop-filter 0.5s ease;
+  pointer-events: none;
+}
+
+/* Tarjetas Inferiores: Zoom suave en la seleccionada y blur muy ligero en las demás, sin capas grises densas */
+.editorial-cards-container:hover .editorial-card {
+  opacity: 0.9;
+  filter: blur(2.5px);
+  transform: scale(0.99);
+}
+
+.editorial-cards-container:hover .editorial-card .editorial-card-bg {
+  filter: blur(2.5px) brightness(0.95);
+}
+
+/* La tarjeta seleccionada / bajo el cursor:
+   NO baja opacidad, la imagen se mantiene nítida y visible (sin blur),
+   y el azul cambia únicamente por un sutil velo transparente difuminado para legibilidad del texto */
+.editorial-cards-container .editorial-card:hover {
+  opacity: 1 !important;
+  filter: blur(0px) brightness(1) !important;
+  transform: scale(1.025) !important;
+  z-index: 15;
+}
+
+.editorial-cards-container .editorial-card:hover .editorial-card-bg {
+  filter: blur(0px) brightness(1) !important;
+  transform: scale(1.035) !important;
+}
+
+.editorial-cards-container .editorial-card:hover .editorial-card-blue-overlay {
+  background: linear-gradient(to top, rgba(10, 22, 45, 0.75) 0%, rgba(10, 22, 45, 0.20) 55%, transparent 100%) !important;
+  backdrop-filter: blur(1px);
+  -webkit-backdrop-filter: blur(1px);
+}
+
+/* ========================================================
+   MODO ARTISTAS: PALETA EN BEIGE CREMA OFICIAL (#f0e9cf)
+   ======================================================== */
+/* ========================================================
+   TEMA DE NAVEGACIÓN TRANSPARENTE EN ARTISTAS Y RESERVAS
+   La fotografía llega hasta el borde superior (top: 0)
+   Elementos del header en BEIGE (#f0e9cf) para contraste óptimo
+   ======================================================== */
+body.page-theme-artistas,
+body.page-theme-reservas {
+  background-color: #0e0a08 !important;
+}
+
+body.page-theme-artistas #app-router-container,
+body.page-theme-reservas #app-router-container {
+  background-color: transparent !important;
+}
+
+/* 1. Header en Artistas y Reservas (Full Bleed transparente sobre foto hasta el límite superior) */
+body.page-theme-artistas .nav-floating-dock,
+body.page-theme-reservas .nav-floating-dock {
+  background: transparent !important;
+  border: none !important;
+  border-bottom: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  box-shadow: none !important;
+}
+
+/* 2. Logotipo oficial en Beige Crema (#f0e9cf) con sombra sutil de contraste */
+body.page-theme-artistas .logo-eterea-container img,
+body.page-theme-reservas .logo-eterea-container img {
+  filter: brightness(0) saturate(100%) invert(95%) sepia(18%) saturate(350%) hue-rotate(345deg) drop-shadow(0 2px 8px rgba(0, 0, 0, 0.8)) !important;
+}
+
+/* 3. Enlaces del índice de navegación (Inicio, Artistas, Galería, etc.) en Beige (#f0e9cf) */
+body.page-theme-artistas .nav-pill-btn,
+body.page-theme-reservas .nav-pill-btn {
+  color: #f0e9cf !important;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.75);
+}
+
+body.page-theme-artistas .nav-pill-btn:hover,
+body.page-theme-reservas .nav-pill-btn:hover {
+  color: #ffffff !important;
+  text-shadow: 0 0 10px rgba(240, 233, 207, 0.9);
+}
+
+body.page-theme-artistas .nav-pill-btn.active,
+body.page-theme-reservas .nav-pill-btn.active {
+  color: #f0e9cf !important;
+  font-weight: 700 !important;
+  text-shadow: 0 1px 5px rgba(0, 0, 0, 0.85);
+}
+
+body.page-theme-artistas .nav-pill-btn.active::after,
+body.page-theme-reservas .nav-pill-btn.active::after {
+  background-color: #f0e9cf !important;
+  box-shadow: 0 0 8px rgba(240, 233, 207, 0.8);
+}
+
+body.page-theme-artistas .nav-indicator-dot,
+body.page-theme-reservas .nav-indicator-dot {
+  filter: brightness(0) saturate(100%) invert(95%) sepia(18%) saturate(350%) hue-rotate(345deg) drop-shadow(0 0 4px rgba(240, 233, 207, 0.7)) !important;
+}
+
+/* 4. Botón Admin / Dueñas en Beige (#f0e9cf) */
+body.page-theme-artistas .nav-floating-dock button[onclick="openAdminModal()"],
+body.page-theme-reservas .nav-floating-dock button[onclick="openAdminModal()"] {
+  color: #f0e9cf !important;
+  border-color: rgba(240, 233, 207, 0.5) !important;
+  background: rgba(10, 18, 32, 0.5) !important;
+  backdrop-filter: blur(8px);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+}
+
+body.page-theme-artistas .nav-floating-dock button[onclick="openAdminModal()"]:hover,
+body.page-theme-reservas .nav-floating-dock button[onclick="openAdminModal()"]:hover {
+  border-color: #f0e9cf !important;
+  background: rgba(240, 233, 207, 0.25) !important;
+  color: #ffffff !important;
+}
+
+/* 5. Botón Agendar (Destacado en Beige Crema con texto azul para alto contraste) */
+body.page-theme-artistas .nav-floating-dock a[href="#/reservas"],
+body.page-theme-reservas .nav-floating-dock a[href="#/reservas"] {
+  background: #f0e9cf !important;
+  color: #2756a2 !important;
+  font-weight: 700 !important;
+  border: 1px solid #f0e9cf !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35) !important;
+}
+
+body.page-theme-artistas .nav-floating-dock a[href="#/reservas"]:hover,
+body.page-theme-reservas .nav-floating-dock a[href="#/reservas"]:hover {
+  background: #ffffff !important;
+  color: #122c54 !important;
+}
+
+/* ========================================================
+   ANIMACIÓN DE TITILEO (PULSE / GLOW) DE LA ESTRELLA ETÉREA
+   ======================================================== */
+@keyframes etereaStarPulseAnim {
+  0%, 100% {
+    transform: scale(0.85);
+    filter: drop-shadow(0 0 6px rgba(240, 233, 207, 0.85)) drop-shadow(0 0 16px rgba(240, 233, 207, 0.55));
+    opacity: 0.9;
+  }
+  50% {
+    transform: scale(1.15);
+    filter: drop-shadow(0 0 14px rgba(240, 233, 207, 1)) drop-shadow(0 0 28px rgba(240, 233, 207, 0.9));
+    opacity: 1;
+  }
+}
+
+.star-active-pulse {
+  transform-box: fill-box !important;
+  transform-origin: center center !important;
+  animation: etereaStarPulseAnim 2.2s infinite ease-in-out !important;
+}
+
+/* ========================================================
+   ESTRELLAS DE DOS MIRADAS: TITILEO MAGNÉTICO ACTIVO Y BRILLO BEIGE #f0e9cf
+   ======================================================== */
+.dos-miradas-star {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: brightness(0) saturate(100%) invert(94%) sepia(17%) saturate(373%) hue-rotate(344deg) brightness(102%) contrast(89%);
+  animation: dosMiradasStarTwinkle 2.4s infinite ease-in-out;
+  transform-origin: center center;
+  pointer-events: auto;
+  cursor: pointer;
+}
+
+@keyframes dosMiradasStarTwinkle {
+  0%, 100% {
+    opacity: 0.45;
+    transform: scale(0.85);
+    filter: brightness(0) saturate(100%) invert(94%) sepia(17%) saturate(373%) hue-rotate(344deg) brightness(96%) contrast(85%)
+            drop-shadow(0 0 2px rgba(240, 233, 207, 0.3));
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.32);
+    filter: brightness(0) saturate(100%) invert(94%) sepia(17%) saturate(373%) hue-rotate(344deg) brightness(115%) contrast(95%)
+            drop-shadow(0 0 8px rgba(240, 233, 207, 1))
+            drop-shadow(0 0 18px rgba(240, 233, 207, 0.8));
+  }
+}
+
+.dos-miradas-star:hover {
+  opacity: 1 !important;
+  transform: scale(1.4) !important;
+  filter: brightness(0) saturate(100%) invert(94%) sepia(17%) saturate(373%) hue-rotate(344deg) brightness(120%) contrast(98%)
+          drop-shadow(0 0 12px rgba(240, 233, 207, 1))
+          drop-shadow(0 0 24px rgba(240, 233, 207, 0.9)) !important;
+}
+
+/* ========================================================
+   TÍTULO "DOS MIRADAS": TIPOGRAFÍA ORIGINAL KENAEO
+   ======================================================== */
+.title-dos-miradas {
+  display: inline-block;
+  font-family: 'KENAEO', 'KENAO', 'Kenao', serif !important;
+  font-weight: normal !important;
+  color: #f0e9cf !important;
+  letter-spacing: 0.02em;
+  position: relative;
+  cursor: default;
+  transition: color 0.4s ease, text-shadow 0.4s ease, filter 0.4s ease;
+  text-shadow: 0 4px 25px rgba(0, 0, 0, 0.6);
+}
+
+.title-dos-miradas:hover {
+  color: #fffcf2 !important;
+  text-shadow: 0 0 16px rgba(240, 233, 207, 0.85),
+               0 0 32px rgba(240, 233, 207, 0.45);
+  filter: brightness(1.06);
+}
+
+/* Panel flotante de artistas en Verde de Marca (#575c20) sin bordes */
+.artist-panel-green {
+  background-color: #575c20 !important;
+  border: none !important;
+  outline: none !important;
+  color: #f0e9cf !important;
+}
+
+/* ========================================================
+   PANEL ADMIN: PALETA BLANCO PURO Y AZUL MARCA (#2756a2)
+   INTERFAZ LIMPIA, PROFESIONAL Y SIN FONDO BEIGE
+   ======================================================== */
+#page-admin {
+  background-color: #ffffff !important;
+  color: #0f172a !important;
+  min-height: 100vh;
+}
+
+#page-admin .admin-container {
+  background-color: #ffffff !important;
+}
+
+#page-admin .studio-card,
+#page-admin .admin-card {
+  background-color: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 1rem !important;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05) !important;
+}
+
+#page-admin aside.admin-reference-sidebar,
+#page-admin .admin-reference-sidebar {
+  width: 78px !important;
+  background-color: #1e3264 !important;
+  background: #1e3264 !important;
+  border: none !important;
+  border-radius: 40px !important;
+  min-height: 520px !important;
+  padding: 0 !important;
+  box-shadow: 0 12px 36px -4px rgba(27, 45, 90, 0.35) !important;
+  position: sticky !important;
+  top: 1.5rem !important;
+  align-self: flex-start !important;
+  z-index: 30 !important;
+  overflow: visible !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+}
+
+/* Compatibilidad con botones generales del Admin */
+#page-admin table {
+  background-color: #ffffff !important;
+}
+
+#page-admin th {
+  background-color: #f8fafc !important;
+  color: #475569 !important;
+  border-bottom: 1px solid #e2e8f0 !important;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.05em;
+}
+
+#page-admin td {
+  border-bottom: 1px solid #f1f5f9 !important;
+  color: #1e293b;
+}
+
+#page-admin tr:hover td {
+  background-color: #f8fafc !important;
+}
+
+#page-admin .form-input,
+#page-admin .form-textarea,
+#page-admin .form-select {
+  background-color: #ffffff !important;
+  border: 1px solid #cbd5e1 !important;
+  color: #0f172a !important;
+  border-radius: 0.65rem !important;
+  padding: 0.6rem 0.85rem !important;
+  font-size: 0.85rem !important;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease !important;
+}
+
+#page-admin .form-input:focus,
+#page-admin .form-textarea:focus,
+#page-admin .form-select:focus {
+  border-color: #2756a2 !important;
+  outline: none !important;
+  box-shadow: 0 0 0 3px rgba(39, 86, 162, 0.15) !important;
+}
+
+#page-admin label {
+  color: #334155 !important;
+  font-weight: 600;
+}
+
+/* ========================================================
+   BLOQUEO DE SCROLL EN MODALES Y SCROLL SUAVE AISLADO
+   ======================================================== */
+body.overflow-hidden {
+  overflow: hidden !important;
+  touch-action: none;
+}
+
+.modal-overlay {
+  overscroll-behavior: contain;
+}
+
+.modal-content {
+  overscroll-behavior: contain;
+  scroll-behavior: smooth;
+}
+
+/* ========================================================
+   BURBUJAS VERTICALES DE MÉTRICAS ADMIN (LADO DERECHO)
+   ======================================================== */
+#page-admin.hidden #admin-metrics-bubbles-dock {
+  display: none !important;
+}
+
+.metric-bubble-tooltip {
+  pointer-events: none;
+  z-index: 60;
+  filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.25));
+}
+
+/* ========================================================
+   RESERVAS FULL-WIDTH & VENTANA SUPERPUESTA ELEVADA (MODAL BLANCO)
+   ======================================================== */
+#booking-form-overlay {
+  max-height: 85vh;
+  overflow-y: auto;
+  background-color: #ffffff !important;
+  color: #1e293b !important;
+  border: 1px solid #e2e8f0 !important;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.45) !important;
+  scrollbar-width: thin;
+  scrollbar-color: #cbd5e1 transparent;
+}
+
+#booking-form-overlay label {
+  color: #1e293b !important;
+}
+
+#booking-form-overlay .style-pill-btn {
+  background: #f8fafc !important;
+  border: 1px solid #cbd5e1 !important;
+  color: #334155 !important;
+}
+
+#booking-form-overlay .style-pill-btn:hover {
+  border-color: #2756a2 !important;
+  background: #f1f5f9 !important;
+  color: #2756a2 !important;
+}
+
+#booking-form-overlay .style-pill-btn.active {
+  background: #2756a2 !important;
+  color: #ffffff !important;
+  font-weight: 700 !important;
+  border-color: #2756a2 !important;
+  box-shadow: 0 4px 14px rgba(39, 86, 162, 0.25) !important;
+}
+
+#booking-form-overlay .form-input,
+#booking-form-overlay .form-textarea,
+#booking-form-overlay select {
+  background-color: #ffffff !important;
+  color: #0f172a !important;
+  border: 1px solid #cbd5e1 !important;
+}
+
+#booking-form-overlay .form-input:focus,
+#booking-form-overlay .form-textarea:focus,
+#booking-form-overlay select:focus {
+  border-color: #2756a2 !important;
+  outline: 2px solid rgba(39, 86, 162, 0.15) !important;
+}
+
+#booking-form-overlay .time-slot-btn {
+  background: #f8fafc !important;
+  border: 1px solid #cbd5e1 !important;
+  color: #334155 !important;
+}
+
+#booking-form-overlay .time-slot-btn:hover {
+  border-color: #2756a2 !important;
+  background: #f1f5f9 !important;
+  color: #2756a2 !important;
+}
+
+#booking-form-overlay .time-slot-btn.active {
+  background: #2756a2 !important;
+  color: #ffffff !important;
+  font-weight: 700 !important;
+  border-color: #2756a2 !important;
+  box-shadow: 0 4px 14px rgba(39, 86, 162, 0.25) !important;
+}
+
+/* MODAL DE BIOGRAFÍA EXPANDIDA DE ARTISTA (DISEÑO HORIZONTAL EN 2 COLUMNAS)
+   ======================================================== */
+#workshop-detail-modal .modal-content {
+  max-width: 960px !important;
+  width: 95vw !important;
+  padding: 0 !important;
+  border-radius: 1.5rem !important;
+  background: #ffffff !important;
+  overflow: hidden !important;
+}
+
+#artist-bio-modal .modal-content {
+  border-radius: 0 !important;
+  max-width: 1060px !important;
+  width: 95vw !important;
+  max-height: 88vh !important;
+  padding: 0 !important;
+  background-color: #2756a2 !important;
+  color: #f0e9cf !important;
+  border: 1px solid rgba(240, 233, 207, 0.25) !important;
+  box-shadow: 0 35px 90px rgba(0, 0, 0, 0.85) !important;
+  overflow: hidden !important;
+}
+
+#artist-bio-modal .bio-modal-scrollable {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(240, 233, 207, 0.4) transparent;
+}
+
+#artist-bio-modal .bio-modal-scrollable::-webkit-scrollbar {
+  width: 5px;
+}
+
+#artist-bio-modal .bio-modal-scrollable::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+#artist-bio-modal .bio-modal-scrollable::-webkit-scrollbar-thumb {
+  background: rgba(240, 233, 207, 0.35);
+}
+
+/* ========================================================
+   PANELES DE 3 CARACTERÍSTICAS EN INICIO (COMPLETAS, SIN BORDES, DE MARCO A MARCO)
+   ======================================================== */
+.home-feature-card {
+  position: relative !important;
+  border: none !important;
+  outline: none !important;
+  margin: 0 !important;
+  padding: 2rem 2rem 3rem 2rem !important;
+  overflow: hidden !important;
+  box-shadow: none !important;
+  background-color: #000000 !important;
+  transform: none !important;
+}
+
+#home-feature-cards-grid {
+  border: none !important;
+  outline: none !important;
+  gap: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  width: 100% !important;
+  background-color: #000000 !important;
+}
+
+#home-feature-cards-grid .home-feature-card img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  display: block !important;
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.5s ease !important;
+}
+
+/* En hover: NUNCA encoger tarjetas ni aplicar sombras/filtros para eliminar cualquier línea crema */
+#home-feature-cards-grid:hover .home-feature-card,
+#home-feature-cards-grid .home-feature-card:hover,
+#home-feature-cards-grid .home-feature-card.card-zoomed,
+.home-feature-card.card-blurred {
+  filter: none !important;
+  opacity: 1 !important;
+  transform: none !important;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* Únicamente la imagen de fondo hace un suave zoom cinematográfico al pasar el cursor */
+#home-feature-cards-grid .home-feature-card:hover img {
+  transform: scale(1.06) !important;
+  opacity: 1 !important;
+}
+
+.card-beige-blur-tint {
+  display: none !important;
+}
+
+/* ========================================================
+   ADMIN: MENÚ DE GESTIÓN LATERAL ESTILO REFERENCIA OFICIAL
+   (VERTICAL SLENDER PILL DOCK CON PESTAÑA CÓNCAVA ESCULPIDA)
+   ======================================================== */
+#page-admin .admin-reference-sidebar,
+.admin-reference-sidebar {
+  width: 78px !important;
+  background-color: #1e3264 !important;
+  background: #1e3264 !important;
+  border: none !important;
+  border-radius: 40px !important;
+  min-height: 520px !important;
+  padding: 0 !important;
+  box-shadow: 0 12px 36px -4px rgba(27, 45, 90, 0.35) !important;
+  position: sticky !important;
+  top: 1.5rem !important;
+  align-self: flex-start !important;
+  z-index: 30 !important;
+  overflow: visible !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  transition: all 0.3s ease !important;
+}
+
+#page-admin .admin-dock-header img {
+  width: 1.75rem !important;
+  height: 1.75rem !important;
+  filter: brightness(0) invert(1) !important;
+  opacity: 0.95 !important;
+  display: block !important;
+}
+
+#page-admin .admin-dock-header span {
+  color: #ffffff !important;
+  display: block !important;
+}
+
+#page-admin .admin-dock-btn,
+.admin-dock-btn {
+  width: 48px !important;
+  height: 48px !important;
+  border-radius: 20px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  color: rgba(255, 255, 255, 0.9) !important;
+  background: transparent !important;
+  border: none !important;
+  cursor: pointer !important;
+  position: relative !important;
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+#page-admin .admin-dock-btn:hover,
+.admin-dock-btn:hover {
+  color: #ffffff !important;
+  background: rgba(255, 255, 255, 0.16) !important;
+}
+
+#page-admin .admin-dock-btn i,
+#page-admin .admin-dock-btn svg,
+.admin-dock-btn i,
+.admin-dock-btn svg {
+  width: 1.35rem !important;
+  height: 1.35rem !important;
+  color: rgba(255, 255, 255, 0.9) !important;
+  stroke: rgba(255, 255, 255, 0.9) !important;
+  stroke-width: 2 !important;
+  transition: transform 0.2s ease, color 0.2s ease, stroke 0.2s ease !important;
+  display: block !important;
+}
+
+#page-admin .admin-dock-btn:hover i,
+#page-admin .admin-dock-btn:hover svg,
+.admin-dock-btn:hover i,
+.admin-dock-btn:hover svg {
+  color: #ffffff !important;
+  stroke: #ffffff !important;
+  transform: scale(1.15) !important;
+}
+
+/* PESTAÑA ACTIVA CON CORTE CÓNCAVO ESCULPIDO (IGUAL A LA REFERENCIA) */
+#page-admin .admin-dock-btn.active,
+.admin-dock-btn.active {
+  background-color: #ffffff !important;
+  background: #ffffff !important;
+  color: #1e3264 !important;
+  border-top-left-radius: 24px !important;
+  border-bottom-left-radius: 24px !important;
+  border-top-right-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+  width: calc(100% - 12px) !important;
+  margin-left: 12px !important;
+  margin-right: 0 !important;
+  box-shadow: none !important;
+  transform: none !important;
+  position: relative !important;
+  z-index: 10 !important;
+}
+
+#page-admin .admin-dock-btn.active i,
+#page-admin .admin-dock-btn.active svg,
+.admin-dock-btn.active i,
+.admin-dock-btn.active svg {
+  color: #1e3264 !important;
+  stroke: #1e3264 !important;
+  stroke-width: 2.2 !important;
+  transform: scale(1.08) !important;
+}
+
+/* Curva cóncava superior (Concave scoop fillet) */
+#page-admin .admin-dock-btn.active::before,
+.admin-dock-btn.active::before {
+  content: '' !important;
+  position: absolute !important;
+  top: -20px !important;
+  right: 0 !important;
+  width: 20px !important;
+  height: 20px !important;
+  background: transparent !important;
+  border-bottom-right-radius: 20px !important;
+  box-shadow: 6px 6px 0 6px #ffffff !important;
+  pointer-events: none !important;
+}
+
+/* Curva cóncava inferior (Concave scoop fillet) */
+#page-admin .admin-dock-btn.active::after,
+.admin-dock-btn.active::after {
+  content: '' !important;
+  position: absolute !important;
+  bottom: -20px !important;
+  right: 0 !important;
+  width: 20px !important;
+  height: 20px !important;
+  background: transparent !important;
+  border-top-right-radius: 20px !important;
+  box-shadow: 6px -6px 0 6px #ffffff !important;
+  pointer-events: none !important;
+}
+
+/* TOOLTIPS FLOTANTES ELEGANTES AL HACER HOVER */
+.admin-dock-tooltip {
+  position: absolute !important;
+  left: calc(100% + 14px) !important;
+  top: 50% !important;
+  transform: translateY(-50%) translateX(-8px) !important;
+  background: #101c38 !important;
+  color: #ffffff !important;
+  font-family: var(--font-sans) !important;
+  font-size: 0.72rem !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.02em !important;
+  padding: 6px 14px !important;
+  border-radius: 8px !important;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  white-space: nowrap !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  transition: opacity 0.2s ease, transform 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  z-index: 60 !important;
+}
+
+.admin-dock-btn:hover .admin-dock-tooltip,
+.admin-dock-logout-btn:hover .admin-dock-tooltip {
+  opacity: 1 !important;
+  transform: translateY(-50%) translateX(0) !important;
+}
+
+/* PIE DE LA BARRA LATERAL (ZONA TRASLÚCIDA Y BOTÓN DE SALIDA) */
+.admin-dock-footer {
+  width: 100% !important;
+  background-color: rgba(255, 255, 255, 0.1) !important;
+  border-bottom-left-radius: 40px !important;
+  border-bottom-right-radius: 40px !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
+  padding: 12px 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.admin-dock-logout-btn,
+#page-admin .admin-dock-logout-btn {
+  width: 44px !important;
+  height: 44px !important;
+  border-radius: 50% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  color: rgba(255, 255, 255, 0.9) !important;
+  transition: all 0.2s ease !important;
+  cursor: pointer !important;
+  position: relative !important;
+}
+
+.admin-dock-logout-btn i,
+.admin-dock-logout-btn svg,
+#page-admin .admin-dock-logout-btn i,
+#page-admin .admin-dock-logout-btn svg {
+  width: 1.35rem !important;
+  height: 1.35rem !important;
+  color: rgba(255, 255, 255, 0.9) !important;
+  stroke: rgba(255, 255, 255, 0.9) !important;
+  stroke-width: 2 !important;
+  display: block !important;
+  transition: transform 0.2s ease, color 0.2s ease, stroke 0.2s ease !important;
+}
+
+.admin-dock-logout-btn:hover,
+#page-admin .admin-dock-logout-btn:hover {
+  background: rgba(255, 255, 255, 0.2) !important;
+  color: #ffffff !important;
+  transform: scale(1.08) !important;
+}
+
+.admin-dock-logout-btn:hover i,
+.admin-dock-logout-btn:hover svg,
+#page-admin .admin-dock-logout-btn:hover i,
+#page-admin .admin-dock-logout-btn:hover svg {
+  color: #ffffff !important;
+  stroke: #ffffff !important;
+  transform: scale(1.15) !important;
+}
+
+/* ========================================================
+   ANIMACIONES FLUIDAS Y EXPERIENCIA VISUAL INTERACTIVA DEL ADMIN
+   ======================================================== */
+@keyframes adminTabFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(14px) scale(0.995);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.admin-tab-pane:not(.hidden) {
+  animation: adminTabFadeIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards !important;
+}
+
+@keyframes etereaStarBreathe {
+  0%, 100% {
+    transform: scale(1) rotate(0deg);
+    filter: brightness(0) invert(1) drop-shadow(0 0 0 rgba(255, 255, 255, 0));
+  }
+  50% {
+    transform: scale(1.1) rotate(8deg);
+    filter: brightness(0) invert(1) drop-shadow(0 0 6px rgba(255, 255, 255, 0.6));
+  }
+}
+
+#page-admin .admin-dock-header img {
+  animation: etereaStarBreathe 4s ease-in-out infinite !important;
+}
+
+/* Transición suave para botones y tarjetas */
+#page-admin .bg-white.rounded-2xl {
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease !important;
+}
+
+#page-admin .bg-white.rounded-2xl:hover {
+  box-shadow: 0 10px 28px -6px rgba(30, 50, 100, 0.08) !important;
+  border-color: rgba(39, 86, 162, 0.2) !important;
+}
+
+/* Interacción de filas de tablas con micro-iluminación */
+#page-admin tbody tr {
+  transition: background-color 0.22s cubic-bezier(0.16, 1, 0.3, 1), transform 0.22s ease !important;
+}
+
+#page-admin tbody tr:hover {
+  background-color: #f7f9fd !important;
+}
+
+/* Botones de acción rápida con rebote táctil */
+#page-admin button {
+  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+#page-admin button:active {
+  transform: scale(0.96) !important;
+}
+
+/* Píldoras de filtro en vivo */
+#page-admin button[data-citas-pill] {
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease !important;
+}
+
+#page-admin button[data-citas-pill]:hover {
+  transform: translateY(-1px) !important;
+}
+
+
+
+
+
+
+
+
+
+
