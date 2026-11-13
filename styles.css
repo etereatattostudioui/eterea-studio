@@ -2112,27 +2112,6 @@ body.page-theme-reservas .nav-floating-dock a[href="#/reservas"]:hover {
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05) !important;
 }
 
-#page-admin aside.admin-reference-sidebar,
-#page-admin .admin-reference-sidebar {
-  width: 78px !important;
-  background-color: #1e3264 !important;
-  background: #1e3264 !important;
-  border: none !important;
-  border-radius: 40px !important;
-  min-height: 520px !important;
-  padding: 0 !important;
-  box-shadow: 0 12px 36px -4px rgba(27, 45, 90, 0.35) !important;
-  position: sticky !important;
-  top: 1.5rem !important;
-  align-self: flex-start !important;
-  z-index: 30 !important;
-  overflow: visible !important;
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: center !important;
-  justify-content: space-between !important;
-}
-
 /* Compatibilidad con botones generales del Admin */
 #page-admin table {
   background-color: #ffffff !important;
@@ -2420,229 +2399,342 @@ body.overflow-hidden {
    ADMIN: MENÚ DE GESTIÓN LATERAL ESTILO REFERENCIA OFICIAL
    (VERTICAL SLENDER PILL DOCK CON PESTAÑA CÓNCAVA ESCULPIDA)
    ======================================================== */
-#page-admin .admin-reference-sidebar,
-.admin-reference-sidebar {
-  width: 78px !important;
-  background-color: #1e3264 !important;
-  background: #1e3264 !important;
-  border: none !important;
-  border-radius: 40px !important;
-  min-height: 520px !important;
-  padding: 0 !important;
-  box-shadow: 0 12px 36px -4px rgba(27, 45, 90, 0.35) !important;
-  position: sticky !important;
-  top: 1.5rem !important;
-  align-self: flex-start !important;
-  z-index: 30 !important;
-  overflow: visible !important;
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: center !important;
-  justify-content: space-between !important;
-  transition: all 0.3s ease !important;
+@media (min-width: 1024px) {
+  #page-admin aside.admin-reference-sidebar,
+  #page-admin .admin-reference-sidebar,
+  .admin-reference-sidebar {
+    width: 78px !important;
+    background-color: #1e3264 !important;
+    background: #1e3264 !important;
+    border: none !important;
+    border-radius: 40px !important;
+    min-height: 520px !important;
+    padding: 0 !important;
+    box-shadow: 0 12px 36px -4px rgba(27, 45, 90, 0.35) !important;
+    position: sticky !important;
+    top: 1.5rem !important;
+    align-self: flex-start !important;
+    z-index: 30 !important;
+    overflow: visible !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    transition: all 0.3s ease !important;
+  }
+
+  #page-admin .admin-dock-header img {
+    width: 1.75rem !important;
+    height: 1.75rem !important;
+    filter: brightness(0) invert(1) !important;
+    opacity: 0.95 !important;
+    display: block !important;
+  }
+
+  #page-admin .admin-dock-header span {
+    color: #ffffff !important;
+    display: block !important;
+  }
+
+  #page-admin .admin-dock-btn,
+  .admin-dock-btn {
+    width: 48px !important;
+    height: 48px !important;
+    border-radius: 20px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    color: rgba(255, 255, 255, 0.9) !important;
+    background: transparent !important;
+    border: none !important;
+    cursor: pointer !important;
+    position: relative !important;
+    transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  #page-admin .admin-dock-btn:hover,
+  .admin-dock-btn:hover {
+    color: #ffffff !important;
+    background: rgba(255, 255, 255, 0.16) !important;
+  }
+
+  #page-admin .admin-dock-btn i,
+  #page-admin .admin-dock-btn svg,
+  .admin-dock-btn i,
+  .admin-dock-btn svg {
+    width: 1.35rem !important;
+    height: 1.35rem !important;
+    color: rgba(255, 255, 255, 0.9) !important;
+    stroke: rgba(255, 255, 255, 0.9) !important;
+    stroke-width: 2 !important;
+    transition: transform 0.2s ease, color 0.2s ease, stroke 0.2s ease !important;
+    display: block !important;
+  }
+
+  #page-admin .admin-dock-btn:hover i,
+  #page-admin .admin-dock-btn:hover svg,
+  .admin-dock-btn:hover i,
+  .admin-dock-btn:hover svg {
+    color: #ffffff !important;
+    stroke: #ffffff !important;
+    transform: scale(1.15) !important;
+  }
+
+  /* PESTAÑA ACTIVA CON CORTE CÓNCAVO ESCULPIDO (IGUAL A LA REFERENCIA) */
+  #page-admin .admin-dock-btn.active,
+  .admin-dock-btn.active {
+    background-color: #ffffff !important;
+    background: #ffffff !important;
+    color: #1e3264 !important;
+    border-top-left-radius: 24px !important;
+    border-bottom-left-radius: 24px !important;
+    border-top-right-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+    width: calc(100% - 12px) !important;
+    margin-left: 12px !important;
+    margin-right: 0 !important;
+    box-shadow: none !important;
+    transform: none !important;
+    position: relative !important;
+    z-index: 10 !important;
+  }
+
+  #page-admin .admin-dock-btn.active i,
+  #page-admin .admin-dock-btn.active svg,
+  .admin-dock-btn.active i,
+  .admin-dock-btn.active svg {
+    color: #1e3264 !important;
+    stroke: #1e3264 !important;
+    stroke-width: 2.2 !important;
+    transform: scale(1.08) !important;
+  }
+
+  /* Curva cóncava superior (Concave scoop fillet) */
+  #page-admin .admin-dock-btn.active::before,
+  .admin-dock-btn.active::before {
+    content: '' !important;
+    position: absolute !important;
+    top: -20px !important;
+    right: 0 !important;
+    width: 20px !important;
+    height: 20px !important;
+    background: transparent !important;
+    border-bottom-right-radius: 20px !important;
+    box-shadow: 6px 6px 0 6px #ffffff !important;
+    pointer-events: none !important;
+  }
+
+  /* Curva cóncava inferior (Concave scoop fillet) */
+  #page-admin .admin-dock-btn.active::after,
+  .admin-dock-btn.active::after {
+    content: '' !important;
+    position: absolute !important;
+    bottom: -20px !important;
+    right: 0 !important;
+    width: 20px !important;
+    height: 20px !important;
+    background: transparent !important;
+    border-top-right-radius: 20px !important;
+    box-shadow: 6px -6px 0 6px #ffffff !important;
+    pointer-events: none !important;
+  }
+
+  /* TOOLTIPS FLOTANTES ELEGANTES AL HACER HOVER */
+  .admin-dock-tooltip {
+    position: absolute !important;
+    left: calc(100% + 14px) !important;
+    top: 50% !important;
+    transform: translateY(-50%) translateX(-8px) !important;
+    background: #101c38 !important;
+    color: #ffffff !important;
+    font-family: var(--font-sans) !important;
+    font-size: 0.72rem !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.02em !important;
+    padding: 6px 14px !important;
+    border-radius: 8px !important;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35) !important;
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+    white-space: nowrap !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+    transition: opacity 0.2s ease, transform 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    z-index: 60 !important;
+  }
+
+  .admin-dock-btn:hover .admin-dock-tooltip,
+  .admin-dock-logout-btn:hover .admin-dock-tooltip {
+    opacity: 1 !important;
+    transform: translateY(-50%) translateX(0) !important;
+  }
+
+  /* PIE DE LA BARRA LATERAL (ZONA TRASLÚCIDA Y BOTÓN DE SALIDA) */
+  .admin-dock-footer {
+    width: 100% !important;
+    background-color: rgba(255, 255, 255, 0.1) !important;
+    border-bottom-left-radius: 40px !important;
+    border-bottom-right-radius: 40px !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
+    padding: 12px 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  .admin-dock-logout-btn,
+  #page-admin .admin-dock-logout-btn {
+    width: 44px !important;
+    height: 44px !important;
+    border-radius: 50% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    color: rgba(255, 255, 255, 0.9) !important;
+    transition: all 0.2s ease !important;
+    cursor: pointer !important;
+    position: relative !important;
+  }
+
+  .admin-dock-logout-btn i,
+  .admin-dock-logout-btn svg,
+  #page-admin .admin-dock-logout-btn i,
+  #page-admin .admin-dock-logout-btn svg {
+    width: 1.35rem !important;
+    height: 1.35rem !important;
+    color: rgba(255, 255, 255, 0.9) !important;
+    stroke: rgba(255, 255, 255, 0.9) !important;
+    stroke-width: 2 !important;
+    display: block !important;
+    transition: transform 0.2s ease, color 0.2s ease, stroke 0.2s ease !important;
+  }
+
+  .admin-dock-logout-btn:hover,
+  #page-admin .admin-dock-logout-btn:hover {
+    background: rgba(255, 255, 255, 0.2) !important;
+    color: #ffffff !important;
+    transform: scale(1.08) !important;
+  }
+
+  .admin-dock-logout-btn:hover i,
+  .admin-dock-logout-btn:hover svg,
+  #page-admin .admin-dock-logout-btn:hover i,
+  #page-admin .admin-dock-logout-btn:hover svg {
+    color: #ffffff !important;
+    stroke: #ffffff !important;
+    transform: scale(1.15) !important;
+  }
 }
 
-#page-admin .admin-dock-header img {
-  width: 1.75rem !important;
-  height: 1.75rem !important;
-  filter: brightness(0) invert(1) !important;
-  opacity: 0.95 !important;
-  display: block !important;
+/* ========================================================
+   ADMIN: NAVEGACIÓN SUPERIOR HORIZONTAL PARA MÓVILES (< 1024px)
+   (DOCK SUPERIOR COMPACTO: NO TAPA TEXTOS NI DEJA ESPACIOS VACÍOS)
+   ======================================================== */
+@media (max-width: 1023px) {
+  #page-admin aside.admin-reference-sidebar,
+  #page-admin .admin-reference-sidebar,
+  .admin-reference-sidebar {
+    display: none !important;
+    width: 0 !important;
+    height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    position: static !important;
+    overflow: hidden !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+  }
+
+  .admin-mobile-topbar {
+    display: flex !important;
+    position: sticky !important;
+    top: 0.5rem !important;
+    z-index: 40 !important;
+    width: 100% !important;
+    background-color: #1e3264 !important;
+    background: #1e3264 !important;
+    border-radius: 1.25rem !important;
+    padding: 0.5rem 0.85rem !important;
+    box-shadow: 0 8px 24px -4px rgba(27, 45, 90, 0.3) !important;
+    margin-bottom: 1.25rem !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+  }
+
+  .admin-mobile-tab-btn {
+    width: 38px !important;
+    height: 38px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    border-radius: 12px !important;
+    color: rgba(255, 255, 255, 0.8) !important;
+    background: transparent !important;
+    transition: all 0.2s ease !important;
+    border: none !important;
+    cursor: pointer !important;
+  }
+
+  .admin-mobile-tab-btn:hover {
+    color: #ffffff !important;
+    background: rgba(255, 255, 255, 0.12) !important;
+  }
+
+  .admin-mobile-tab-btn.active {
+    background-color: #ffffff !important;
+    background: #ffffff !important;
+    color: #1e3264 !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.18) !important;
+  }
+
+  .admin-mobile-tab-btn i,
+  .admin-mobile-tab-btn svg {
+    width: 1.15rem !important;
+    height: 1.15rem !important;
+    color: inherit !important;
+    stroke: currentColor !important;
+  }
+
+  .admin-mobile-tab-btn.active i,
+  .admin-mobile-tab-btn.active svg {
+    color: #1e3264 !important;
+    stroke: #1e3264 !important;
+  }
+
+  .admin-mobile-logout-btn {
+    width: 36px !important;
+    height: 36px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    border-radius: 10px !important;
+    color: #fca5a5 !important;
+    background: transparent !important;
+    transition: all 0.2s ease !important;
+    border: none !important;
+    cursor: pointer !important;
+    margin-left: 0.25rem !important;
+  }
+
+  .admin-mobile-logout-btn:hover {
+    color: #ffffff !important;
+    background: rgba(239, 68, 68, 0.2) !important;
+  }
+
+  .admin-mobile-logout-btn i,
+  .admin-mobile-logout-btn svg {
+    width: 1.15rem !important;
+    height: 1.15rem !important;
+    color: inherit !important;
+    stroke: currentColor !important;
+  }
 }
 
-#page-admin .admin-dock-header span {
-  color: #ffffff !important;
-  display: block !important;
-}
-
-#page-admin .admin-dock-btn,
-.admin-dock-btn {
-  width: 48px !important;
-  height: 48px !important;
-  border-radius: 20px !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  color: rgba(255, 255, 255, 0.9) !important;
-  background: transparent !important;
-  border: none !important;
-  cursor: pointer !important;
-  position: relative !important;
-  transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1) !important;
-  margin: 0 !important;
-  padding: 0 !important;
-}
-
-#page-admin .admin-dock-btn:hover,
-.admin-dock-btn:hover {
-  color: #ffffff !important;
-  background: rgba(255, 255, 255, 0.16) !important;
-}
-
-#page-admin .admin-dock-btn i,
-#page-admin .admin-dock-btn svg,
-.admin-dock-btn i,
-.admin-dock-btn svg {
-  width: 1.35rem !important;
-  height: 1.35rem !important;
-  color: rgba(255, 255, 255, 0.9) !important;
-  stroke: rgba(255, 255, 255, 0.9) !important;
-  stroke-width: 2 !important;
-  transition: transform 0.2s ease, color 0.2s ease, stroke 0.2s ease !important;
-  display: block !important;
-}
-
-#page-admin .admin-dock-btn:hover i,
-#page-admin .admin-dock-btn:hover svg,
-.admin-dock-btn:hover i,
-.admin-dock-btn:hover svg {
-  color: #ffffff !important;
-  stroke: #ffffff !important;
-  transform: scale(1.15) !important;
-}
-
-/* PESTAÑA ACTIVA CON CORTE CÓNCAVO ESCULPIDO (IGUAL A LA REFERENCIA) */
-#page-admin .admin-dock-btn.active,
-.admin-dock-btn.active {
-  background-color: #ffffff !important;
-  background: #ffffff !important;
-  color: #1e3264 !important;
-  border-top-left-radius: 24px !important;
-  border-bottom-left-radius: 24px !important;
-  border-top-right-radius: 0 !important;
-  border-bottom-right-radius: 0 !important;
-  width: calc(100% - 12px) !important;
-  margin-left: 12px !important;
-  margin-right: 0 !important;
-  box-shadow: none !important;
-  transform: none !important;
-  position: relative !important;
-  z-index: 10 !important;
-}
-
-#page-admin .admin-dock-btn.active i,
-#page-admin .admin-dock-btn.active svg,
-.admin-dock-btn.active i,
-.admin-dock-btn.active svg {
-  color: #1e3264 !important;
-  stroke: #1e3264 !important;
-  stroke-width: 2.2 !important;
-  transform: scale(1.08) !important;
-}
-
-/* Curva cóncava superior (Concave scoop fillet) */
-#page-admin .admin-dock-btn.active::before,
-.admin-dock-btn.active::before {
-  content: '' !important;
-  position: absolute !important;
-  top: -20px !important;
-  right: 0 !important;
-  width: 20px !important;
-  height: 20px !important;
-  background: transparent !important;
-  border-bottom-right-radius: 20px !important;
-  box-shadow: 6px 6px 0 6px #ffffff !important;
-  pointer-events: none !important;
-}
-
-/* Curva cóncava inferior (Concave scoop fillet) */
-#page-admin .admin-dock-btn.active::after,
-.admin-dock-btn.active::after {
-  content: '' !important;
-  position: absolute !important;
-  bottom: -20px !important;
-  right: 0 !important;
-  width: 20px !important;
-  height: 20px !important;
-  background: transparent !important;
-  border-top-right-radius: 20px !important;
-  box-shadow: 6px -6px 0 6px #ffffff !important;
-  pointer-events: none !important;
-}
-
-/* TOOLTIPS FLOTANTES ELEGANTES AL HACER HOVER */
-.admin-dock-tooltip {
-  position: absolute !important;
-  left: calc(100% + 14px) !important;
-  top: 50% !important;
-  transform: translateY(-50%) translateX(-8px) !important;
-  background: #101c38 !important;
-  color: #ffffff !important;
-  font-family: var(--font-sans) !important;
-  font-size: 0.72rem !important;
-  font-weight: 600 !important;
-  letter-spacing: 0.02em !important;
-  padding: 6px 14px !important;
-  border-radius: 8px !important;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35) !important;
-  border: 1px solid rgba(255, 255, 255, 0.12) !important;
-  white-space: nowrap !important;
-  opacity: 0 !important;
-  pointer-events: none !important;
-  transition: opacity 0.2s ease, transform 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
-  z-index: 60 !important;
-}
-
-.admin-dock-btn:hover .admin-dock-tooltip,
-.admin-dock-logout-btn:hover .admin-dock-tooltip {
-  opacity: 1 !important;
-  transform: translateY(-50%) translateX(0) !important;
-}
-
-/* PIE DE LA BARRA LATERAL (ZONA TRASLÚCIDA Y BOTÓN DE SALIDA) */
-.admin-dock-footer {
-  width: 100% !important;
-  background-color: rgba(255, 255, 255, 0.1) !important;
-  border-bottom-left-radius: 40px !important;
-  border-bottom-right-radius: 40px !important;
-  border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
-  padding: 12px 0 !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-}
-
-.admin-dock-logout-btn,
-#page-admin .admin-dock-logout-btn {
-  width: 44px !important;
-  height: 44px !important;
-  border-radius: 50% !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  color: rgba(255, 255, 255, 0.9) !important;
-  transition: all 0.2s ease !important;
-  cursor: pointer !important;
-  position: relative !important;
-}
-
-.admin-dock-logout-btn i,
-.admin-dock-logout-btn svg,
-#page-admin .admin-dock-logout-btn i,
-#page-admin .admin-dock-logout-btn svg {
-  width: 1.35rem !important;
-  height: 1.35rem !important;
-  color: rgba(255, 255, 255, 0.9) !important;
-  stroke: rgba(255, 255, 255, 0.9) !important;
-  stroke-width: 2 !important;
-  display: block !important;
-  transition: transform 0.2s ease, color 0.2s ease, stroke 0.2s ease !important;
-}
-
-.admin-dock-logout-btn:hover,
-#page-admin .admin-dock-logout-btn:hover {
-  background: rgba(255, 255, 255, 0.2) !important;
-  color: #ffffff !important;
-  transform: scale(1.08) !important;
-}
-
-.admin-dock-logout-btn:hover i,
-.admin-dock-logout-btn:hover svg,
-#page-admin .admin-dock-logout-btn:hover i,
-#page-admin .admin-dock-logout-btn:hover svg {
-  color: #ffffff !important;
-  stroke: #ffffff !important;
-  transform: scale(1.15) !important;
+@media (min-width: 1024px) {
+  .admin-mobile-topbar {
+    display: none !important;
+  }
 }
 
 /* ========================================================
