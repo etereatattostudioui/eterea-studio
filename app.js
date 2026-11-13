@@ -3916,6 +3916,23 @@ function handleHomeCardClick(event, route, cardElement) {
 // --- MENÚ / DOCK FLOTANTE INFERIOR DINÁMICO (REFERENCIA OFICIAL) ---
 function handleScrollFloatingDock() {
   const dock = document.getElementById('floating-bottom-dock');
+  const galleryTab = document.getElementById('gallery-sidebar-toggle-btn');
+  const footer = document.querySelector('footer');
+
+  // Control de visibilidad del botón flotante de Técnicas al llegar a la parte final (footer)
+  if (galleryTab) {
+    if (footer) {
+      const footerRect = footer.getBoundingClientRect();
+      const windowHeight = window.innerHeight || document.documentElement.clientHeight;
+      // Al descender y entrar la última parte (footer), ocultar completamente el botón de técnicas
+      if (footerRect.top <= windowHeight + 80) {
+        galleryTab.classList.add('tab-hidden-at-footer');
+      } else {
+        galleryTab.classList.remove('tab-hidden-at-footer');
+      }
+    }
+  }
+
   if (!dock) return;
 
   // En la vista de administración o login no se muestra el dock de navegación pública
@@ -3925,7 +3942,6 @@ function handleScrollFloatingDock() {
   }
 
   const scrollY = window.scrollY || document.documentElement.scrollTop || 0;
-  const footer = document.querySelector('footer');
 
   // Si está cerca del índice superior (primeros 120px), el menú flotante inferior no se muestra
   const topThreshold = 120;

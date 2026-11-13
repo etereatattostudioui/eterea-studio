@@ -983,10 +983,13 @@ body.page-theme-login #floating-bottom-dock {
   }
 }
 
-.gallery-floating-tab.sidebar-active {
-  opacity: 0;
-  pointer-events: none;
-  transform: translateY(-50%) translateX(-20px);
+.gallery-floating-tab.sidebar-active,
+.gallery-floating-tab.tab-hidden-at-footer {
+  opacity: 0 !important;
+  pointer-events: none !important;
+  transform: translateY(0) translateX(-100%) !important;
+  visibility: hidden !important;
+  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s !important;
 }
 
 .gallery-left-hover-zone {
