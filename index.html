@@ -189,20 +189,20 @@
           <h2 class="font-serif text-6xl sm:text-8xl md:text-9xl lg:text-[10rem] text-[#f0e9cf] font-normal leading-none tracking-tight drop-shadow-2xl" style="font-family: 'KENAO', 'KENAEO', 'Kenao', serif !important;">
             <span class="title-dos-miradas" style="font-family: 'KENAO', 'KENAEO', 'Kenao', serif !important;">Dos Miradas</span>
           </h2>
+          <div class="mt-6 sm:mt-8">
+            <a href="#/artistas" onclick="navigateToRoute('artistas', true); return false;" class="px-6 py-2.5 bg-[#f0e9cf] hover:bg-white text-[#2756a2] text-xs font-mono uppercase tracking-[0.2em] font-bold transition-all inline-block rounded-none shadow-xl hover:scale-[1.02]">
+              Conocer Artistas
+            </a>
+          </div>
         </div>
 
-        <!-- BASE DEL BANNER: NOMBRES DE LAS ARTISTAS Y ACCESO DIRECTO -->
+        <!-- BASE DEL BANNER: NOMBRES DE LAS ARTISTAS -->
         <div class="relative z-15 w-full px-6 sm:px-10 lg:px-12 pb-8 pt-4 flex flex-col sm:flex-row items-center justify-between gap-4">
           <div class="flex items-center gap-3">
             <span class="font-serif text-lg sm:text-2xl text-[#f0e9cf] font-normal tracking-wide drop-shadow" style="font-family: 'KENAO', 'KENAEO', 'Kenao', serif !important;">
               Adriana Carrillo &amp; Luna
             </span>
           </div>
-
-          <a href="#/artistas" onclick="navigateToRoute('artistas', true); return false;" class="px-6 py-2.5 bg-[#f0e9cf] hover:bg-white text-[#2756a2] text-xs font-mono uppercase tracking-[0.2em] font-bold transition-all inline-flex items-center gap-2 rounded-none shadow-xl hover:scale-[1.02]">
-            <span>Conocer Artistas</span>
-            <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
-          </a>
         </div>
       </section>
 
@@ -484,7 +484,7 @@
         <div class="relative z-20 w-full px-4 sm:px-12 pt-24 sm:pt-28 md:pt-32 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 sm:gap-5 pointer-events-none">
           <div class="pointer-events-none">
             <span class="font-mono text-[10px] text-[#f0e9cf] tracking-[0.28em] uppercase font-bold block mb-1">
-              DIRECCIÓN ARTÍSTICA · CO-FUNDADORAS
+              DIRECCIÓN ARTÍSTICA
             </span>
             <h2 class="font-serif text-2xl sm:text-4xl md:text-5xl text-[#f0e9cf] font-normal drop-shadow-md">
               Artistas Residentes
@@ -1350,23 +1350,9 @@
           <a href="#/inicio" onclick="navigateToRoute('inicio', true); return false;" class="inline-block transition-transform hover:scale-105 duration-300 mb-4" title="Volver al inicio">
             <img src="LOGO%20ET%C3%89REA/logo-eterea-azul.svg" alt="Etérea Tattoo Studio" class="h-10 w-auto mx-auto object-contain" onerror="this.onerror=null; this.src='logo-eterea.svg';" />
           </a>
-          <span class="font-mono text-[10px] tracking-[0.28em] uppercase text-[#2756a2] font-bold block mb-1">
-            PORTAL PRIVADO · DUEÑAS
-          </span>
           <h2 class="font-serif text-2xl sm:text-3xl text-[#1e3264] font-normal leading-tight">
-            Administración Etérea
+            Acceso para las administradoras
           </h2>
-          <p class="text-xs text-slate-500 font-body mt-1.5 leading-relaxed">
-            Acceso restringido para las administradoras Adriana Carrillo y Antonella (Luna).
-          </p>
-
-          <!-- Indicador de Seguridad Supabase Auth -->
-          <div class="flex items-center justify-center gap-2 mt-3.5">
-            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#2756a2]/8 border border-[#2756a2]/20 text-[10px] font-mono text-[#2756a2] font-medium">
-              <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
-              <span>Supabase Auth · Conexión Encriptada</span>
-            </span>
-          </div>
         </div>
 
         <!-- FORMULARIO DE INICIO DE SESIÓN -->
@@ -1378,10 +1364,10 @@
             <span id="login-error-text" class="flex-1 font-body"></span>
           </div>
 
-          <!-- Campo 1: Correo Electrónico -->
+          <!-- Campo 1: Correo -->
           <div>
             <label for="login-email" class="block text-[11px] font-mono uppercase tracking-wider text-[#2756a2] font-bold mb-1.5">
-              Correo de Administradora
+              Correo
             </label>
             <div class="relative">
               <input 
@@ -1396,15 +1382,21 @@
                 <i data-lucide="mail" class="w-4 h-4"></i>
               </div>
             </div>
-            <span class="block text-[10px] text-slate-400 mt-1 font-mono">Correos autorizados: Adriana Carrillo y Antonella (Luna)</span>
           </div>
 
-          <!-- Campo 2: Contraseña -->
+          <!-- Campo 2: Contraseña con opción de recuperar -->
           <div>
             <div class="flex justify-between items-center mb-1.5">
               <label for="login-password" class="text-[11px] font-mono uppercase tracking-wider text-[#2756a2] font-bold">
                 Contraseña
               </label>
+              <button 
+                type="button" 
+                onclick="showForgotPasswordView()" 
+                class="text-[11px] font-mono text-[#2756a2] hover:text-[#1e3264] hover:underline cursor-pointer transition-colors"
+              >
+                ¿Olvidaste tu contraseña?
+              </button>
             </div>
             <div class="relative">
               <input 
@@ -1448,6 +1440,74 @@
               <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i>
               <span>Volver al sitio público de Etérea</span>
             </a>
+          </div>
+
+        </form>
+
+        <!-- FORMULARIO DE RECUPERACIÓN DE CONTRASEÑA -->
+        <form id="dedicated-admin-forgot-form" onsubmit="handleForgotPassword(event)" class="space-y-4 hidden">
+          
+          <div class="mb-2">
+            <h3 class="font-serif text-lg text-[#1e3264] font-medium">Recuperar Contraseña</h3>
+            <p class="text-xs text-slate-500 font-body mt-1 leading-relaxed">
+              Ingresa tu correo registrado y te enviaremos un enlace para restablecer tu contraseña.
+            </p>
+          </div>
+
+          <!-- Alerta Dinámica de Error -->
+          <div id="forgot-error-alert" class="hidden p-3.5 bg-red-50/90 border border-red-200 text-red-700 text-xs rounded-xl flex items-start gap-2.5">
+            <i data-lucide="alert-circle" class="w-4 h-4 text-red-600 shrink-0 mt-0.5"></i>
+            <span id="forgot-error-text" class="flex-1 font-body"></span>
+          </div>
+
+          <!-- Alerta Dinámica de Éxito -->
+          <div id="forgot-success-alert" class="hidden p-3.5 bg-emerald-50/90 border border-emerald-200 text-emerald-800 text-xs rounded-xl flex items-start gap-2.5">
+            <i data-lucide="check-circle" class="w-4 h-4 text-emerald-600 shrink-0 mt-0.5"></i>
+            <span id="forgot-success-text" class="flex-1 font-body"></span>
+          </div>
+
+          <!-- Campo: Correo a Recuperar -->
+          <div>
+            <label for="forgot-email" class="block text-[11px] font-mono uppercase tracking-wider text-[#2756a2] font-bold mb-1.5">
+              Correo
+            </label>
+            <div class="relative">
+              <input 
+                type="email" 
+                id="forgot-email" 
+                required 
+                placeholder="ej: adriana@eterea.com" 
+                class="form-input w-full text-xs font-body pl-9 pr-3 py-3 border border-slate-200 rounded-xl focus:border-[#2756a2] focus:ring-1 focus:ring-[#2756a2]" 
+                autocomplete="email" 
+              />
+              <div class="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none">
+                <i data-lucide="mail" class="w-4 h-4"></i>
+              </div>
+            </div>
+          </div>
+
+          <!-- Botón de Enviar Enlace -->
+          <div class="pt-2">
+            <button 
+              type="submit" 
+              id="forgot-submit-btn" 
+              class="w-full py-3.5 px-6 bg-[#2756a2] hover:bg-[#1e3264] text-white text-xs font-mono uppercase tracking-widest transition-all duration-300 shadow-md hover:shadow-xl flex items-center justify-center gap-2 cursor-pointer rounded-xl font-bold"
+            >
+              <i data-lucide="send" class="w-4 h-4"></i>
+              <span id="forgot-submit-text">Enviar Enlace de Recuperación</span>
+            </button>
+          </div>
+
+          <!-- Botón para Volver al Login -->
+          <div class="pt-3 text-center border-t border-slate-100 mt-4">
+            <button 
+              type="button" 
+              onclick="showLoginView()" 
+              class="text-xs text-[#2756a2] hover:text-[#1e3264] transition-colors font-mono inline-flex items-center gap-1.5 font-bold cursor-pointer"
+            >
+              <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i>
+              <span>Volver a iniciar sesión</span>
+            </button>
           </div>
 
         </form>
@@ -2727,13 +2787,6 @@
             class="hidden absolute inset-0 w-full h-full object-cover object-center" 
           />
           <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-black/30 pointer-events-none"></div>
-          
-          <!-- Etiqueta técnica sobre el video de fondo -->
-          <div class="absolute bottom-6 left-6 right-6 z-10 pointer-events-none text-white drop-shadow-md">
-            <span class="font-mono text-[10px] tracking-[0.25em] uppercase text-[#f0e9cf] bg-black/60 backdrop-blur-sm px-3 py-1.5 border-l-2 border-[#f0e9cf] inline-block">
-              REGISTRO EN VIVO · ESTUDIO PRIVADO
-            </span>
-          </div>
         </div>
 
       </div>

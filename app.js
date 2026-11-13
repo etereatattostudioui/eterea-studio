@@ -2473,6 +2473,117 @@ function hideLoginError() {
   }
 }
 
+function showForgotPasswordView() {
+  const loginForm = document.getElementById('dedicated-admin-login-form');
+  const forgotForm = document.getElementById('dedicated-admin-forgot-form');
+  hideLoginError();
+  
+  if (loginForm && forgotForm) {
+    loginForm.classList.add('hidden');
+    forgotForm.classList.remove('hidden');
+
+    // Pre-cargar correo si ya lo escribieron en el login
+    const loginEmail = document.getElementById('login-email')?.value.trim();
+    const forgotEmail = document.getElementById('forgot-email');
+    if (loginEmail && forgotEmail && !forgotEmail.value) {
+      forgotEmail.value = loginEmail;
+    }
+
+    const errAlert = document.getElementById('forgot-error-alert');
+    const succAlert = document.getElementById('forgot-success-alert');
+    if (errAlert) errAlert.classList.add('hidden');
+    if (succAlert) succAlert.classList.add('hidden');
+    lucide.createIcons({ root: forgotForm });
+  }
+}
+
+function showLoginView() {
+  const loginForm = document.getElementById('dedicated-admin-login-form');
+  const forgotForm = document.getElementById('dedicated-admin-forgot-form');
+  if (loginForm && forgotForm) {
+    forgotForm.classList.add('hidden');
+    loginForm.classList.remove('hidden');
+    hideLoginError();
+    lucide.createIcons({ root: loginForm });
+  }
+}
+
+async function handleForgotPassword(event) {
+  if (event) event.preventDefault();
+  
+  const emailInput = document.getElementById('forgot-email');
+  const errAlert = document.getElementById('forgot-error-alert');
+  const errText = document.getElementById('forgot-error-text');
+  const succAlert = document.getElementById('forgot-success-alert');
+  const succText = document.getElementById('forgot-success-text');
+  const submitBtn = document.getElementById('forgot-submit-btn');
+  const submitText = document.getElementById('forgot-submit-text');
+
+  if (errAlert) errAlert.classList.add('hidden');
+  if (succAlert) succAlert.classList.add('hidden');
+
+  if (!emailInput) return;
+  const email = emailInput.value.trim().toLowerCase();
+
+  if (!email) {
+    if (errText && errAlert) {
+      errText.textContent = 'Por favor ingresa tu correo registrado.';
+      errAlert.classList.remove('hidden');
+      lucide.createIcons({ root: errAlert });
+    }
+    return;
+  }
+
+  // Validar si pertenece a correos de administradoras
+  if (!isAuthorizedAdminEmail(email)) {
+    if (errText && errAlert) {
+      errText.textContent = 'El correo ingresado no corresponde a las administradoras autorizadas de Etérea.';
+      errAlert.classList.remove('hidden');
+      lucide.createIcons({ root: errAlert });
+    }
+    return;
+  }
+
+  if (submitBtn) submitBtn.disabled = true;
+  if (submitText) submitText.textContent = 'Enviando enlace...';
+
+  try {
+    let sentViaSupabase = false;
+    const sb = getSupabaseClient();
+    if (sb && sb.auth && typeof sb.auth.resetPasswordForEmail === 'function') {
+      try {
+        const redirectTo = window.location.origin + window.location.pathname + '#/login';
+        const { error } = await sb.auth.resetPasswordForEmail(email, { redirectTo });
+        if (!error) {
+          sentViaSupabase = true;
+        } else {
+          console.warn('Aviso Supabase resetPassword:', error.message);
+        }
+      } catch (sbErr) {
+        console.warn('Error en conexión Supabase resetPassword:', sbErr);
+      }
+    }
+
+    if (succAlert && succText) {
+      succText.textContent = `¡Listo! Hemos enviado las instrucciones de recuperación a "${email}". Revisa tu bandeja de entrada o spam para restablecer tu contraseña.`;
+      succAlert.classList.remove('hidden');
+      lucide.createIcons({ root: succAlert });
+    }
+
+    showToast('Enlace de recuperación enviado con éxito');
+  } catch (err) {
+    console.error('Error al recuperar contraseña:', err);
+    if (errAlert && errText) {
+      errText.textContent = 'No se pudo procesar la solicitud en este momento. Intenta de nuevo.';
+      errAlert.classList.remove('hidden');
+      lucide.createIcons({ root: errAlert });
+    }
+  } finally {
+    if (submitBtn) submitBtn.disabled = false;
+    if (submitText) submitText.textContent = 'Enviar Enlace de Recuperación';
+  }
+}
+
 async function handleDedicatedAdminLogin(event) {
   if (event) event.preventDefault();
   hideLoginError();
@@ -3640,7 +3751,7 @@ function openArtistBioModal(artistName) {
 
   if (isAdriana) {
     if (nameEl) nameEl.textContent = 'Adriana Carrillo';
-    if (specialtyEl) specialtyEl.textContent = 'Fine Line & Blackwork Ilustrativo · Co-Fundadora';
+    if (specialtyEl) specialtyEl.textContent = 'Fine Line & Blackwork Ilustrativo';
     if (bioTextEl) {
       bioTextEl.innerHTML = `
         <p class="mb-3">Co-fundadora y directora artística de Etérea Tattoo Studio. Especializada en la precisión milimétrica del Fine Line botánico y el Blackwork ilustrativo de alto contraste anatómico.</p>
@@ -3679,7 +3790,7 @@ function openArtistBioModal(artistName) {
     }
   } else {
     if (nameEl) nameEl.textContent = 'Luna';
-    if (specialtyEl) specialtyEl.textContent = 'Puntillismo punto por punto, Handpoke & Fine Line · Co-Fundadora';
+    if (specialtyEl) specialtyEl.textContent = 'Puntillismo punto por punto, Handpoke & Fine Line';
     if (bioTextEl) {
       bioTextEl.innerHTML = `
         <p class="mb-3">Co-fundadora y directora artística de Etérea Tattoo Studio. Maestra de la técnica Handpoke ritual punto por punto sin máquina, geometrías sagradas y puntillismo de arrastre minucioso.</p>

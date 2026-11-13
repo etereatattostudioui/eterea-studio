@@ -977,9 +977,9 @@ body.page-theme-login #floating-bottom-dock {
 
 @media (max-width: 768px) {
   .gallery-floating-tab {
-    top: 290px !important;
+    top: 114px !important;
     transform: translateY(0) !important;
-    padding: 0.55rem 0.85rem 0.55rem 0.65rem;
+    padding: 0.5rem 0.8rem 0.5rem 0.65rem;
   }
 }
 
