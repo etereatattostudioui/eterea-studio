@@ -411,7 +411,7 @@ const SEED_DATA = {
       fecha_evento: '2026-11-28',
       duracion: '1 día intensivo (8 horas)',
       ubicacion: 'Estudio Etérea - Sala Creativa',
-      instructor: 'Adriana Carrillo',
+      instructor: 'Adriana Carrillo y Luna',
       image_url: 'FOTOS%20TALLERES/FOTOS/igexport-Db_QsCqnDhR-3.jpg',
       cupos: 8,
       cupos_disponibles: 3,
@@ -427,7 +427,7 @@ const SEED_DATA = {
       fecha_evento: '2026-11-22',
       duracion: '1 día intensivo (6 horas)',
       ubicacion: 'Estudio Etérea - Sala Clínica',
-      instructor: 'Adriana Carrillo & Luna',
+      instructor: 'Adriana Carrillo y Luna',
       image_url: 'FOTOS%20TALLERES/FOTOS/igexport-Db_QsCqnDhR-4.jpg',
       cupos: 6,
       cupos_disponibles: 0,
@@ -443,7 +443,7 @@ const SEED_DATA = {
       fecha_evento: '2026-12-05',
       duracion: '1 día intensivo (7 horas)',
       ubicacion: 'Estudio Etérea - Sala Creativa',
-      instructor: 'Adriana Carrillo & Luna',
+      instructor: 'Adriana Carrillo y Luna',
       image_url: 'FOTOS%20TALLERES/igexport-DTyuavMjQ7F.jpg',
       cupos: 6,
       cupos_disponibles: 2,
@@ -459,7 +459,7 @@ const SEED_DATA = {
       fecha_evento: '2026-06-12',
       duracion: '2 días (Junio 12 al 13, 2026)',
       ubicacion: 'Estudio Etérea - Sala Creativa',
-      instructor: 'Adriana Carrillo & Luna',
+      instructor: 'Adriana Carrillo y Luna',
       image_url: 'FOTOS%20TALLERES/FOTOS/igexport-Db_QsCqnDhR-3.jpg',
       cupos: 6,
       cupos_disponibles: 0,
@@ -475,7 +475,7 @@ const SEED_DATA = {
       fecha_evento: '2026-07-12',
       duracion: 'Semana intensiva (Julio 12 al 19, 2026)',
       ubicacion: 'Estudio Etérea - Cabina Privada',
-      instructor: 'Adriana Carrillo & Luna',
+      instructor: 'Adriana Carrillo y Luna',
       image_url: 'FOTOS%20TALLERES/FOTOS/igexport-Db_QsCqnDhR-4.jpg',
       cupos: 4,
       cupos_disponibles: 0,
@@ -491,7 +491,7 @@ const SEED_DATA = {
       fecha_evento: '2026-08-08',
       duracion: '2 días (Agosto 8 al 9, 2026 / Sesión Agosto 13)',
       ubicacion: 'Estudio Etérea - Taller Principal',
-      instructor: 'Adriana Carrillo & Luna',
+      instructor: 'Adriana Carrillo y Luna',
       image_url: 'FOTOS%20TALLERES/igexport-DTyuavMjQ7F.jpg',
       cupos: 6,
       cupos_disponibles: 0,
@@ -778,7 +778,11 @@ const InkBookDB = {
         localStorage.setItem(DB_KEYS.TALLERES, JSON.stringify(SEED_DATA.talleres));
         return SEED_DATA.talleres;
       }
-      return stored;
+      return stored.map(t => {
+        let inst = t.instructor || 'Adriana Carrillo y Luna';
+        if (inst === 'Adriana Carrillo & Luna') inst = 'Adriana Carrillo y Luna';
+        return { ...t, instructor: inst };
+      });
     } catch {
       return SEED_DATA.talleres;
     }
@@ -1544,7 +1548,9 @@ function abrirModalDetalleTaller(tallerId) {
   // Instructor
   const instructorEl = document.getElementById('detail-taller-instructor');
   if (instructorEl) {
-    instructorEl.textContent = `Dictado por ${taller.instructor || 'Adriana Carrillo & Luna'}`;
+    let inst = taller.instructor || 'Adriana Carrillo y Luna';
+    if (inst === 'Adriana Carrillo & Luna') inst = 'Adriana Carrillo y Luna';
+    instructorEl.textContent = `Dictado por ${inst}`;
   }
 
   // Título
@@ -3148,7 +3154,9 @@ function iniciarEdicionTaller(tallerId) {
   document.getElementById('nuevo-taller-titulo').value = taller.titulo || '';
   document.getElementById('nuevo-taller-desc').value = taller.description || taller.descripcion || '';
   if (document.getElementById('nuevo-taller-instructor')) {
-    document.getElementById('nuevo-taller-instructor').value = taller.instructor || 'Adriana Carrillo & Luna';
+    let inst = taller.instructor || 'Adriana Carrillo y Luna';
+    if (inst === 'Adriana Carrillo & Luna') inst = 'Adriana Carrillo y Luna';
+    document.getElementById('nuevo-taller-instructor').value = inst;
   }
   document.getElementById('nuevo-taller-price').value = taller.price || '';
   document.getElementById('nuevo-taller-cupos').value = taller.cupos || '';

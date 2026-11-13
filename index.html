@@ -1764,12 +1764,13 @@
                     </div>
 
                     <div>
-                      <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Instructor(as) *</label>
+                      <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Dictado por (Instructoras) *</label>
                       <select id="nuevo-taller-instructor" class="form-select w-full">
-                        <option value="Adriana Carrillo & Luna">Adriana Carrillo &amp; Luna (Ambas)</option>
-                        <option value="Adriana Carrillo">Adriana Carrillo</option>
-                        <option value="Luna">Luna</option>
+                        <option value="Adriana Carrillo y Luna">Adriana Carrillo y Luna (Ambas)</option>
+                        <option value="Adriana Carrillo">Adriana Carrillo (Solo Adriana)</option>
+                        <option value="Luna">Luna (Solo Luna)</option>
                       </select>
+                      <span class="block text-[11px] text-slate-400 mt-1">Configura si el taller es dictado por ambas cofundadoras o individualmente.</span>
                     </div>
 
                     <div class="grid grid-cols-2 gap-3">
@@ -2387,9 +2388,9 @@
     </div>
   </div>
 
-  <!-- MODAL: DETALLE COMPLETO DEL TALLER (VENTANA AMPLIA CON IMAGEN A LA IZQUIERDA Y DETALLES) -->
+  <!-- MODAL: DETALLE COMPLETO DEL TALLER (VENTANA AMPLIA CON IMAGEN A LA IZQUIERDA Y DETALLES - RECTANGULAR) -->
   <div id="workshop-detail-modal" class="modal-overlay" onclick="if(event.target === this) cerrarModalDetalleTaller()">
-    <div class="modal-content max-w-4xl w-full bg-white text-gray-900 rounded-3xl shadow-2xl relative border border-gray-100 overflow-hidden my-4 sm:my-8 mx-auto">
+    <div class="modal-content max-w-4xl w-full bg-white text-gray-900 rounded-none shadow-2xl relative border border-gray-100 overflow-hidden my-4 sm:my-8 mx-auto">
       
       <div class="grid grid-cols-1 md:grid-cols-12 min-h-[500px]">
         <!-- Columna Izquierda: Fotografía Real del Taller -->
@@ -2404,11 +2405,11 @@
           <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent pointer-events-none"></div>
           
           <div class="absolute bottom-5 left-5 right-5 z-10 text-white">
-            <span class="inline-block px-3 py-1 bg-white/20 backdrop-blur-md text-[10px] font-mono uppercase tracking-widest text-[#f0e9cf] rounded-full mb-2">
+            <span class="inline-block px-3 py-1 bg-white/20 backdrop-blur-md text-[10px] font-mono uppercase tracking-widest text-[#f0e9cf] rounded-none mb-2">
               Formación Presencial
             </span>
             <p id="detail-taller-instructor" class="text-xs font-mono text-white/90">
-              Dictado por Adriana Carrillo &amp; Luna
+              Dictado por Adriana Carrillo y Luna
             </p>
           </div>
         </div>
@@ -2416,17 +2417,17 @@
         <!-- Columna Derecha: Información Editorial y Acción de Reserva -->
         <div class="md:col-span-7 p-6 sm:p-8 md:p-10 flex flex-col justify-between bg-white">
           <div>
-            <!-- Encabezado con Badges y Botón de Cerrar -->
+            <!-- Encabezado con Badges y Botón de Cerrar (Rectangulares) -->
             <div class="flex items-center justify-between gap-3 mb-4">
               <div class="flex items-center gap-2 flex-wrap">
-                <span class="px-3.5 py-1 bg-[#2756a2] text-white text-[10px] font-mono font-bold tracking-widest rounded-full uppercase">
+                <span class="px-3.5 py-1 bg-[#2756a2] text-white text-[10px] font-mono font-bold tracking-widest rounded-none uppercase">
                   ETÉREA WORKSHOP
                 </span>
-                <span id="detail-taller-cupos-badge" class="px-3 py-0.5 bg-emerald-50 text-emerald-700 border border-emerald-200 text-[10px] font-mono font-bold uppercase rounded-full">
+                <span id="detail-taller-cupos-badge" class="px-3 py-0.5 bg-emerald-50 text-emerald-700 border border-emerald-200 text-[10px] font-mono font-bold uppercase rounded-none">
                   3 cupos disponibles
                 </span>
               </div>
-              <button type="button" onclick="cerrarModalDetalleTaller()" class="text-gray-400 hover:text-gray-700 p-1.5 transition-colors cursor-pointer rounded-full hover:bg-gray-100" title="Cerrar">
+              <button type="button" onclick="cerrarModalDetalleTaller()" class="text-gray-400 hover:text-gray-700 p-1.5 transition-colors cursor-pointer rounded-none hover:bg-gray-100" title="Cerrar">
                 <i data-lucide="x" class="w-5 h-5"></i>
               </button>
             </div>
@@ -2441,8 +2442,8 @@
               Técnica de trazo invisible, regulación precisa de voltaje, control milimétrico de vibración y calibración de pigmento negro de humo en piel viva.
             </p>
 
-            <!-- Ficha Técnica Estructurada: Fecha, Horario, Dónde es, Inversión -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 p-4 bg-[#fbf8ef] border border-[#f0e9cf] rounded-2xl mb-6">
+            <!-- Ficha Técnica Estructurada: Fecha, Horario, Dónde es, Inversión (Rectangular) -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 p-4 bg-[#fbf8ef] border border-[#f0e9cf] rounded-none mb-6">
               <div class="flex items-start gap-2.5">
                 <i data-lucide="calendar" class="w-4 h-4 text-[#2756a2] mt-0.5 shrink-0"></i>
                 <div>
@@ -2477,7 +2478,7 @@
             </div>
           </div>
 
-          <!-- Botón de Acción para Reservar Cupo -->
+          <!-- Botón de Acción para Reservar Cupo (Rectangular) -->
           <div class="pt-3 border-t border-gray-100 flex flex-col sm:flex-row items-center justify-between gap-3">
             <span class="text-xs font-mono text-gray-400">
               Atención y cupos por orden de registro
@@ -2486,7 +2487,7 @@
               type="button" 
               id="btn-detail-avanzar-reserva" 
               onclick="avanzarAInscripcion()" 
-              class="w-full sm:w-auto px-7 py-3.5 bg-[#2756a2] hover:bg-[#1b3f7a] text-white text-xs font-mono uppercase tracking-widest font-bold transition-all rounded-full shadow-lg hover:shadow-xl hover:scale-[1.02] cursor-pointer inline-flex items-center justify-center gap-2"
+              class="w-full sm:w-auto px-7 py-3.5 bg-[#2756a2] hover:bg-[#1b3f7a] text-white text-xs font-mono uppercase tracking-widest font-bold transition-all rounded-none shadow-lg hover:shadow-xl hover:scale-[1.02] cursor-pointer inline-flex items-center justify-center gap-2"
             >
               <span>Reservar cupo al taller</span>
               <span class="font-bold">&rarr;</span>
@@ -2498,21 +2499,21 @@
     </div>
   </div>
 
-  <!-- MODAL: REGISTRO A TALLER (IDÉNTICO A SCREENSHOT 6) -->
+  <!-- MODAL: REGISTRO A TALLER (RECTANGULAR) -->
   <div id="workshop-registration-modal" class="modal-overlay" onclick="if(event.target === this) cerrarModalInscripcion()">
-    <div class="modal-content p-6 sm:p-8 max-w-lg w-full bg-white text-gray-900 rounded-3xl shadow-2xl relative border border-gray-100">
+    <div class="modal-content p-6 sm:p-8 max-w-lg w-full bg-white text-gray-900 rounded-none shadow-2xl relative border border-gray-100">
       
       <div class="flex items-center justify-between mb-4">
         <div class="flex items-center gap-2">
-          <span class="px-3.5 py-1 bg-[#2756a2] text-white text-[10px] font-mono font-bold tracking-widest rounded-full uppercase">
+          <span class="px-3.5 py-1 bg-[#2756a2] text-white text-[10px] font-mono font-bold tracking-widest rounded-none uppercase">
             INSCRIPCIÓN TALLER
           </span>
-          <button type="button" onclick="volverADetalleTaller()" class="text-[#2756a2] hover:text-[#1b3f7a] text-xs font-mono flex items-center gap-1 transition-colors cursor-pointer px-2 py-0.5 rounded hover:bg-blue-50" title="Volver al detalle del taller">
+          <button type="button" onclick="volverADetalleTaller()" class="text-[#2756a2] hover:text-[#1b3f7a] text-xs font-mono flex items-center gap-1 transition-colors cursor-pointer px-2 py-0.5 rounded-none hover:bg-blue-50" title="Volver al detalle del taller">
             <span>&larr;</span>
             <span>Ver detalles</span>
           </button>
         </div>
-        <button type="button" onclick="cerrarModalInscripcion()" class="text-gray-400 hover:text-gray-700 p-1.5 transition-colors cursor-pointer" title="Cerrar">
+        <button type="button" onclick="cerrarModalInscripcion()" class="text-gray-400 hover:text-gray-700 p-1.5 transition-colors cursor-pointer rounded-none hover:bg-gray-100" title="Cerrar">
           <i data-lucide="x" class="w-5 h-5"></i>
         </button>
       </div>
@@ -2535,7 +2536,7 @@
           <input 
             type="text" 
             id="insc-nombre" 
-            class="w-full px-4 py-3 rounded-xl border border-gray-300 text-sm focus:outline-none focus:border-[#2756a2] text-gray-800 transition-colors" 
+            class="w-full px-4 py-3 rounded-none border border-gray-300 text-sm focus:outline-none focus:border-[#2756a2] text-gray-800 transition-colors" 
             placeholder="Tu nombre" 
             required 
           />
@@ -2548,7 +2549,7 @@
           <input 
             type="tel" 
             id="insc-telefono" 
-            class="w-full px-4 py-3 rounded-xl border border-gray-300 text-sm focus:outline-none focus:border-[#2756a2] text-gray-800 transition-colors" 
+            class="w-full px-4 py-3 rounded-none border border-gray-300 text-sm focus:outline-none focus:border-[#2756a2] text-gray-800 transition-colors" 
             placeholder="+593 9..." 
             required 
           />
@@ -2561,7 +2562,7 @@
           <input 
             type="email" 
             id="insc-correo" 
-            class="w-full px-4 py-3 rounded-xl border border-gray-300 text-sm focus:outline-none focus:border-[#2756a2] text-gray-800 transition-colors" 
+            class="w-full px-4 py-3 rounded-none border border-gray-300 text-sm focus:outline-none focus:border-[#2756a2] text-gray-800 transition-colors" 
             placeholder="correo@ejemplo.com" 
             required 
           />
@@ -2570,7 +2571,7 @@
         <button 
           type="submit" 
           id="insc-submit-btn" 
-          class="w-full mt-4 py-3.5 bg-[#2756a2] hover:bg-[#1b3f7a] text-white text-sm font-semibold rounded-full shadow-md transition-all cursor-pointer font-sans"
+          class="w-full mt-4 py-3.5 bg-[#2756a2] hover:bg-[#1b3f7a] text-white text-sm font-semibold rounded-none shadow-md transition-all cursor-pointer font-sans"
         >
           Confirmar Cupo en Taller
         </button>

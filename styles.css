@@ -2284,15 +2284,27 @@ body.overflow-hidden {
   box-shadow: 0 4px 14px rgba(39, 86, 162, 0.25) !important;
 }
 
-/* MODAL DE BIOGRAFÍA EXPANDIDA DE ARTISTA (DISEÑO HORIZONTAL EN 2 COLUMNAS)
+/* MODAL DE DETALLE Y REGISTRO DE TALLERES (DISEÑO RECTANGULAR ESTRICTO)
    ======================================================== */
+#workshop-detail-modal .modal-content,
+#workshop-registration-modal .modal-content,
+#workshop-success-modal .modal-content {
+  border-radius: 0 !important;
+}
+
 #workshop-detail-modal .modal-content {
   max-width: 960px !important;
   width: 95vw !important;
   padding: 0 !important;
-  border-radius: 1.5rem !important;
+  border-radius: 0 !important;
   background: #ffffff !important;
   overflow: hidden !important;
+}
+
+#workshop-detail-modal *,
+#workshop-registration-modal *,
+#workshop-success-modal * {
+  border-radius: 0 !important;
 }
 
 #artist-bio-modal .modal-content {
