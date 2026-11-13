@@ -359,11 +359,12 @@
 
             <!-- TARJETA 3: TALLERES -->
             <div class="home-feature-card relative overflow-hidden min-h-[440px] md:min-h-[580px] p-8 sm:p-10 md:p-12 flex flex-col justify-end group cursor-pointer bg-black transition-all duration-500 border-none outline-none" onclick="handleHomeCardClick(event, 'talleres', this)">
-              <!-- Imagen de fondo que llena todo el bloque borde a borde (Segunda foto de Fotos Talleres/FOTOS) -->
+              <!-- Imagen de fondo que llena todo el bloque borde a borde (Segunda foto de FOTOS TALLERES/FOTOS) -->
               <img 
-                src="Fotos%20Talleres/FOTOS/igexport-Db_QsCqnDhR-4.jpg" 
+                src="FOTOS%20TALLERES/FOTOS/igexport-Db_QsCqnDhR-4.jpg" 
                 alt="Talleres y Formación Etérea" 
                 class="absolute inset-0 w-full h-full object-cover object-center opacity-85 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 pointer-events-none" 
+                onerror="this.onerror=null; this.src='FOTOS%20TALLERES/igexport-DTyuavMjQ7F.jpg';"
               />
               <!-- Sombra cinematográfica para resaltar el texto -->
               <div class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/45 to-transparent pointer-events-none"></div>
@@ -484,23 +485,23 @@
         </div>
 
         <!-- CABECERA SUPERIOR Y SELECTOR RECTANGULAR DE ARTISTA (ESPACIO CÓMODO BAJO EL HEADER) -->
-        <div class="relative z-20 w-full px-6 sm:px-12 pt-28 md:pt-32 flex flex-col md:flex-row items-start md:items-center justify-between gap-5 pointer-events-none">
+        <div class="relative z-20 w-full px-4 sm:px-12 pt-24 sm:pt-28 md:pt-32 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 sm:gap-5 pointer-events-none">
           <div class="pointer-events-none">
             <span class="font-mono text-[10px] text-[#f0e9cf] tracking-[0.28em] uppercase font-bold block mb-1">
               DIRECCIÓN ARTÍSTICA · CO-FUNDADORAS
             </span>
-            <h2 class="font-serif text-3xl sm:text-4xl md:text-5xl text-[#f0e9cf] font-normal drop-shadow-md">
+            <h2 class="font-serif text-2xl sm:text-4xl md:text-5xl text-[#f0e9cf] font-normal drop-shadow-md">
               Artistas Residentes
             </h2>
           </div>
 
           <!-- SELECTOR DE ARTISTA SUPERIOR (BOTONES ESTRICTAMENTE RECTANGULARES) -->
-          <div class="pointer-events-auto inline-flex items-center border border-[#f0e9cf]/30 bg-black/60 backdrop-blur-md rounded-none shadow-2xl p-0">
+          <div class="pointer-events-auto inline-flex items-center border border-[#f0e9cf]/30 bg-black/60 backdrop-blur-md rounded-none shadow-2xl p-0 w-full sm:w-auto">
             <button 
               type="button" 
               id="btn-select-adriana"
               onclick="switchArtistView('Adriana Carrillo')" 
-              class="px-5 sm:px-8 py-2.5 sm:py-3 text-xs sm:text-sm font-mono uppercase tracking-widest transition-all duration-300 rounded-none border-r border-[#f0e9cf]/25 bg-[#575c20] text-[#f0e9cf] font-bold"
+              class="flex-1 sm:flex-initial px-3 sm:px-8 py-2.5 sm:py-3 text-[11px] sm:text-sm font-mono uppercase tracking-wider sm:tracking-widest transition-all duration-300 rounded-none border-r border-[#f0e9cf]/25 bg-[#575c20] text-[#f0e9cf] font-bold text-center"
             >
               Adriana Carrillo
             </button>
@@ -508,7 +509,7 @@
               type="button" 
               id="btn-select-luna"
               onclick="switchArtistView('Luna')" 
-              class="px-5 sm:px-8 py-2.5 sm:py-3 text-xs sm:text-sm font-mono uppercase tracking-widest transition-all duration-300 rounded-none text-[#f0e9cf]/70 hover:text-[#f0e9cf] hover:bg-white/10"
+              class="flex-1 sm:flex-initial px-3 sm:px-8 py-2.5 sm:py-3 text-[11px] sm:text-sm font-mono uppercase tracking-wider sm:tracking-widest transition-all duration-300 rounded-none text-[#f0e9cf]/70 hover:text-[#f0e9cf] hover:bg-white/10 text-center"
             >
               Luna
             </button>
@@ -545,11 +546,11 @@
             </div>
 
             <!-- Acciones de contacto estrictamente rectangulares -->
-            <div class="flex flex-wrap items-center gap-3 pt-4 border-t border-[#f0e9cf]/25">
+            <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 pt-4 border-t border-[#f0e9cf]/25">
               <button 
                 type="button" 
                 onclick="preselectArtist('Adriana Carrillo')" 
-                class="px-6 py-3 bg-[#f0e9cf] hover:bg-white text-[#575c20] text-xs font-semibold rounded-none shadow-md transition-all hover:scale-[1.02] inline-flex items-center gap-2 font-mono uppercase tracking-wider"
+                class="w-full sm:w-auto justify-center px-6 py-3 bg-[#f0e9cf] hover:bg-white text-[#575c20] text-xs font-semibold rounded-none shadow-md transition-all hover:scale-[1.02] inline-flex items-center gap-2 font-mono uppercase tracking-wider"
               >
                 <span>Agendar con Adriana</span>
                 <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
@@ -558,7 +559,7 @@
                 href="https://www.instagram.com/soyadri___?cplk=bW54MzByZG5rdDI3" 
                 target="_blank" 
                 rel="noopener noreferrer" 
-                class="px-5 py-3 border border-[#f0e9cf] hover:bg-[#f0e9cf]/15 text-[#f0e9cf] text-xs rounded-none font-mono transition-all inline-flex items-center gap-2"
+                class="w-full sm:w-auto justify-center px-5 py-3 border border-[#f0e9cf] hover:bg-[#f0e9cf]/15 text-[#f0e9cf] text-xs rounded-none font-mono transition-all inline-flex items-center gap-2"
               >
                 @soyadri___
               </a>
@@ -601,11 +602,11 @@
             </div>
 
             <!-- Acciones de contacto estrictamente rectangulares -->
-            <div class="flex flex-wrap items-center gap-3 pt-4 border-t border-[#f0e9cf]/25">
+            <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 pt-4 border-t border-[#f0e9cf]/25">
               <button 
                 type="button" 
                 onclick="preselectArtist('Luna')" 
-                class="px-6 py-3 bg-[#f0e9cf] hover:bg-white text-[#575c20] text-xs font-semibold rounded-none shadow-md transition-all hover:scale-[1.02] inline-flex items-center gap-2 font-mono uppercase tracking-wider"
+                class="w-full sm:w-auto justify-center px-6 py-3 bg-[#f0e9cf] hover:bg-white text-[#575c20] text-xs font-semibold rounded-none shadow-md transition-all hover:scale-[1.02] inline-flex items-center gap-2 font-mono uppercase tracking-wider"
               >
                 <span>Agendar con Luna</span>
                 <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
@@ -614,7 +615,7 @@
                 href="https://www.instagram.com/lunnapokes?srtk=ZWhlZzA5MmZ5NDg=" 
                 target="_blank" 
                 rel="noopener noreferrer" 
-                class="px-5 py-3 border border-[#f0e9cf] hover:bg-[#f0e9cf]/15 text-[#f0e9cf] text-xs rounded-none font-mono transition-all inline-flex items-center gap-2"
+                class="w-full sm:w-auto justify-center px-5 py-3 border border-[#f0e9cf] hover:bg-[#f0e9cf]/15 text-[#f0e9cf] text-xs rounded-none font-mono transition-all inline-flex items-center gap-2"
               >
                 @lunnapokes
               </a>
@@ -639,7 +640,7 @@
          PÁGINA 3: /galeria (PORTAFOLIO DE OBRAS A PANTALLA COMPLETA - INVERTIDO AZUL #2756a2 Y BEIGE #f0e9cf)
          ======================================================== -->
     <div id="page-galeria" class="page-view hidden bg-[#2756a2] text-[#f0e9cf]">
-      <section class="pt-8 pb-0 px-0 w-full">
+      <section class="pt-20 sm:pt-8 pb-0 px-0 w-full">
         
         <!-- CABECERA Y FILTRO CENTRADOS CON COLORES DE MARCA INVERTIDOS -->
         <div class="max-w-4xl mx-auto px-6 text-center mb-8">
@@ -1018,12 +1019,12 @@
             </div>
 
             <!-- Selector Rectangular Rápido de Artistas -->
-            <div id="booking-step1-selector-pills" class="inline-flex items-center border border-[#f0e9cf]/30 bg-black/70 backdrop-blur-md rounded-none shadow-2xl p-0">
+            <div id="booking-step1-selector-pills" class="inline-flex items-center border border-[#f0e9cf]/30 bg-black/70 backdrop-blur-md rounded-none shadow-2xl p-0 w-full sm:w-auto">
               <button 
                 type="button" 
                 id="booking-btn-select-adriana"
                 onclick="selectArtistAndProceedToStep2('Adriana Carrillo')" 
-                class="px-5 sm:px-7 py-2 text-xs font-mono uppercase tracking-widest transition-all duration-300 rounded-none border-r border-[#f0e9cf]/25 bg-[#2756a2] text-[#f0e9cf] font-bold"
+                class="flex-1 sm:flex-initial px-3 sm:px-7 py-2 text-[11px] sm:text-xs font-mono uppercase tracking-wider sm:tracking-widest transition-all duration-300 rounded-none border-r border-[#f0e9cf]/25 bg-[#2756a2] text-[#f0e9cf] font-bold text-center"
               >
                 Adriana Carrillo
               </button>
@@ -1031,7 +1032,7 @@
                 type="button" 
                 id="booking-btn-select-luna"
                 onclick="selectArtistAndProceedToStep2('Luna')" 
-                class="px-5 sm:px-7 py-2 text-xs font-mono uppercase tracking-widest transition-all duration-300 rounded-none text-[#f0e9cf]/70 hover:text-[#f0e9cf] hover:bg-white/10"
+                class="flex-1 sm:flex-initial px-3 sm:px-7 py-2 text-[11px] sm:text-xs font-mono uppercase tracking-wider sm:tracking-widest transition-all duration-300 rounded-none text-[#f0e9cf]/70 hover:text-[#f0e9cf] hover:bg-white/10 text-center"
               >
                 Luna
               </button>
@@ -1074,11 +1075,11 @@
               </div>
 
               <!-- Acciones: Confirmar artista y continuar a Paso 2 -->
-              <div class="flex flex-wrap items-center gap-3 pt-4 border-t border-[#f0e9cf]/25">
+              <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 pt-4 border-t border-[#f0e9cf]/25">
                 <button 
                   type="button" 
                   onclick="confirmArtistAndProceed('Adriana Carrillo')" 
-                  class="px-6 py-3 bg-[#f0e9cf] hover:bg-white text-[#2756a2] text-xs font-semibold rounded-none shadow-md transition-all hover:scale-[1.02] inline-flex items-center gap-2 font-mono uppercase tracking-wider"
+                  class="w-full sm:w-auto justify-center px-6 py-3 bg-[#f0e9cf] hover:bg-white text-[#2756a2] text-xs font-semibold rounded-none shadow-md transition-all hover:scale-[1.02] inline-flex items-center gap-2 font-mono uppercase tracking-wider"
                 >
                   <span>Elegir a Adriana & Continuar</span>
                   <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
@@ -1087,7 +1088,7 @@
                   href="https://www.instagram.com/soyadri___?cplk=bW54MzByZG5rdDI3" 
                   target="_blank" 
                   rel="noopener noreferrer" 
-                  class="px-5 py-3 border border-[#f0e9cf] hover:bg-[#f0e9cf]/15 text-[#f0e9cf] text-xs rounded-none font-mono transition-all inline-flex items-center gap-2"
+                  class="w-full sm:w-auto justify-center px-5 py-3 border border-[#f0e9cf] hover:bg-[#f0e9cf]/15 text-[#f0e9cf] text-xs rounded-none font-mono transition-all inline-flex items-center gap-2"
                 >
                   <span>@soyadri___</span>
                 </a>
@@ -1120,11 +1121,11 @@
               </div>
 
               <!-- Acciones: Confirmar artista y continuar a Paso 2 -->
-              <div class="flex flex-wrap items-center gap-3 pt-4 border-t border-[#f0e9cf]/25">
+              <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 pt-4 border-t border-[#f0e9cf]/25">
                 <button 
                   type="button" 
                   onclick="confirmArtistAndProceed('Luna')" 
-                  class="px-6 py-3 bg-[#f0e9cf] hover:bg-white text-[#2756a2] text-xs font-semibold rounded-none shadow-md transition-all hover:scale-[1.02] inline-flex items-center gap-2 font-mono uppercase tracking-wider"
+                  class="w-full sm:w-auto justify-center px-6 py-3 bg-[#f0e9cf] hover:bg-white text-[#2756a2] text-xs font-semibold rounded-none shadow-md transition-all hover:scale-[1.02] inline-flex items-center gap-2 font-mono uppercase tracking-wider"
                 >
                   <span>Elegir a Luna & Continuar</span>
                   <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
@@ -1133,7 +1134,7 @@
                   href="https://www.instagram.com/lunnapokes?srtk=ZWhlZzA5MmZ5NDg=" 
                   target="_blank" 
                   rel="noopener noreferrer" 
-                  class="px-5 py-3 border border-[#f0e9cf] hover:bg-[#f0e9cf]/15 text-[#f0e9cf] text-xs rounded-none font-mono transition-all inline-flex items-center gap-2"
+                  class="w-full sm:w-auto justify-center px-5 py-3 border border-[#f0e9cf] hover:bg-[#f0e9cf]/15 text-[#f0e9cf] text-xs rounded-none font-mono transition-all inline-flex items-center gap-2"
                 >
                   <span>@lunnapokes</span>
                 </a>
@@ -1640,7 +1641,7 @@
                       <!-- Opción 2: URL -->
                       <div>
                         <span class="block text-[11px] text-slate-500 mb-1">O escribe una ruta/URL de imagen:</span>
-                        <input type="text" id="nuevo-taller-img" onchange="previewTallerImage(this.value)" class="form-input w-full text-xs" placeholder="Fotos Talleres/FOTOS/igexport-Db_QsCqnDhR-3.jpg" />
+                        <input type="text" id="nuevo-taller-img" onchange="previewTallerImage(this.value)" class="form-input w-full text-xs" placeholder="FOTOS%20TALLERES/FOTOS/igexport-Db_QsCqnDhR-3.jpg" />
                       </div>
 
                       <!-- Previsualización -->
@@ -2132,11 +2133,12 @@
                 <span>@lunnapokes</span>
               </a>
             </div>
-            <div class="w-full flex justify-center pt-1.5">
-              <a href="https://wa.me/593984123456" target="_blank" rel="noopener noreferrer" class="w-7 h-7 sm:w-8 sm:h-8 rounded-full border border-[#f0e9cf]/60 hover:border-[#f0e9cf] hover:bg-[#f0e9cf]/15 text-[#f0e9cf] inline-flex items-center justify-center transition-all" title="WhatsApp Estudio">
-                <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/>
+            <div>
+              <a href="https://wa.me/593984123456" target="_blank" rel="noopener noreferrer" class="text-[#f0e9cf] hover:text-white transition-colors inline-flex items-center gap-2.5">
+                <svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
                 </svg>
+                <span>+593 98 412 3456</span>
               </a>
             </div>
           </div>
@@ -2269,8 +2271,9 @@
         <div class="md:col-span-5 relative min-h-[260px] md:min-h-full bg-[#1b3f7a] overflow-hidden">
           <img 
             id="detail-taller-img" 
-            src="Fotos%20Talleres/FOTOS/igexport-Db_QsCqnDhR-3.jpg" 
+            src="FOTOS%20TALLERES/FOTOS/igexport-Db_QsCqnDhR-3.jpg" 
             alt="Fotografía del Taller Etérea" 
+            onerror="this.onerror=null; this.src='FOTOS%20TALLERES/igexport-DTyuavMjQ7F.jpg';"
             class="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-700 hover:scale-105" 
           />
           <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent pointer-events-none"></div>
@@ -2562,35 +2565,35 @@
       <button 
         type="button" 
         onclick="closeArtistBioModal()" 
-        class="absolute top-4 right-4 z-40 text-[#f0e9cf] hover:text-white p-2.5 transition-colors bg-black/60 hover:bg-black/85 backdrop-blur-md rounded-none border border-[#f0e9cf]/30 cursor-pointer"
+        class="absolute top-3 right-3 sm:top-4 sm:right-4 z-50 text-[#f0e9cf] hover:text-white p-2.5 transition-colors bg-black/75 hover:bg-black/90 backdrop-blur-md rounded-none border border-[#f0e9cf]/30 cursor-pointer shadow-lg"
         title="Cerrar biografía"
       >
         <i data-lucide="x" class="w-5 h-5"></i>
       </button>
 
       <!-- CONTENEDOR EN DOS COLUMNAS: IZQUIERDA (INFO Y PERFIL) / DERECHA (VIDEO DE MARCO A MARCO) -->
-      <div class="flex flex-col md:flex-row w-full max-h-[88vh] md:max-h-[85vh] overflow-hidden">
+      <div class="flex flex-col md:flex-row w-full max-h-[88vh] md:max-h-[85vh] overflow-y-auto md:overflow-hidden">
         
         <!-- COLUMNA IZQUIERDA: INFORMACIÓN Y PERFIL AUTORAL -->
-        <div class="flex-1 p-6 sm:p-8 md:p-10 lg:p-12 space-y-6 flex flex-col justify-between overflow-y-auto bio-modal-scrollable">
+        <div class="flex-1 p-5 sm:p-8 md:p-10 lg:p-12 space-y-6 flex flex-col justify-between overflow-y-auto bio-modal-scrollable">
           
           <div class="space-y-6">
             <!-- Cabecera del Perfil con Foto Autoral -->
-            <div class="flex items-start gap-5 sm:gap-6 pb-6 border-b border-[#f0e9cf]/25">
+            <div class="flex items-start gap-4 sm:gap-6 pb-6 border-b border-[#f0e9cf]/25 pr-12 sm:pr-0">
               <img 
                 id="artist-bio-modal-img" 
                 src="TRABAJOS%20ADRI/FOTO%20PERFIL%20ADRI/igexport-DDqEQgNvKiY.webp" 
                 alt="Foto de perfil de la artista" 
-                class="w-20 h-24 sm:w-24 sm:h-28 md:w-28 md:h-32 object-cover rounded-none shadow-xl shrink-0 border border-[#f0e9cf]/40" 
+                class="w-16 h-20 sm:w-24 sm:h-28 md:w-28 md:h-32 object-cover rounded-none shadow-xl shrink-0 border border-[#f0e9cf]/40" 
               />
               <div class="min-w-0 flex-1">
-                <span class="font-mono text-[10px] sm:text-xs uppercase tracking-[0.25em] text-[#f0e9cf]/80 block font-semibold mb-1">
+                <span class="font-mono text-[9px] sm:text-xs uppercase tracking-[0.25em] text-[#f0e9cf]/80 block font-semibold mb-1">
                   PERFIL AUTORAL · CO-FUNDADORA
                 </span>
                 <h2 id="artist-bio-modal-name" class="font-serif text-2xl sm:text-3xl md:text-4xl text-[#f0e9cf] font-normal leading-tight">
                   Adriana Carrillo
                 </h2>
-                <p id="artist-bio-modal-specialty" class="font-mono text-xs sm:text-[13px] text-[#f0e9cf] mt-1.5 font-medium leading-relaxed">
+                <p id="artist-bio-modal-specialty" class="font-mono text-xs sm:text-[13px] text-[#f0e9cf] mt-1 font-medium leading-relaxed">
                   Fine Line & Blackwork Ilustrativo
                 </p>
               </div>
@@ -2611,7 +2614,7 @@
             <button 
               type="button" 
               id="artist-bio-modal-gallery-btn" 
-              class="px-5 py-3.5 border border-[#f0e9cf] hover:bg-[#f0e9cf]/15 text-[#f0e9cf] text-xs font-mono uppercase tracking-wider rounded-none transition-all flex items-center justify-center gap-2 cursor-pointer"
+              class="w-full sm:w-auto px-5 py-3.5 border border-[#f0e9cf] hover:bg-[#f0e9cf]/15 text-[#f0e9cf] text-xs font-mono uppercase tracking-wider rounded-none transition-all flex items-center justify-center gap-2 cursor-pointer"
             >
               <span>Ver obras en Galería</span>
               <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
@@ -2619,7 +2622,7 @@
             <button 
               type="button" 
               id="artist-bio-modal-booking-btn" 
-              class="px-6 py-3.5 bg-[#f0e9cf] hover:bg-white text-[#2756a2] text-xs font-mono font-bold uppercase tracking-wider rounded-none shadow-lg transition-all flex items-center justify-center gap-2 cursor-pointer hover:scale-[1.01]"
+              class="w-full sm:w-auto px-6 py-3.5 bg-[#f0e9cf] hover:bg-white text-[#2756a2] text-xs font-mono font-bold uppercase tracking-wider rounded-none shadow-lg transition-all flex items-center justify-center gap-2 cursor-pointer hover:scale-[1.01]"
             >
               <span>Agendar Cita Privada</span>
               <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
@@ -2629,7 +2632,7 @@
         </div>
 
         <!-- COLUMNA DERECHA: VIDEO INTEGRADO DE MARCO A MARCO (FULL HEIGHT) -->
-        <div class="relative w-full md:w-[45%] lg:w-[48%] min-h-[300px] md:min-h-full bg-black/60 flex-shrink-0 overflow-hidden border-t md:border-t-0 md:border-l border-[#f0e9cf]/20">
+        <div class="relative w-full md:w-[45%] lg:w-[48%] h-60 sm:h-72 md:h-auto min-h-[220px] md:min-h-full bg-black/60 flex-shrink-0 overflow-hidden border-t md:border-t-0 md:border-l border-[#f0e9cf]/20">
           <video 
             id="artist-bio-video" 
             autoplay 

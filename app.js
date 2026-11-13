@@ -412,7 +412,7 @@ const SEED_DATA = {
       duracion: '1 día intensivo (8 horas)',
       ubicacion: 'Estudio Etérea - Sala Creativa',
       instructor: 'Adriana Carrillo',
-      image_url: 'Fotos%20Talleres/FOTOS/igexport-Db_QsCqnDhR-3.jpg',
+      image_url: 'FOTOS%20TALLERES/FOTOS/igexport-Db_QsCqnDhR-3.jpg',
       cupos: 8,
       cupos_disponibles: 3,
       estado: 'Activo',
@@ -428,7 +428,7 @@ const SEED_DATA = {
       duracion: '1 día intensivo (6 horas)',
       ubicacion: 'Estudio Etérea - Sala Clínica',
       instructor: 'Adriana Carrillo & Luna',
-      image_url: 'Fotos%20Talleres/FOTOS/igexport-Db_QsCqnDhR-4.jpg',
+      image_url: 'FOTOS%20TALLERES/FOTOS/igexport-Db_QsCqnDhR-4.jpg',
       cupos: 6,
       cupos_disponibles: 0,
       estado: 'Agotado',
@@ -444,7 +444,7 @@ const SEED_DATA = {
       duracion: '1 día intensivo (7 horas)',
       ubicacion: 'Estudio Etérea - Sala Creativa',
       instructor: 'Adriana Carrillo & Luna',
-      image_url: 'Fotos%20Talleres/igexport-DTyuavMjQ7F.jpg',
+      image_url: 'FOTOS%20TALLERES/igexport-DTyuavMjQ7F.jpg',
       cupos: 6,
       cupos_disponibles: 2,
       estado: 'Activo',
@@ -460,7 +460,7 @@ const SEED_DATA = {
       duracion: '2 días (Junio 12 al 13, 2026)',
       ubicacion: 'Estudio Etérea - Sala Creativa',
       instructor: 'Adriana Carrillo & Luna',
-      image_url: 'Fotos%20Talleres/FOTOS/igexport-Db_QsCqnDhR-3.jpg',
+      image_url: 'FOTOS%20TALLERES/FOTOS/igexport-Db_QsCqnDhR-3.jpg',
       cupos: 6,
       cupos_disponibles: 0,
       estado: 'Agotado',
@@ -476,7 +476,7 @@ const SEED_DATA = {
       duracion: 'Semana intensiva (Julio 12 al 19, 2026)',
       ubicacion: 'Estudio Etérea - Cabina Privada',
       instructor: 'Adriana Carrillo & Luna',
-      image_url: 'Fotos%20Talleres/FOTOS/igexport-Db_QsCqnDhR-4.jpg',
+      image_url: 'FOTOS%20TALLERES/FOTOS/igexport-Db_QsCqnDhR-4.jpg',
       cupos: 4,
       cupos_disponibles: 0,
       estado: 'Agotado',
@@ -492,7 +492,7 @@ const SEED_DATA = {
       duracion: '2 días (Agosto 8 al 9, 2026 / Sesión Agosto 13)',
       ubicacion: 'Estudio Etérea - Taller Principal',
       instructor: 'Adriana Carrillo & Luna',
-      image_url: 'Fotos%20Talleres/igexport-DTyuavMjQ7F.jpg',
+      image_url: 'FOTOS%20TALLERES/igexport-DTyuavMjQ7F.jpg',
       cupos: 6,
       cupos_disponibles: 0,
       estado: 'Agotado',
@@ -1517,7 +1517,11 @@ function abrirModalDetalleTaller(tallerId) {
   // Imagen fotográfica real del taller
   const imgEl = document.getElementById('detail-taller-img');
   if (imgEl) {
-    imgEl.src = taller.image_url || 'Fotos%20Talleres/FOTOS/igexport-Db_QsCqnDhR-3.jpg';
+    imgEl.src = taller.image_url || 'FOTOS%20TALLERES/FOTOS/igexport-Db_QsCqnDhR-3.jpg';
+    imgEl.onerror = function() {
+      this.onerror = null;
+      this.src = 'FOTOS%20TALLERES/igexport-DTyuavMjQ7F.jpg';
+    };
   }
 
   // Instructor
@@ -2822,7 +2826,7 @@ function handleCrearTaller(e) {
   const fecha = document.getElementById('nuevo-taller-fecha').value;
   const horario = document.getElementById('nuevo-taller-horario').value.trim();
   const ubicacion = document.getElementById('nuevo-taller-ubicacion').value.trim();
-  const imgUrl = document.getElementById('nuevo-taller-img').value.trim() || 'Fotos Talleres/FOTOS/igexport-Db_QsCqnDhR-3.jpg';
+  const imgUrl = document.getElementById('nuevo-taller-img').value.trim() || 'FOTOS%20TALLERES/FOTOS/igexport-Db_QsCqnDhR-3.jpg';
 
   if (!titulo || !desc || isNaN(price) || isNaN(cupos) || !fecha) {
     showToast('Por favor completa todos los campos del taller', 'error');
@@ -3318,10 +3322,10 @@ function switchArtistView(artistName) {
   if (artistName && artistName.includes('Adriana')) {
     // 1. Selector superior rectangular: Verde de Marca #575c20
     if (btnAdriana) {
-      btnAdriana.className = 'px-5 sm:px-7 py-2.5 sm:py-3 text-xs sm:text-sm font-mono uppercase tracking-widest transition-all duration-300 rounded-none border-r border-[#f0e9cf]/25 bg-[#575c20] text-[#f0e9cf] font-bold';
+      btnAdriana.className = 'flex-1 sm:flex-initial px-3 sm:px-7 py-2.5 sm:py-3 text-[11px] sm:text-sm font-mono uppercase tracking-wider sm:tracking-widest transition-all duration-300 rounded-none border-r border-[#f0e9cf]/25 bg-[#575c20] text-[#f0e9cf] font-bold text-center';
     }
     if (btnLuna) {
-      btnLuna.className = 'px-5 sm:px-7 py-2.5 sm:py-3 text-xs sm:text-sm font-mono uppercase tracking-widest transition-all duration-300 rounded-none text-[#f0e9cf]/70 hover:text-[#f0e9cf] hover:bg-white/10';
+      btnLuna.className = 'flex-1 sm:flex-initial px-3 sm:px-7 py-2.5 sm:py-3 text-[11px] sm:text-sm font-mono uppercase tracking-wider sm:tracking-widest transition-all duration-300 rounded-none text-[#f0e9cf]/70 hover:text-[#f0e9cf] hover:bg-white/10 text-center';
     }
 
     // 2. Alternancia de fichas rectangulares en Verde #2756a2
@@ -3378,10 +3382,10 @@ function switchArtistView(artistName) {
   } else {
     // 1. Selector superior rectangular: Verde de Marca #575c20
     if (btnLuna) {
-      btnLuna.className = 'px-5 sm:px-7 py-2.5 sm:py-3 text-xs sm:text-sm font-mono uppercase tracking-widest transition-all duration-300 rounded-none border-r border-[#f0e9cf]/25 bg-[#575c20] text-[#f0e9cf] font-bold';
+      btnLuna.className = 'flex-1 sm:flex-initial px-3 sm:px-7 py-2.5 sm:py-3 text-[11px] sm:text-sm font-mono uppercase tracking-wider sm:tracking-widest transition-all duration-300 rounded-none border-r border-[#f0e9cf]/25 bg-[#575c20] text-[#f0e9cf] font-bold text-center';
     }
     if (btnAdriana) {
-      btnAdriana.className = 'px-5 sm:px-7 py-2.5 sm:py-3 text-xs sm:text-sm font-mono uppercase tracking-widest transition-all duration-300 rounded-none text-[#f0e9cf]/70 hover:text-[#f0e9cf] hover:bg-white/10';
+      btnAdriana.className = 'flex-1 sm:flex-initial px-3 sm:px-7 py-2.5 sm:py-3 text-[11px] sm:text-sm font-mono uppercase tracking-wider sm:tracking-widest transition-all duration-300 rounded-none text-[#f0e9cf]/70 hover:text-[#f0e9cf] hover:bg-white/10 text-center';
     }
 
     // 2. Alternancia de fichas rectangulares en Verde #2756a2
@@ -3548,6 +3552,16 @@ function openArtistBioModal(artistName) {
 
   modal.classList.add('active');
   document.body.classList.add('overflow-hidden');
+  
+  // Asegurar que el modal inicie siempre en la parte superior sin recortar fotos ni encabezados
+  modal.scrollTop = 0;
+  const modalContent = modal.querySelector('.modal-content');
+  if (modalContent) modalContent.scrollTop = 0;
+  const modalScrollable = modal.querySelector('.bio-modal-scrollable');
+  if (modalScrollable) modalScrollable.scrollTop = 0;
+  const modalCols = modal.querySelector('.flex-col');
+  if (modalCols) modalCols.scrollTop = 0;
+
   if (window.lucide) window.lucide.createIcons();
 }
 
