@@ -2306,14 +2306,6 @@
                 <span>@lunnapokes</span>
               </a>
             </div>
-            <div>
-              <a href="https://wa.me/593984123456" target="_blank" rel="noopener noreferrer" class="text-[#f0e9cf] hover:text-white transition-colors inline-flex items-center gap-2.5">
-                <svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
-                </svg>
-                <span>+593 98 412 3456</span>
-              </a>
-            </div>
           </div>
         </div>
 
@@ -2644,12 +2636,9 @@
       <!-- SECCIÓN INFERIOR EDITORIAL: AUTORÍA, TÉCNICA Y PROPÓSITO DEL DISEÑO (SIN NOMBRE DE OBRA) -->
       <div class="p-6 sm:p-10 md:p-12 bg-[#091220] text-white space-y-6 border-t border-white/15">
         
-        <!-- CABECERA DE AUTORÍA (SIN NOMBRE DE OBRA) -->
+        <!-- CABECERA DE AUTORÍA Y TÉCNICA -->
         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-white/10 pb-6">
           <div>
-            <span class="text-[10px] font-mono tracking-[0.25em] uppercase text-[#f0e9cf]/75 block mb-1">
-              PIEZA DE AUTOR · ETÉREA TATTOO STUDIO
-            </span>
             <h3 class="font-serif text-3xl sm:text-4xl text-[#f0e9cf] font-normal">
               Por <span id="modal-artwork-artist" class="font-medium"></span>
             </h3>
@@ -2657,28 +2646,20 @@
           
           <div class="flex items-center gap-3">
             <span id="modal-artwork-category" class="px-4 py-1.5 text-xs font-mono uppercase bg-[#2756a2] text-white tracking-wider border border-white/20"></span>
-            <span class="px-3.5 py-1.5 text-xs font-mono uppercase bg-white/10 text-[#f0e9cf]/90 tracking-wider">Estudio Privado</span>
           </div>
         </div>
 
-        <!-- EXPLICACIÓN: POR QUÉ ESTÁ HECHO Y CONCEPCIÓN ARTÍSTICA -->
-        <div class="space-y-3 py-2">
-          <h4 class="text-xs font-mono uppercase tracking-[0.2em] text-[#f0e9cf]/80">
-            Concepción y Propósito de la Obra
-          </h4>
+        <!-- DESCRIPCIÓN DE LA OBRA -->
+        <div class="py-2">
           <p id="modal-artwork-desc" class="text-sm sm:text-base text-white/90 leading-relaxed font-light max-w-3xl"></p>
         </div>
 
-        <!-- GARANTÍA Y ACCIÓN DE AGENDAR -->
-        <div class="pt-6 border-t border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-5">
-          <div class="text-xs text-[#f0e9cf]/70 font-mono flex items-center gap-2">
-            <i data-lucide="shield-check" class="w-4 h-4 text-[#f0e9cf]"></i>
-            <span>Esterilización grado quirúrgico · Trazo de autor irrepetible</span>
-          </div>
+        <!-- ACCIÓN DE AGENDAR -->
+        <div class="pt-6 border-t border-white/10 flex flex-col sm:flex-row sm:items-center justify-end">
           <button 
             type="button" 
             onclick="agendarDesdeObra()" 
-            class="px-8 py-4 bg-[#2756a2] hover:bg-[#1b3f7a] text-white font-semibold text-xs tracking-widest uppercase transition-all shadow-xl hover:scale-[1.02] flex items-center justify-center gap-3 border border-white/20"
+            class="w-full sm:w-auto px-8 py-4 bg-[#2756a2] hover:bg-[#1b3f7a] text-white font-semibold text-xs tracking-widest uppercase transition-all shadow-xl hover:scale-[1.02] flex items-center justify-center gap-3 border border-white/20 cursor-pointer"
           >
             <span>Agendar cita con la artista</span>
             <i data-lucide="arrow-right" class="w-4 h-4"></i>
