@@ -228,18 +228,25 @@ body::before {
   box-shadow: none !important;
 }
 
-/* Ocultar barra superior pública de navegación exclusivamente en el panel de administración */
-body.page-theme-admin .nav-floating-dock {
+/* Ocultar barra superior pública de navegación exclusivamente en el panel de administración y login */
+body.page-theme-admin .nav-floating-dock,
+body.page-theme-login .nav-floating-dock {
   display: none !important;
   opacity: 0 !important;
   pointer-events: none !important;
   visibility: hidden !important;
 }
 
-/* Ocultar footer público exclusivamente en el panel de administración */
+/* Ocultar footer público y dock flotante exclusivamente en el panel de administración y login */
 body.page-theme-admin footer,
-body.page-theme-admin #main-site-footer {
+body.page-theme-admin #main-site-footer,
+body.page-theme-login footer,
+body.page-theme-login #main-site-footer,
+body.page-theme-admin #floating-bottom-dock,
+body.page-theme-login #floating-bottom-dock {
   display: none !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
 }
 
 /* Menú de Navegación Limpio (Sin Cápsula de Color Atrás) */

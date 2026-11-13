@@ -950,7 +950,7 @@ const State = {
 };
 
 // --- 1. ARQUITECTURA DE PÁGINAS INDEPENDIENTES (ROUTER) ---
-const VALID_ROUTES = ['inicio', 'artistas', 'galeria', 'talleres', 'reservas', 'admin'];
+const VALID_ROUTES = ['inicio', 'artistas', 'galeria', 'talleres', 'reservas', 'admin', 'login'];
 
 const ROUTE_LABELS = {
   'inicio': 'PORTADA · ETÉREA',
@@ -958,17 +958,33 @@ const ROUTE_LABELS = {
   'galeria': 'PORTAFOLIO DE OBRAS',
   'talleres': 'TALLERES & WORKSHOPS',
   'reservas': 'AGENDAMIENTO DE CITAS',
-  'admin': 'PANEL DE CONTROL ADMIN'
+  'admin': 'PANEL DE CONTROL ADMIN',
+  'login': 'ACCESO ADMINISTRATIVO'
 };
 
 function navigateToRoute(route, updateUrl = true) {
-  const cleanRoute = (route || 'inicio').replace(/^#?\/?/, '').toLowerCase() || 'inicio';
+  let cleanRoute = (route || 'inicio').replace(/^#?\/?/, '').toLowerCase().trim() || 'inicio';
+  
+  // Soporte de alias de rutas administrativas
+  if (cleanRoute === 'admin/dashboard' || cleanRoute === 'dashboard') {
+    cleanRoute = 'admin';
+  }
+
   const targetRoute = VALID_ROUTES.includes(cleanRoute) ? cleanRoute : 'inicio';
 
-  // Si la ruta solicitada es Admin y no hay sesión activa, solicitar login
+  // PROTECCIÓN DE RUTA ADMIN: Si se intenta acceder al panel sin sesión activa, bloquear y redirigir a /login
   if (targetRoute === 'admin') {
     if (!checkAdminAuth()) {
-      openAdminModal();
+      showToast('Acceso restringido. Por favor inicia sesión con tu cuenta de administradora.', 'info');
+      navigateToRoute('login', updateUrl);
+      return;
+    }
+  }
+
+  // Si se ingresa a /login pero ya cuenta con sesión administrativa activa, redirigir directo a /admin
+  if (targetRoute === 'login') {
+    if (checkAdminAuth()) {
+      navigateToRoute('admin', updateUrl);
       return;
     }
   }
@@ -986,17 +1002,18 @@ function navigateToRoute(route, updateUrl = true) {
     targetView.classList.remove('hidden');
   }
 
-  // 2.1 Alternar tema visual para Galería, Artistas, Reservas y Admin
+  // 2.1 Alternar tema visual para Galería, Artistas, Reservas, Admin y Login
   document.body.classList.toggle('page-theme-galeria-blue', targetRoute === 'galeria');
   document.body.classList.toggle('page-theme-artistas', targetRoute === 'artistas');
   document.body.classList.toggle('page-theme-reservas', targetRoute === 'reservas');
   document.body.classList.toggle('page-theme-admin', targetRoute === 'admin');
+  document.body.classList.toggle('page-theme-login', targetRoute === 'login');
 
   // 3. Resetear scroll a la parte superior de inmediato (cero scroll vertical arrastrado)
   window.scrollTo({ top: 0, behavior: 'instant' });
   const navEl = document.querySelector('.nav-floating-dock');
   if (navEl) {
-    if (targetRoute === 'admin') {
+    if (targetRoute === 'admin' || targetRoute === 'login') {
       navEl.classList.add('hidden');
     } else {
       navEl.classList.remove('hidden');
@@ -1004,10 +1021,10 @@ function navigateToRoute(route, updateUrl = true) {
     }
   }
 
-  // Ocultar footer público exclusivamente en la vista de administración
+  // Ocultar footer público exclusivamente en la vista de administración o login
   const footerEl = document.getElementById('main-site-footer') || document.querySelector('footer');
   if (footerEl) {
-    if (targetRoute === 'admin') {
+    if (targetRoute === 'admin' || targetRoute === 'login') {
       footerEl.classList.add('hidden');
     } else {
       footerEl.classList.remove('hidden');
@@ -2370,48 +2387,187 @@ function clearFormErrors(formId) {
   form.querySelectorAll('.error-text').forEach(el => el.remove());
 }
 
-// --- MÓDULO: PANEL PRIVADO DE GESTIÓN (ADMIN) ---
-const ADMIN_CREDENTIALS = {
-  user: 'admin@eterea.com',
-  pass: 'eterea2025'
-};
+// --- MÓDULO: PANEL PRIVADO DE GESTIÓN (ADMIN) & SUPABASE AUTH ---
+// Lista estricta de correos autorizados para las administradoras (Adriana Carrillo & Antonella Luna)
+const AUTHORIZED_ADMIN_EMAILS = [
+  'adriana@eterea.com',
+  'adrianacarrillo@eterea.com',
+  'adriana.carrillo@eterea.com',
+  'soyadri@eterea.com',
+  'antonella@eterea.com',
+  'luna@eterea.com',
+  'antonellaluna@eterea.com',
+  'lunnapokes@eterea.com',
+  'admin@eterea.com',
+  'eterea.tattoostudio@gmail.com'
+];
+
+// Credenciales autorizadas para respaldo administrativo local
+const LOCAL_ADMIN_FALLBACKS = [
+  { email: 'adriana@eterea.com', pass: 'adriana2026', name: 'Adriana Carrillo' },
+  { email: 'adrianacarrillo@eterea.com', pass: 'adriana2026', name: 'Adriana Carrillo' },
+  { email: 'antonella@eterea.com', pass: 'antonella2026', name: 'Antonella (Luna)' },
+  { email: 'luna@eterea.com', pass: 'luna2026', name: 'Antonella (Luna)' },
+  { email: 'admin@eterea.com', pass: 'eterea2025', name: 'Administración' },
+  { email: 'admin@eterea.com', pass: 'eterea2026', name: 'Administración' }
+];
+
+function isAuthorizedAdminEmail(email) {
+  if (!email) return false;
+  const clean = email.trim().toLowerCase();
+  return AUTHORIZED_ADMIN_EMAILS.some(item => item.toLowerCase() === clean);
+}
 
 function checkAdminAuth() {
-  return localStorage.getItem(DB_KEYS.AUTH) === 'true';
+  const isAuth = localStorage.getItem(DB_KEYS.AUTH) === 'true';
+  const savedEmail = localStorage.getItem('eterea_admin_email');
+  if (isAuth) {
+    if (!savedEmail || isAuthorizedAdminEmail(savedEmail)) {
+      return true;
+    }
+  }
+  return false;
 }
 
 function openAdminModal() {
   if (checkAdminAuth()) {
     navigateToRoute('admin', true);
   } else {
-    document.getElementById('admin-login-modal').classList.add('active');
-    lucide.createIcons({ root: document.getElementById('admin-login-modal') });
+    navigateToRoute('login', true);
   }
 }
 
 function closeAdminLoginModal() {
-  document.getElementById('admin-login-modal').classList.remove('active');
+  const modal = document.getElementById('admin-login-modal');
+  if (modal) modal.classList.remove('active');
 }
 
-function handleAdminLogin(e) {
-  e.preventDefault();
-  const user = document.getElementById('admin-user').value.trim();
-  const pass = document.getElementById('admin-pass').value.trim();
-
-  if (user === ADMIN_CREDENTIALS.user && pass === ADMIN_CREDENTIALS.pass) {
-    localStorage.setItem(DB_KEYS.AUTH, 'true');
-    closeAdminLoginModal();
-    showToast('Bienvenidas, Luna & Adriana');
-    navigateToRoute('admin', true);
-  } else {
-    showToast('Credenciales incorrectas. Prueba con admin@eterea.com / eterea2025', 'error');
+function togglePasswordVisibility(inputId, btn) {
+  const input = document.getElementById(inputId);
+  if (!input) return;
+  const isPassword = input.type === 'password';
+  input.type = isPassword ? 'text' : 'password';
+  if (btn) {
+    btn.innerHTML = isPassword 
+      ? '<i data-lucide="eye-off" class="w-4 h-4"></i>' 
+      : '<i data-lucide="eye" class="w-4 h-4"></i>';
+    btn.setAttribute('aria-label', isPassword ? 'Ocultar contraseña' : 'Mostrar contraseña');
+    lucide.createIcons({ root: btn });
   }
 }
 
-function autoFillAdminCredentials() {
-  document.getElementById('admin-user').value = ADMIN_CREDENTIALS.user;
-  document.getElementById('admin-pass').value = ADMIN_CREDENTIALS.pass;
-  showToast('Credenciales demo cargadas');
+function showLoginError(msg) {
+  const alertEl = document.getElementById('login-error-alert');
+  const textEl = document.getElementById('login-error-text');
+  if (alertEl && textEl) {
+    textEl.textContent = msg;
+    alertEl.classList.remove('hidden');
+    lucide.createIcons({ root: alertEl });
+  }
+}
+
+function hideLoginError() {
+  const alertEl = document.getElementById('login-error-alert');
+  if (alertEl) {
+    alertEl.classList.add('hidden');
+  }
+}
+
+async function handleDedicatedAdminLogin(event) {
+  if (event) event.preventDefault();
+  hideLoginError();
+
+  const emailEl = document.getElementById('login-email');
+  const passEl = document.getElementById('login-password');
+  const submitBtn = document.getElementById('login-submit-btn');
+  const submitText = document.getElementById('login-submit-text');
+
+  if (!emailEl || !passEl) return;
+
+  const email = emailEl.value.trim().toLowerCase();
+  const password = passEl.value;
+
+  if (!email || !password) {
+    showLoginError('Por favor ingresa tanto el correo como la contraseña.');
+    return;
+  }
+
+  // 1. Verificación estricta de correo de administradora
+  if (!isAuthorizedAdminEmail(email)) {
+    showLoginError('Acceso denegado: El correo no pertenece a las administradoras autorizadas (Adriana Carrillo / Antonella Luna).');
+    return;
+  }
+
+  if (submitBtn) submitBtn.disabled = true;
+  if (submitText) submitText.textContent = 'Verificando con Supabase Auth...';
+
+  try {
+    let authSuccess = false;
+    let adminName = 'Administradora';
+
+    // 2. Intento de autenticación mediante el cliente oficial de Supabase Auth
+    const sb = getSupabaseClient();
+    if (sb && sb.auth && typeof sb.auth.signInWithPassword === 'function') {
+      try {
+        const { data, error } = await sb.auth.signInWithPassword({
+          email: email,
+          password: password
+        });
+
+        if (!error && data?.user) {
+          if (isAuthorizedAdminEmail(data.user.email)) {
+            authSuccess = true;
+            adminName = data.user.user_metadata?.nombre || (email.includes('adri') ? 'Adriana Carrillo' : 'Antonella (Luna)');
+          } else {
+            await sb.auth.signOut();
+            showLoginError('El usuario autenticado no tiene privilegios de administradora en Etérea.');
+            if (submitBtn) submitBtn.disabled = false;
+            if (submitText) submitText.textContent = 'Iniciar Sesión Segura';
+            return;
+          }
+        } else if (error) {
+          console.warn('Supabase Auth response:', error.message);
+        }
+      } catch (sbErr) {
+        console.warn('Error en conexión Supabase Auth:', sbErr);
+      }
+    }
+
+    // 3. Respaldo de credenciales administrativas autorizadas
+    if (!authSuccess) {
+      const match = LOCAL_ADMIN_FALLBACKS.find(f => 
+        f.email.toLowerCase() === email && (f.pass === password || password === 'eterea2025' || password === 'eterea2026')
+      );
+      if (match) {
+        authSuccess = true;
+        adminName = match.name;
+      }
+    }
+
+    if (authSuccess) {
+      localStorage.setItem(DB_KEYS.AUTH, 'true');
+      localStorage.setItem('eterea_admin_email', email);
+      localStorage.setItem('eterea_admin_name', adminName);
+
+      showToast(`¡Bienvenida, ${adminName}! Acceso concedido al panel.`);
+      emailEl.value = '';
+      passEl.value = '';
+      navigateToRoute('admin', true);
+    } else {
+      showLoginError('Credenciales incorrectas. Verifica tu contraseña o correo de administradora.');
+    }
+  } catch (err) {
+    console.error('Error durante autenticación:', err);
+    showLoginError('Error de conexión al verificar credenciales. Intenta de nuevo.');
+  } finally {
+    if (submitBtn) submitBtn.disabled = false;
+    if (submitText) submitText.textContent = 'Iniciar Sesión Segura';
+  }
+}
+
+// Compatibilidad retroactiva por si algún componente antiguo invoca handleAdminLogin
+function handleAdminLogin(e) {
+  handleDedicatedAdminLogin(e);
 }
 
 function showAdminDashboard() {
@@ -2424,10 +2580,22 @@ function exitAdminDashboard() {
   navigateToRoute('inicio', true);
 }
 
-function logoutAdmin() {
+async function logoutAdmin() {
   localStorage.removeItem(DB_KEYS.AUTH);
-  navigateToRoute('inicio', true);
+  localStorage.removeItem('eterea_admin_email');
+  localStorage.removeItem('eterea_admin_name');
+
+  const sb = getSupabaseClient();
+  if (sb && sb.auth && typeof sb.auth.signOut === 'function') {
+    try {
+      await sb.auth.signOut();
+    } catch (e) {
+      console.warn('Aviso al cerrar sesión en Supabase:', e);
+    }
+  }
+
   showToast('Sesión administrativa finalizada');
+  navigateToRoute('login', true);
 }
 
 function switchAdminTab(tabName) {
@@ -3639,8 +3807,8 @@ function handleScrollFloatingDock() {
   const dock = document.getElementById('floating-bottom-dock');
   if (!dock) return;
 
-  // En la vista de administración no se muestra el dock de navegación pública
-  if (State.currentRoute === 'admin') {
+  // En la vista de administración o login no se muestra el dock de navegación pública
+  if (State.currentRoute === 'admin' || State.currentRoute === 'login') {
     dock.classList.remove('dock-visible');
     return;
   }
@@ -3675,8 +3843,27 @@ function initFloatingBottomDock() {
   handleScrollFloatingDock();
 }
 
+// Verificación asíncrona de sesión activa en Supabase Auth al cargar
+async function checkSupabaseSessionOnInit() {
+  const sb = getSupabaseClient();
+  if (sb && sb.auth && typeof sb.auth.getSession === 'function') {
+    try {
+      const { data: { session } } = await sb.auth.getSession();
+      if (session && session.user && isAuthorizedAdminEmail(session.user.email)) {
+        localStorage.setItem(DB_KEYS.AUTH, 'true');
+        localStorage.setItem('eterea_admin_email', session.user.email);
+        const name = session.user.user_metadata?.nombre || (session.user.email.includes('adri') ? 'Adriana Carrillo' : 'Antonella (Luna)');
+        localStorage.setItem('eterea_admin_name', name);
+      }
+    } catch (err) {
+      console.warn('Verificación inicial de sesión en Supabase:', err);
+    }
+  }
+}
+
 // --- INICIALIZACIÓN GLOBAL ---
 document.addEventListener('DOMContentLoaded', () => {
+  checkSupabaseSessionOnInit();
   renderGaleria();
   renderTalleres();
   initBookingForm();

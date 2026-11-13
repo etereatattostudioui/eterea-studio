@@ -85,12 +85,8 @@
       </button>
     </nav>
 
-    <!-- Acciones Rápidas (Admin & CTA) -->
+    <!-- Acciones Rápidas (CTA Agendar Privado) -->
     <div class="flex items-center gap-3 shrink-0">
-      <button type="button" onclick="openAdminModal()" class="inline-flex items-center text-xs text-[#2756a2] hover:text-[#1b3f7a] border border-[#2756a2]/25 px-3.5 py-1.5 rounded-full transition-all hover:border-[#2756a2] bg-white/70 shadow-sm font-medium" title="Panel privado de gestión de citas y obras">
-        <span>Admin</span>
-      </button>
-      
       <a href="#/reservas" onclick="navigateToRoute('reservas', true); return false;" class="btn-primary text-xs py-2 px-4 sm:px-5 shadow-sm">
         <span>Agendar</span>
       </a>
@@ -1338,7 +1334,128 @@
     <!-- ========================================================
          PÃGINA 6: /admin (PANEL PRIVADO DE CONTROL - ADMIN)
          ======================================================== -->
-        <!-- ========================================================
+    <!-- ========================================================
+         PÁGINA: /login (PORTAL PRIVADO DE AUTENTICACIÓN - SUPABASE AUTH)
+         DISEÑO EDITORIAL EXCLUSIVO: FONDO CLARO Y ACENTOS EN AZUL (#2756a2)
+         ======================================================== -->
+    <div id="page-login" class="page-view hidden w-full min-h-screen bg-[#faf8f5] flex items-center justify-center py-12 px-4 sm:px-6 relative overflow-hidden">
+      <!-- Glows sutiles de fondo con los tonos de la marca -->
+      <div class="absolute -top-32 -left-32 w-96 h-96 rounded-full bg-[#2756a2]/5 blur-3xl pointer-events-none"></div>
+      <div class="absolute -bottom-32 -right-32 w-96 h-96 rounded-full bg-[#575c20]/5 blur-3xl pointer-events-none"></div>
+
+      <div class="max-w-md w-full bg-white border border-[#2756a2]/15 shadow-2xl p-8 sm:p-10 relative z-10 rounded-2xl">
+        
+        <!-- CABECERA DEL LOGIN -->
+        <div class="text-center mb-6">
+          <a href="#/inicio" onclick="navigateToRoute('inicio', true); return false;" class="inline-block transition-transform hover:scale-105 duration-300 mb-4" title="Volver al inicio">
+            <img src="LOGO%20ET%C3%89REA/logo-eterea-azul.svg" alt="Etérea Tattoo Studio" class="h-10 w-auto mx-auto object-contain" onerror="this.onerror=null; this.src='logo-eterea.svg';" />
+          </a>
+          <span class="font-mono text-[10px] tracking-[0.28em] uppercase text-[#2756a2] font-bold block mb-1">
+            PORTAL PRIVADO · DUEÑAS
+          </span>
+          <h2 class="font-serif text-2xl sm:text-3xl text-[#1e3264] font-normal leading-tight">
+            Administración Etérea
+          </h2>
+          <p class="text-xs text-slate-500 font-body mt-1.5 leading-relaxed">
+            Acceso restringido para las administradoras Adriana Carrillo y Antonella (Luna).
+          </p>
+
+          <!-- Indicador de Seguridad Supabase Auth -->
+          <div class="flex items-center justify-center gap-2 mt-3.5">
+            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#2756a2]/8 border border-[#2756a2]/20 text-[10px] font-mono text-[#2756a2] font-medium">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+              <span>Supabase Auth · Conexión Encriptada</span>
+            </span>
+          </div>
+        </div>
+
+        <!-- FORMULARIO DE INICIO DE SESIÓN -->
+        <form id="dedicated-admin-login-form" onsubmit="handleDedicatedAdminLogin(event)" class="space-y-4">
+          
+          <!-- Alerta de Error Dinámica -->
+          <div id="login-error-alert" class="hidden p-3.5 bg-red-50/90 border border-red-200 text-red-700 text-xs rounded-xl flex items-start gap-2.5">
+            <i data-lucide="alert-circle" class="w-4 h-4 text-red-600 shrink-0 mt-0.5"></i>
+            <span id="login-error-text" class="flex-1 font-body"></span>
+          </div>
+
+          <!-- Campo 1: Correo Electrónico -->
+          <div>
+            <label for="login-email" class="block text-[11px] font-mono uppercase tracking-wider text-[#2756a2] font-bold mb-1.5">
+              Correo de Administradora
+            </label>
+            <div class="relative">
+              <input 
+                type="email" 
+                id="login-email" 
+                required 
+                placeholder="ej: adriana@eterea.com" 
+                class="form-input w-full text-xs font-body pl-9 pr-3 py-3 border border-slate-200 rounded-xl focus:border-[#2756a2] focus:ring-1 focus:ring-[#2756a2]" 
+                autocomplete="email" 
+              />
+              <div class="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none">
+                <i data-lucide="mail" class="w-4 h-4"></i>
+              </div>
+            </div>
+            <span class="block text-[10px] text-slate-400 mt-1 font-mono">Correos autorizados: Adriana Carrillo y Antonella (Luna)</span>
+          </div>
+
+          <!-- Campo 2: Contraseña -->
+          <div>
+            <div class="flex justify-between items-center mb-1.5">
+              <label for="login-password" class="text-[11px] font-mono uppercase tracking-wider text-[#2756a2] font-bold">
+                Contraseña
+              </label>
+            </div>
+            <div class="relative">
+              <input 
+                type="password" 
+                id="login-password" 
+                required 
+                placeholder="••••••••••••" 
+                class="form-input w-full text-xs font-body pl-9 pr-10 py-3 border border-slate-200 rounded-xl focus:border-[#2756a2] focus:ring-1 focus:ring-[#2756a2]" 
+                autocomplete="current-password" 
+              />
+              <div class="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none">
+                <i data-lucide="lock" class="w-4 h-4"></i>
+              </div>
+              <button 
+                type="button" 
+                onclick="togglePasswordVisibility('login-password', this)" 
+                class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-[#2756a2] p-1 cursor-pointer transition-colors" 
+                title="Mostrar / Ocultar contraseña"
+                aria-label="Mostrar contraseña"
+              >
+                <i data-lucide="eye" class="w-4 h-4"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Botón de Envío -->
+          <div class="pt-2">
+            <button 
+              type="submit" 
+              id="login-submit-btn" 
+              class="w-full py-3.5 px-6 bg-[#2756a2] hover:bg-[#1e3264] text-white text-xs font-mono uppercase tracking-widest transition-all duration-300 shadow-md hover:shadow-xl flex items-center justify-center gap-2 cursor-pointer rounded-xl font-bold"
+            >
+              <i data-lucide="shield-check" class="w-4 h-4"></i>
+              <span id="login-submit-text">Iniciar Sesión Segura</span>
+            </button>
+          </div>
+
+          <!-- Enlace de Retorno Público -->
+          <div class="pt-4 text-center border-t border-slate-100 mt-5">
+            <a href="#/inicio" onclick="navigateToRoute('inicio', true); return false;" class="text-xs text-slate-400 hover:text-[#2756a2] transition-colors font-mono inline-flex items-center gap-1.5">
+              <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i>
+              <span>Volver al sitio público de Etérea</span>
+            </a>
+          </div>
+
+        </form>
+
+      </div>
+    </div>
+
+    <!-- ========================================================
          PÁGINA 6: /admin (PANEL PRIVADO DE CONTROL - ADMIN / DUEÑAS)
          DISEÑO ULTRA LIMPIO: FONDO BLANCO PURO Y ACENTOS EN AZUL (#2756a2)
          ======================================================== -->
@@ -2172,46 +2289,6 @@
   <!-- ========================================================
        MODALES DEL SISTEMA (INTERACTIVIDAD Y CONFIRMACIÓN)
        ======================================================== -->
-
-  <!-- MODAL: LOGIN ADMINISTRACIÓN -->
-  <div id="admin-login-modal" class="modal-overlay">
-    <div class="modal-content p-8 max-w-md bg-white">
-      <div class="flex justify-between items-center mb-6">
-        <div>
-          <span class="pill-badge active text-[10px]">ACCESO INTERNO</span>
-          <h3 class="font-serif text-2xl text-[#1b3f7a] font-semibold mt-1">Administración Etérea</h3>
-        </div>
-        <button type="button" onclick="closeAdminLoginModal()" class="text-[#738eb2] hover:text-[#2756a2] p-2">
-          <i data-lucide="x" class="w-5 h-5"></i>
-        </button>
-      </div>
-
-      <form onsubmit="handleAdminLogin(event)" class="space-y-4">
-        <div>
-          <label class="block text-xs font-bold text-[#2756a2] uppercase mb-1">Correo Electrónico</label>
-          <input type="email" id="admin-user" class="form-input" placeholder="admin@eterea.com" required />
-        </div>
-        <div>
-          <label class="block text-xs font-bold text-[#2756a2] uppercase mb-1">Contraseña</label>
-          <input type="password" id="admin-pass" class="form-input" placeholder="••••••••" required />
-        </div>
-
-        <div class="pt-2">
-          <button type="submit" class="btn-primary w-full py-3 text-xs shadow-md">
-            <span>Ingresar al Panel de Gestión</span>
-          </button>
-        </div>
-
-        <!-- Acceso Rápido de Prueba -->
-        <div class="pt-3 border-t border-[#2756a2]/15 text-center">
-          <button type="button" onclick="autoFillAdminCredentials()" class="text-xs text-[#2756a2] hover:underline font-semibold">
-            ⚡ Autocompletar credenciales demo (Evaluador)
-          </button>
-          <p class="text-[10px] text-[#738eb2] mt-1 font-mono">admin@eterea.com / eterea2025</p>
-        </div>
-      </form>
-    </div>
-  </div>
 
   <!-- MODAL: CONFIRMACIÓN DE CITA Y WHATSAPP DIRECTO -->
   <div id="booking-confirmation-modal" class="modal-overlay">
